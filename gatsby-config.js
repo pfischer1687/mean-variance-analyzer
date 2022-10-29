@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: "My Super Cool Blog",
+    title: "Simple Sharpe Ratio Optimizer",
   },
   plugins: [
     "gatsby-plugin-image",
