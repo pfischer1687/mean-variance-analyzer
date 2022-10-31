@@ -25,3 +25,15 @@
   font-weight: 700;
   margin: 3rem 0;
 }
+
+.footer-links {
+  display: flex;
+  list-style: none;
+  padding-left: 0;
+}
+.footer-link-item {
+  padding-right: 2rem;
+}
+.footer-link-text {
+  color: black;
+}
