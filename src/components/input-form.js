@@ -13,14 +13,15 @@ const selectList = keys.map((key) => (
 // Generate the Form for user to choose portfolio assets
 const generateForm = (
   handleSubmit,
-  initNumOfAssets,
+  NumOfAssets,
   handleChange,
-  addAsset
+  addAsset,
+  removeAsset
 ) => {
   return (
     <>
       <form onSubmit={handleSubmit}>
-        {[...Array(initNumOfAssets)].map((value, index) => (
+        {[...Array(NumOfAssets)].map((value, index) => (
           <label key={index}>
             Choose an asset:
             <select
@@ -37,8 +38,11 @@ const generateForm = (
         <br />
         <input type="submit" value="Submit" />
       </form>
-      {initNumOfAssets < 30 ? (
+      {NumOfAssets < 30 ? (
         <button onClick={addAsset}>+ Add Asset</button>
+      ) : null}
+      {NumOfAssets > 7 ? (
+        <button onClick={removeAsset}>- Remove Asset</button>
       ) : null}
     </>
   );
@@ -47,23 +51,24 @@ const generateForm = (
 class InputForm extends React.Component {
   constructor(props) {
     super(props);
-    // this.initNumOfAssets = 7;
+    this.initNumOfAssets = 7;
     this.state = {
       showForm: true,
-      initNumOfAssets: 7,
-      values: Array(7),
+      NumOfAssets: this.initNumOfAssets,
+      values: Array(this.initNumOfAssets),
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
 
     this.addAsset = this.addAsset.bind(this);
+    this.removeAsset = this.removeAsset.bind(this);
   }
 
   handleChange(event) {
-    let a = this.state.values.slice();
-    a[event.target.attributes.index.nodeValue] = event.target.value;
-    this.setState({ values: a });
+    let arr = this.state.values.slice();
+    arr[event.target.attributes.index.nodeValue] = event.target.value;
+    this.setState({ values: arr });
   }
 
   handleSubmit(event) {
@@ -73,9 +78,21 @@ class InputForm extends React.Component {
     event.preventDefault();
   }
 
-  addAsset(event) {
+  addAsset() {
+    let arr = this.state.values.slice();
+    arr.push(undefined);
     this.setState((state) => ({
-      initNumOfAssets: this.state.initNumOfAssets + 1,
+      NumOfAssets: this.state.NumOfAssets + 1,
+      values: arr,
+    }));
+  }
+
+  removeAsset() {
+    let arr = this.state.values.slice();
+    arr.pop();
+    this.setState((state) => ({
+      NumOfAssets: this.state.NumOfAssets - 1,
+      values: arr,
     }));
   }
 
@@ -85,9 +102,10 @@ class InputForm extends React.Component {
         {this.state.showForm ? (
           generateForm(
             this.handleSubmit,
-            this.state.initNumOfAssets,
+            this.state.NumOfAssets,
             this.handleChange,
-            this.addAsset
+            this.addAsset,
+            this.removeAsset
           )
         ) : (
           <p>{this.state.values}</p>
