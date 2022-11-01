@@ -10,18 +10,29 @@ const selectList = keys.map((key) => (
   </option>
 ));
 
-const createSelectItems = (num, handleChange) => {
-  return [...Array(num)].map((value, index) => (
-    <select
-      name={`asset${index}`}
-      key={index}
-      index={index}
-      onChange={handleChange}
-    >
-      <option value="">--Please choose an option--</option>
-      {selectList}
-    </select>
-  ));
+const generateForm = (handleSubmit, initNumOfAssets, handleChange) => {
+  return (
+    <form onSubmit={handleSubmit}>
+      {[...Array(initNumOfAssets)].map((value, index) => (
+        <>
+          <label>
+            Choose an asset:
+            <select
+              name={`asset${index}`}
+              key={index}
+              index={index}
+              onChange={handleChange}
+            >
+              <option value="">--Please choose an option--</option>
+              {selectList}
+            </select>
+          </label>
+          <br />
+        </>
+      ))}
+      <input type="submit" value="Submit" />
+    </form>
+  );
 };
 
 class InputForm extends React.Component {
@@ -51,17 +62,11 @@ class InputForm extends React.Component {
     return (
       <>
         {this.state.showForm ? (
-          <form onSubmit={this.handleSubmit}>
-            <label>
-              Choose an asset:
-              {/* <select onChange={this.handleChange}>
-                <option value="">--Please choose an option--</option>
-                {selectList}
-              </select> */}
-              {createSelectItems(this.initNumOfAssets, this.handleChange)}
-            </label>
-            <input type="submit" value="Submit" />
-          </form>
+          generateForm(
+            this.handleSubmit,
+            this.initNumOfAssets,
+            this.handleChange
+          )
         ) : (
           <p>{this.state.values}</p>
         )}
