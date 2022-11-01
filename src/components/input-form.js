@@ -10,39 +10,54 @@ const selectList = keys.map((key) => (
   </option>
 ));
 
-const generateForm = (handleSubmit, initNumOfAssets, handleChange) => {
+// Generate the Form for user to choose portfolio assets
+const generateForm = (
+  handleSubmit,
+  initNumOfAssets,
+  handleChange,
+  addAsset
+) => {
   return (
-    <form onSubmit={handleSubmit}>
-      {[...Array(initNumOfAssets)].map((value, index) => (
-        <>
-          <label>
+    <>
+      <form onSubmit={handleSubmit}>
+        {[...Array(initNumOfAssets)].map((value, index) => (
+          <label key={index}>
             Choose an asset:
             <select
               name={`asset${index}`}
-              key={index}
               index={index}
               onChange={handleChange}
             >
               <option value="">--Please choose an option--</option>
               {selectList}
             </select>
+            <br />
           </label>
-          <br />
-        </>
-      ))}
-      <input type="submit" value="Submit" />
-    </form>
+        ))}
+        <br />
+        <input type="submit" value="Submit" />
+      </form>
+      {initNumOfAssets < 30 ? (
+        <button onClick={addAsset}>+ Add Asset</button>
+      ) : null}
+    </>
   );
 };
 
 class InputForm extends React.Component {
   constructor(props) {
     super(props);
-    this.initNumOfAssets = 7;
-    this.state = { showForm: true, values: Array(this.initNumOfAssets) };
+    // this.initNumOfAssets = 7;
+    this.state = {
+      showForm: true,
+      initNumOfAssets: 7,
+      values: Array(7),
+    };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+
+    this.addAsset = this.addAsset.bind(this);
   }
 
   handleChange(event) {
@@ -58,14 +73,21 @@ class InputForm extends React.Component {
     event.preventDefault();
   }
 
+  addAsset(event) {
+    this.setState((state) => ({
+      initNumOfAssets: this.state.initNumOfAssets + 1,
+    }));
+  }
+
   render() {
     return (
       <>
         {this.state.showForm ? (
           generateForm(
             this.handleSubmit,
-            this.initNumOfAssets,
-            this.handleChange
+            this.state.initNumOfAssets,
+            this.handleChange,
+            this.addAsset
           )
         ) : (
           <p>{this.state.values}</p>

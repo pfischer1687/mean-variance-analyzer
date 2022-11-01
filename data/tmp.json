@@ -22,5 +22,17 @@
   "tmp6": {
     "avgReturn": 11.0,
     "stdDeviation": 12.0
+  },
+  "tmp7": {
+    "avgReturn": 13.0,
+    "stdDeviation": 14.0
+  },
+  "tmp8": {
+    "avgReturn": 15.0,
+    "stdDeviation": 16.0
+  },
+  "tmp9": {
+    "avgReturn": 17.0,
+    "stdDeviation": 18.0
   }
 }
