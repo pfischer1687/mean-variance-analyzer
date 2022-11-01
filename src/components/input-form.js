@@ -48,6 +48,23 @@ const generateForm = (
   );
 };
 
+// Make sure all asset select tags have unique values
+const validateForm = (values) => {
+  let hashSet = new Set();
+  for (let i = 0; i < values.length; i++) {
+    if (values[i] === undefined) {
+      alert("All assets must be filled in.");
+      return false;
+    }
+    if (hashSet.has(values[i])) {
+      alert("All assets must be unique.");
+      return false;
+    }
+    hashSet.add(values[i]);
+  }
+  return true;
+};
+
 class InputForm extends React.Component {
   constructor(props) {
     super(props);
@@ -57,10 +74,8 @@ class InputForm extends React.Component {
       NumOfAssets: this.initNumOfAssets,
       values: Array(this.initNumOfAssets),
     };
-
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-
     this.addAsset = this.addAsset.bind(this);
     this.removeAsset = this.removeAsset.bind(this);
   }
@@ -72,10 +87,13 @@ class InputForm extends React.Component {
   }
 
   handleSubmit(event) {
-    this.setState((state) => ({
-      showForm: false,
-    }));
     event.preventDefault();
+    let formValidatedQ = validateForm(this.state.values);
+    if (formValidatedQ) {
+      this.setState((state) => ({
+        showForm: false,
+      }));
+    }
   }
 
   addAsset() {
