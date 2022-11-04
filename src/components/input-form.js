@@ -1,5 +1,6 @@
 import * as React from "react";
-import * as AssetData from "../../data/tmp.json";
+import * as AssetData from "../../data/asset-data-test.json";
+import Optimizer from "./optimizer.js";
 
 // Get JSON asset data for dropdown list
 const keys = Object.keys(AssetData);
@@ -52,7 +53,7 @@ const generateForm = (
 const validateForm = (values) => {
   let hashSet = new Set();
   for (let i = 0; i < values.length; i++) {
-    if (values[i] === undefined) {
+    if (values[i] === undefined || values[i] === "") {
       alert("All assets must be filled in.");
       return false;
     }
@@ -126,7 +127,7 @@ class InputForm extends React.Component {
             this.removeAsset
           )
         ) : (
-          <p>{this.state.values}</p>
+          <Optimizer arr={this.state.values} />
         )}
       </>
     );
