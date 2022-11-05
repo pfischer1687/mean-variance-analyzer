@@ -39,7 +39,29 @@ const arrMatProduct = (arr, mat) => {
   for (let i = 0; i < arr.length; i++) {
     firstProduct[i] = arrDotProd(mat[i], arr);
   }
-  let res = arrDotProd(arr, firstProduct);
+  const res = arrDotProd(arr, firstProduct);
+  return res;
+};
+
+/**
+ * @param {number[]} arr
+ * @return {number[]}
+ */
+const genNormRandWeightArr = (arrLength, constraint) => {
+  // Return a normalized (sum = 1) array of weights subject to constraint
+  if (arrLength <= 0) {
+    throw new Error("Expected one 1-dimensional array");
+  }
+  let res = new Array(arrLength);
+  let runSum = 0;
+  for (let i = 0; i < arrLength - 1; i++) {
+    res[i] = Math.random() * constraint;
+    runSum += res[i];
+  }
+  if (1 - runSum < 0 || 1 - runSum > constraint) {
+    return genNormRandWeightArr(arrLength, constraint);
+  }
+  res[arrLength - 1] = 1 - runSum;
   return res;
 };
 
@@ -69,29 +91,18 @@ const Optimizer = ({ arr, children }) => {
   // returns is array of length(N)
   // ^ same with risks
 
-  // below should be in for loop of length N only doing 1 for trial sake
-
-  // temporarily setting all weights to 1 to check
-  let weightsArr = new Array(arr.length);
-  for (let i = 0; i < arr.length; i++) {
-    weightsArr[i] = 1;
+  // tmp: change
+  const numTrials = 5;
+  const constraint = 0.3;
+  let retArr = new Array(numTrials);
+  let riskArr = new Array(numTrials);
+  let weightsMat = new Array(numTrials);
+  for (let i = 0; i < numTrials; i++) {
+    weightsMat[i] = genNormRandWeightArr(arr.length, constraint);
   }
-
-  // define array dot product and Matrix xfm functions???
-
-  // let pfRetsArr =
 
   return (
     <>
-      <p>
-        {arrMatProduct(
-          [1, 2],
-          [
-            [3, 4],
-            [5, 6],
-          ]
-        )}
-      </p>
       {arr.map((ticker) => (
         <p key={ticker}>{ticker}</p>
       ))}
