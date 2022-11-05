@@ -7,7 +7,7 @@ const keys = Object.keys(AssetData);
 keys.pop(); // removes "default"
 const selectList = keys.map((key) => (
   <option key={key} value={key}>
-    {key}
+    {key} ({AssetData[key].title})
   </option>
 ));
 
@@ -42,7 +42,7 @@ const generateForm = (
       {NumOfAssets < 30 ? (
         <button onClick={addAsset}>+ Add Asset</button>
       ) : null}
-      {NumOfAssets > 7 ? (
+      {NumOfAssets > 2 ? (
         <button onClick={removeAsset}>- Remove Asset</button>
       ) : null}
     </>
@@ -69,7 +69,7 @@ const validateForm = (values) => {
 class InputForm extends React.Component {
   constructor(props) {
     super(props);
-    this.initNumOfAssets = 7;
+    this.initNumOfAssets = 2;
     this.state = {
       showForm: true,
       NumOfAssets: this.initNumOfAssets,
