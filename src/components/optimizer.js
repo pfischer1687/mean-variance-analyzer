@@ -216,6 +216,15 @@ const Optimizer = ({ arr, children }) => {
     datasets: [
       {
         type: "scatter",
+        label: "Single Asset",
+        data: arr.map((ticker) => ({
+          x: Math.sqrt(AssetData[ticker].var),
+          y: AssetData[ticker].avgMoRetPct,
+        })),
+        backgroundColor: "rgba(255, 100, 100, 1)",
+      },
+      {
+        type: "scatter",
         label: "Markowitz Bullet",
         data: riskArr.map((risk, index) => ({
           x: risk,
