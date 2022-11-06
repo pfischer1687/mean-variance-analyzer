@@ -94,12 +94,70 @@ const Optimizer = ({ arr, children }) => {
   // tmp: change
   const numTrials = 5;
   const constraint = 0.3;
+  let weightsMat = new Array(numTrials);
   let retArr = new Array(numTrials);
   let riskArr = new Array(numTrials);
-  let weightsMat = new Array(numTrials);
+  const riskFreeRate = 0;
+  let sharpeRatio = undefined;
+  let maxSharpeRatio = new Array(2); // [val, index]
+  let minRisk = undefined;
+  let maxRisk = undefined;
   for (let i = 0; i < numTrials; i++) {
     weightsMat[i] = genNormRandWeightArr(arr.length, constraint);
+    retArr[i] = arrDotProd(meanRetArr, weightsMat[i]);
+    riskArr[i] = Math.sqrt(arrMatProduct(weightsMat[i], covMatrix));
+    sharpeRatio = (retArr[i] - riskFreeRate) / riskArr[i];
+    if ((i = 0)) {
+      minRisk = riskArr[i];
+      maxRisk = riskArr[i];
+      maxSharpeRatio[0] = sharpeRatio;
+      maxSharpeRatio[1] = 0;
+      continue;
+    }
+    if (sharpeRatio > maxSharpeRatio[0]) {
+      maxSharpeRatio[0] = sharpeRatio;
+      maxSharpeRatio[1] = i;
+    }
+    if (riskArr[i] < minRisk) {
+      minRisk = riskArr[i];
+    }
+    if (riskArr[i] > maxRisk) {
+      maxRisk = riskArr[i];
+    }
   }
+
+  // single asset return information is in asset data, plot it last, label directly? same with sr
+
+  // need to make efficient frontier
+  const noEfficientFrontierRiskBins = 4;
+  const binDividerLength = (maxRisk - minRisk) / noEfficientFrontierRiskBins;
+  let binDividerRisks = new Array(noEfficientFrontierRiskBins - 1);
+  binDividerRisks[0] = minRisk + binDividerLength;
+  for (let i = 1; i < binDividerRisks.length; i++) {
+    binDividerRisks[i] = binDividerRisks[i - 1] + binDividerLength;
+  }
+  let maxReturnPerBinIndexArr = new Array(noEfficientFrontierRiskBins);
+  let riskBinIndex = 0;
+  for (let i = 0; i < numTrials; i++) {
+    // first determine which bin it's in
+    for (let j = 0; j < binDividerRisks.length; j++) {
+      if (riskArr[i] < binDividerRisks[j]) {
+        riskBinIndex = j;
+      } else {
+        break;
+      }
+    }
+    // then check if it's the largest in that bin
+    if (maxReturnPerBinIndexArr[riskBinIndex] === undefined) {
+      maxReturnPerBinIndexArr[riskBinIndex] = i;
+      continue;
+    }
+    if (retArr[i] > retArr[maxReturnPerBinIndexArr[riskBinIndex]]) {
+      maxReturnPerBinIndexArr[riskBinIndex] = i;
+    }
+  }
+
+  // maybe change `arr` to `tickers`?
 
   return (
     <>
