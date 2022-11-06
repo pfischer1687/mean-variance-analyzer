@@ -1,5 +1,15 @@
 import * as React from "react";
 import * as AssetData from "../../data/asset-data-test.json";
+import {
+  Chart as ChartJS,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Tooltip,
+  Legend,
+} from "chart.js";
+import { Scatter } from "react-chartjs-2";
+
 // is it possible to graphql query the data^ instead of importing again? what would be faster?
 
 /**
@@ -92,8 +102,8 @@ const Optimizer = ({ arr, children }) => {
   // ^ same with risks
 
   // tmp: change
-  const numTrials = 5;
-  const constraint = 0.3;
+  const numTrials = 10;
+  const constraint = 1;
   let weightsMat = new Array(numTrials);
   let retArr = new Array(numTrials);
   let riskArr = new Array(numTrials);
@@ -107,12 +117,11 @@ const Optimizer = ({ arr, children }) => {
     retArr[i] = arrDotProd(meanRetArr, weightsMat[i]);
     riskArr[i] = Math.sqrt(arrMatProduct(weightsMat[i], covMatrix));
     sharpeRatio = (retArr[i] - riskFreeRate) / riskArr[i];
-    if ((i = 0)) {
+    if (i === 0) {
       minRisk = riskArr[i];
       maxRisk = riskArr[i];
       maxSharpeRatio[0] = sharpeRatio;
-      maxSharpeRatio[1] = 0;
-      continue;
+      maxSharpeRatio[1] = i;
     }
     if (sharpeRatio > maxSharpeRatio[0]) {
       maxSharpeRatio[0] = sharpeRatio;
@@ -129,41 +138,62 @@ const Optimizer = ({ arr, children }) => {
   // single asset return information is in asset data, plot it last, label directly? same with sr
 
   // need to make efficient frontier
-  const noEfficientFrontierRiskBins = 4;
-  const binDividerLength = (maxRisk - minRisk) / noEfficientFrontierRiskBins;
-  let binDividerRisks = new Array(noEfficientFrontierRiskBins - 1);
-  binDividerRisks[0] = minRisk + binDividerLength;
-  for (let i = 1; i < binDividerRisks.length; i++) {
-    binDividerRisks[i] = binDividerRisks[i - 1] + binDividerLength;
-  }
-  let maxReturnPerBinIndexArr = new Array(noEfficientFrontierRiskBins);
-  let riskBinIndex = 0;
-  for (let i = 0; i < numTrials; i++) {
-    // first determine which bin it's in
-    for (let j = 0; j < binDividerRisks.length; j++) {
-      if (riskArr[i] < binDividerRisks[j]) {
-        riskBinIndex = j;
-      } else {
-        break;
-      }
-    }
-    // then check if it's the largest in that bin
-    if (maxReturnPerBinIndexArr[riskBinIndex] === undefined) {
-      maxReturnPerBinIndexArr[riskBinIndex] = i;
-      continue;
-    }
-    if (retArr[i] > retArr[maxReturnPerBinIndexArr[riskBinIndex]]) {
-      maxReturnPerBinIndexArr[riskBinIndex] = i;
-    }
-  }
+  // const noEfficientFrontierRiskBins = 4;
+  // const binDividerLength = (maxRisk - minRisk) / noEfficientFrontierRiskBins;
+  // let binDividerRisks = new Array(noEfficientFrontierRiskBins - 1);
+  // binDividerRisks[0] = minRisk + binDividerLength;
+  // for (let i = 1; i < binDividerRisks.length; i++) {
+  //   binDividerRisks[i] = binDividerRisks[i - 1] + binDividerLength;
+  // }
+  // let maxReturnPerBinIndexArr = new Array(noEfficientFrontierRiskBins);
+  // let riskBinIndex = 0;
+  // for (let i = 0; i < numTrials; i++) {
+  //   // first determine which bin it's in
+  //   for (let j = 0; j < binDividerRisks.length; j++) {
+  //     if (riskArr[i] < binDividerRisks[j]) {
+  //       riskBinIndex = j;
+  //     } else {
+  //       break;
+  //     }
+  //   }
+  //   // then check if it's the largest in that bin
+  //   if (maxReturnPerBinIndexArr[riskBinIndex] === undefined) {
+  //     maxReturnPerBinIndexArr[riskBinIndex] = i;
+  //     continue;
+  //   }
+  //   if (retArr[i] > retArr[maxReturnPerBinIndexArr[riskBinIndex]]) {
+  //     maxReturnPerBinIndexArr[riskBinIndex] = i;
+  //   }
+  // }
 
   // maybe change `arr` to `tickers`?
 
+  ChartJS.register(LinearScale, PointElement, LineElement, Tooltip, Legend);
+
+  const options = {
+    scales: {
+      y: {
+        beginAtZero: true,
+      },
+    },
+  };
+
+  const data = {
+    datasets: [
+      {
+        label: "A dataset",
+        data: riskArr.map((risk, index) => ({
+          x: risk,
+          y: retArr[index],
+        })),
+        backgroundColor: "rgba(255, 99, 132, 1)",
+      },
+    ],
+  };
+
   return (
     <>
-      {arr.map((ticker) => (
-        <p key={ticker}>{ticker}</p>
-      ))}
+      <Scatter options={options} data={data} />;
     </>
   );
 };
