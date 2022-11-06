@@ -8,7 +8,7 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
-import { Scatter } from "react-chartjs-2";
+import { Chart } from "react-chartjs-2";
 
 // is it possible to graphql query the data^ instead of importing again? what would be faster?
 
@@ -170,9 +170,43 @@ const Optimizer = ({ arr, children }) => {
 
   ChartJS.register(LinearScale, PointElement, LineElement, Tooltip, Legend);
 
+  // const options = {
+  //   scales: {
+  //     y: {
+  //       beginAtZero: true,
+  //     },
+  //   },
+  // };
+
   const options = {
+    responsive: true,
+    plugins: {
+      title: {
+        display: true,
+        text: "Chart.js Line Chart - Cubic interpolation mode",
+      },
+      tooltip: {
+        enabled: false,
+      },
+    },
+    interaction: {
+      intersect: false,
+    },
     scales: {
+      x: {
+        display: true,
+        title: {
+          display: true,
+          text: "Standard Deviation",
+        },
+        beginAtZero: true,
+      },
       y: {
+        display: true,
+        title: {
+          display: true,
+          text: "Average Monthly Differential Return (%)",
+        },
         beginAtZero: true,
       },
     },
@@ -181,19 +215,20 @@ const Optimizer = ({ arr, children }) => {
   const data = {
     datasets: [
       {
-        label: "A dataset",
+        type: "scatter",
+        label: "Markowitz Bullet",
         data: riskArr.map((risk, index) => ({
           x: risk,
           y: retArr[index],
         })),
-        backgroundColor: "rgba(255, 99, 132, 1)",
+        backgroundColor: "rgba(0, 255, 255, 1)",
       },
     ],
   };
 
   return (
     <>
-      <Scatter options={options} data={data} />;
+      <Chart type="scatter" options={options} data={data} />
     </>
   );
 };
