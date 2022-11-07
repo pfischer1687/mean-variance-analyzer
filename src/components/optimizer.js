@@ -7,8 +7,9 @@ import {
   LineElement,
   Tooltip,
   Legend,
+  ArcElement,
 } from "chart.js";
-import { Chart } from "react-chartjs-2";
+import { Chart, Pie } from "react-chartjs-2";
 
 // is it possible to graphql query the data^ instead of importing again? what would be faster?
 
@@ -102,7 +103,7 @@ const Optimizer = ({ arr, children }) => {
   // ^ same with risks
 
   // tmp: change
-  const numTrials = 100;
+  const numTrials = 1000;
   const constraint = 1;
   let weightsMat = new Array(numTrials);
   let retArr = new Array(numTrials);
@@ -138,7 +139,7 @@ const Optimizer = ({ arr, children }) => {
     }
   }
 
-  const noEfficientFrontierRiskBins = Math.floor(numTrials / 20) + 1;
+  const noEfficientFrontierRiskBins = 15; //Math.floor(numTrials / 20) + 1;
   const binDividerLength = (maxRisk - minRisk[0]) / noEfficientFrontierRiskBins;
   let binDividerRisks = new Array(noEfficientFrontierRiskBins - 1);
   binDividerRisks[0] = minRisk[0] + binDividerLength;
@@ -171,6 +172,9 @@ const Optimizer = ({ arr, children }) => {
   maxReturnPerBinIndexArr = maxReturnPerBinIndexArr.filter(
     (idx) => idx !== undefined
   );
+  maxReturnPerBinIndexArr.pop();
+  maxReturnPerBinIndexArr.pop(); // Remove last two less accurate points
+
   // let testVar = maxReturnPerBinIndexArr.indexOf(maxSharpeRatio[1]);
   // if (testVar !== -1) {
   //   maxReturnPerBinIndexArr.splice(testVar, 1); // Remove max Sharpe ratio
@@ -178,9 +182,18 @@ const Optimizer = ({ arr, children }) => {
 
   // maybe change `arr` to `tickers`?
 
-  ChartJS.register(LinearScale, PointElement, LineElement, Tooltip, Legend);
+  ChartJS.register(
+    LinearScale,
+    PointElement,
+    LineElement,
+    Tooltip,
+    Legend,
+    ArcElement
+  );
 
   const options = {
+    maintainAspectRatio: false,
+    events: ["click", "mousemove"],
     responsive: true,
     plugins: {
       title: {
@@ -188,6 +201,14 @@ const Optimizer = ({ arr, children }) => {
         text: "Chart.js Line Chart - Cubic interpolation mode",
       },
       tooltip: {
+        filter: function (context) {
+          let label = context.dataset.label;
+          if (label === "Markowitz Bullet") {
+            return false;
+          } else {
+            return true;
+          }
+        },
         callbacks: {
           label: function (context) {
             let label = context.dataset.label;
@@ -223,7 +244,7 @@ const Optimizer = ({ arr, children }) => {
                 `Standard Deviation: ${context.raw.x.toFixed(2)}%`,
               ];
             }
-            return false;
+            return;
           },
         },
       },
@@ -277,8 +298,8 @@ const Optimizer = ({ arr, children }) => {
           idx: idx,
         })),
         backgroundColor: "rgba(0, 0, 255, 1)",
-        cubicInterpolationMode: "monotone",
-        tension: 0.4,
+        // cubicInterpolationMode: "monotone",
+        // tension: 0.1,
       },
       {
         type: "scatter",
@@ -317,9 +338,47 @@ const Optimizer = ({ arr, children }) => {
     ],
   };
 
+  const pieChartColors = arr.map(
+    (ticker) =>
+      `rgba(${Math.floor(255 * Math.random())}, ${Math.floor(
+        255 * Math.random()
+      )}, ${Math.floor(255 * Math.random())}`
+  );
+
+  // Pie chart
+  const pieData = {
+    labels: arr,
+    datasets: [
+      {
+        label: "Portfolio Weight Allocations for Max Sharpe Ratio",
+        data: weightsMat[maxSharpeRatio[1]].map((weight) => weight * 100),
+        backgroundColor: pieChartColors.map((color) => color + ", 0.2)"),
+        borderColor: pieChartColors.map((color) => color + ", 1)"),
+        borderWidth: 1,
+      },
+    ],
+  };
+
+  //Sharpe ratio info
+  const sharpeRatioInfo = [
+    `Max Sharpe Ratio: ${maxSharpeRatio[0].toFixed(2)}`,
+    `Monthly Return: ${retArr[maxSharpeRatio[1]].toFixed(2)}%`,
+    `Standard Deviation: ${riskArr[maxSharpeRatio[1]].toFixed(2)}%`,
+    "Portfolio weights:",
+    ...weightsMat[maxSharpeRatio[1]].map(
+      (weight, index) => `${arr[index]}: ${(weight * 100).toFixed(2)}%`
+    ),
+  ];
+
   return (
     <>
-      <Chart type="scatter" options={options} data={data} />
+      <div style={{ height: "300px" }}>
+        <Chart type="scatter" options={options} data={data} />
+      </div>
+      <Pie data={pieData} />
+      {sharpeRatioInfo.map((Element) => (
+        <p>{Element}</p>
+      ))}
     </>
   );
 };
