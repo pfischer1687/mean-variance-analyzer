@@ -102,81 +102,79 @@ const Optimizer = ({ arr, children }) => {
   // ^ same with risks
 
   // tmp: change
-  const numTrials = 10;
+  const numTrials = 100;
   const constraint = 1;
   let weightsMat = new Array(numTrials);
   let retArr = new Array(numTrials);
   let riskArr = new Array(numTrials);
   const riskFreeRate = 0;
-  let sharpeRatio = undefined;
+  let sharpeRatio;
   let maxSharpeRatio = new Array(2); // [val, index]
-  let minRisk = undefined;
-  let maxRisk = undefined;
+  let minRisk = new Array(2); // [val, index]
+  let maxRisk;
   for (let i = 0; i < numTrials; i++) {
     weightsMat[i] = genNormRandWeightArr(arr.length, constraint);
     retArr[i] = arrDotProd(meanRetArr, weightsMat[i]);
     riskArr[i] = Math.sqrt(arrMatProduct(weightsMat[i], covMatrix));
     sharpeRatio = (retArr[i] - riskFreeRate) / riskArr[i];
     if (i === 0) {
-      minRisk = riskArr[i];
+      minRisk[0] = riskArr[i];
+      minRisk[1] = i;
       maxRisk = riskArr[i];
       maxSharpeRatio[0] = sharpeRatio;
       maxSharpeRatio[1] = i;
+      continue;
     }
     if (sharpeRatio > maxSharpeRatio[0]) {
       maxSharpeRatio[0] = sharpeRatio;
       maxSharpeRatio[1] = i;
     }
-    if (riskArr[i] < minRisk) {
-      minRisk = riskArr[i];
+    if (riskArr[i] < minRisk[0]) {
+      minRisk[0] = riskArr[i];
+      minRisk[1] = i;
     }
     if (riskArr[i] > maxRisk) {
       maxRisk = riskArr[i];
     }
   }
 
-  // single asset return information is in asset data, plot it last, label directly? same with sr
-
-  // need to make efficient frontier
-  // const noEfficientFrontierRiskBins = 4;
-  // const binDividerLength = (maxRisk - minRisk) / noEfficientFrontierRiskBins;
-  // let binDividerRisks = new Array(noEfficientFrontierRiskBins - 1);
-  // binDividerRisks[0] = minRisk + binDividerLength;
-  // for (let i = 1; i < binDividerRisks.length; i++) {
-  //   binDividerRisks[i] = binDividerRisks[i - 1] + binDividerLength;
-  // }
-  // let maxReturnPerBinIndexArr = new Array(noEfficientFrontierRiskBins);
-  // let riskBinIndex = 0;
-  // for (let i = 0; i < numTrials; i++) {
-  //   // first determine which bin it's in
-  //   for (let j = 0; j < binDividerRisks.length; j++) {
-  //     if (riskArr[i] < binDividerRisks[j]) {
-  //       riskBinIndex = j;
-  //     } else {
-  //       break;
-  //     }
-  //   }
-  //   // then check if it's the largest in that bin
-  //   if (maxReturnPerBinIndexArr[riskBinIndex] === undefined) {
-  //     maxReturnPerBinIndexArr[riskBinIndex] = i;
-  //     continue;
-  //   }
-  //   if (retArr[i] > retArr[maxReturnPerBinIndexArr[riskBinIndex]]) {
-  //     maxReturnPerBinIndexArr[riskBinIndex] = i;
-  //   }
-  // }
+  const noEfficientFrontierRiskBins = Math.floor(numTrials / 10) + 1;
+  const binDividerLength = (maxRisk - minRisk[0]) / noEfficientFrontierRiskBins;
+  let binDividerRisks = new Array(noEfficientFrontierRiskBins - 1);
+  binDividerRisks[0] = minRisk[0] + binDividerLength;
+  for (let i = 1; i < binDividerRisks.length; i++) {
+    binDividerRisks[i] = binDividerRisks[i - 1] + binDividerLength;
+  }
+  let maxReturnPerBinIndexArr = new Array(noEfficientFrontierRiskBins + 1);
+  maxReturnPerBinIndexArr[0] = minRisk[1]; // Start efficient frontier at minimum risk
+  let riskBinIndex;
+  for (let i = 0; i < numTrials; i++) {
+    // first determine which bin it's in
+    riskBinIndex = 1;
+    for (let j = 0; j < binDividerRisks.length; j++) {
+      if (riskArr[i] > binDividerRisks[j]) {
+        riskBinIndex = j + 2;
+      } else {
+        break;
+      }
+    }
+    // then check if it's the largest in that bin
+    if (maxReturnPerBinIndexArr[riskBinIndex] === undefined) {
+      maxReturnPerBinIndexArr[riskBinIndex] = i;
+    } else if (retArr[i] > retArr[maxReturnPerBinIndexArr[riskBinIndex]]) {
+      maxReturnPerBinIndexArr[riskBinIndex] = i;
+    }
+  }
+  if (maxReturnPerBinIndexArr[0] === maxReturnPerBinIndexArr[1]) {
+    maxReturnPerBinIndexArr.shift();
+  }
+  maxReturnPerBinIndexArr = maxReturnPerBinIndexArr.filter(
+    (idx) => idx !== undefined
+  );
 
   // maybe change `arr` to `tickers`?
 
   ChartJS.register(LinearScale, PointElement, LineElement, Tooltip, Legend);
-
-  // const options = {
-  //   scales: {
-  //     y: {
-  //       beginAtZero: true,
-  //     },
-  //   },
-  // };
 
   const options = {
     responsive: true,
@@ -185,9 +183,9 @@ const Optimizer = ({ arr, children }) => {
         display: true,
         text: "Chart.js Line Chart - Cubic interpolation mode",
       },
-      tooltip: {
-        enabled: false,
-      },
+      // tooltip: {
+      //   enabled: false,
+      // },
     },
     interaction: {
       intersect: false,
@@ -215,8 +213,17 @@ const Optimizer = ({ arr, children }) => {
   const data = {
     datasets: [
       {
+        type: "line",
+        label: "Efficient Frontier",
+        data: maxReturnPerBinIndexArr.map((idx) => ({
+          x: riskArr[idx],
+          y: retArr[idx],
+        })),
+        backgroundColor: "rgba(0, 0, 255, 1)",
+      },
+      {
         type: "scatter",
-        label: "Single Asset",
+        label: "Single Assets",
         data: arr.map((ticker) => ({
           x: Math.sqrt(AssetData[ticker].var),
           y: AssetData[ticker].avgMoRetPct,
