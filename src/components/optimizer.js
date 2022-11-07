@@ -187,12 +187,41 @@ const Optimizer = ({ arr, children }) => {
         display: true,
         text: "Chart.js Line Chart - Cubic interpolation mode",
       },
-      // tooltip: {
-      //   enabled: false,
-      // },
+      tooltip: {
+        callbacks: {
+          label: function (context) {
+            let label = context.dataset.label;
+            if (label === "Max Sharpe Ratio") {
+              return [
+                `Sharpe Ratio: ${maxSharpeRatio[0].toFixed(2)}`,
+                `Monthly Return: ${context.raw.y.toFixed(2)}%`,
+                `Standard Deviation: ${context.raw.x.toFixed(2)}`,
+                "Portfolio weights:",
+                ...weightsMat[context.raw.idx].map(
+                  (weight, index) =>
+                    `  ${arr[index]}: ${(weight * 100).toFixed(2)}%`
+                ),
+              ];
+            } else if (label === "Efficient Frontier") {
+              return [
+                `Sharpe Ratio: ${maxSharpeRatio[0].toFixed(2)}`,
+                `Monthly Return: ${context.raw.y.toFixed(2)}%`,
+                `Standard Deviation: ${context.raw.x.toFixed(2)}`,
+                "Portfolio weights:",
+                ...weightsMat[context.raw.idx].map(
+                  (weight, index) =>
+                    `  ${arr[index]}: ${(weight * 100).toFixed(2)}%`
+                ),
+              ];
+            }
+            return false;
+          },
+        },
+      },
     },
     interaction: {
       intersect: false,
+      // mode: "index",
     },
     scales: {
       x: {
@@ -223,6 +252,7 @@ const Optimizer = ({ arr, children }) => {
           {
             x: riskArr[maxSharpeRatio[1]],
             y: retArr[maxSharpeRatio[1]],
+            idx: maxSharpeRatio[1],
           },
         ],
         backgroundColor: "rgba(255, 255, 0, 1)",
@@ -235,6 +265,7 @@ const Optimizer = ({ arr, children }) => {
         data: maxReturnPerBinIndexArr.map((idx) => ({
           x: riskArr[idx],
           y: retArr[idx],
+          idx: idx,
         })),
         backgroundColor: "rgba(0, 0, 255, 1)",
         cubicInterpolationMode: "monotone",
