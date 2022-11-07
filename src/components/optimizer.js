@@ -138,7 +138,7 @@ const Optimizer = ({ arr, children }) => {
     }
   }
 
-  const noEfficientFrontierRiskBins = Math.floor(numTrials / 10) + 1;
+  const noEfficientFrontierRiskBins = Math.floor(numTrials / 20) + 1;
   const binDividerLength = (maxRisk - minRisk[0]) / noEfficientFrontierRiskBins;
   let binDividerRisks = new Array(noEfficientFrontierRiskBins - 1);
   binDividerRisks[0] = minRisk[0] + binDividerLength;
@@ -195,7 +195,7 @@ const Optimizer = ({ arr, children }) => {
               return [
                 `Sharpe Ratio: ${maxSharpeRatio[0].toFixed(2)}`,
                 `Monthly Return: ${context.raw.y.toFixed(2)}%`,
-                `Standard Deviation: ${context.raw.x.toFixed(2)}`,
+                `Standard Deviation: ${context.raw.x.toFixed(2)}%`,
                 "Portfolio weights:",
                 ...weightsMat[context.raw.idx].map(
                   (weight, index) =>
@@ -204,14 +204,23 @@ const Optimizer = ({ arr, children }) => {
               ];
             } else if (label === "Efficient Frontier") {
               return [
-                `Sharpe Ratio: ${maxSharpeRatio[0].toFixed(2)}`,
+                `Sharpe Ratio: ${(
+                  (retArr[context.raw.idx] - riskFreeRate) /
+                  riskArr[context.raw.idx]
+                ).toFixed(2)}`,
                 `Monthly Return: ${context.raw.y.toFixed(2)}%`,
-                `Standard Deviation: ${context.raw.x.toFixed(2)}`,
+                `Standard Deviation: ${context.raw.x.toFixed(2)}%`,
                 "Portfolio weights:",
                 ...weightsMat[context.raw.idx].map(
                   (weight, index) =>
                     `  ${arr[index]}: ${(weight * 100).toFixed(2)}%`
                 ),
+              ];
+            } else if (label === "Single Assets") {
+              return [
+                context.raw.ticker,
+                `Monthly Return: ${context.raw.y.toFixed(2)}%`,
+                `Standard Deviation: ${context.raw.x.toFixed(2)}%`,
               ];
             }
             return false;
@@ -277,6 +286,7 @@ const Optimizer = ({ arr, children }) => {
         data: arr.map((ticker) => ({
           x: Math.sqrt(AssetData[ticker].var),
           y: AssetData[ticker].avgMoRetPct,
+          ticker: ticker,
         })),
         backgroundColor: "rgba(255, 100, 100, 1)",
       },
