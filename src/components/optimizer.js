@@ -171,6 +171,10 @@ const Optimizer = ({ arr, children }) => {
   maxReturnPerBinIndexArr = maxReturnPerBinIndexArr.filter(
     (idx) => idx !== undefined
   );
+  // let testVar = maxReturnPerBinIndexArr.indexOf(maxSharpeRatio[1]);
+  // if (testVar !== -1) {
+  //   maxReturnPerBinIndexArr.splice(testVar, 1); // Remove max Sharpe ratio
+  // }
 
   // maybe change `arr` to `tickers`?
 
@@ -213,13 +217,28 @@ const Optimizer = ({ arr, children }) => {
   const data = {
     datasets: [
       {
+        type: "scatter",
+        label: "Max Sharpe Ratio",
+        data: [
+          {
+            x: riskArr[maxSharpeRatio[1]],
+            y: retArr[maxSharpeRatio[1]],
+          },
+        ],
+        backgroundColor: "rgba(255, 255, 0, 1)",
+      },
+      {
         type: "line",
         label: "Efficient Frontier",
+        fill: false,
+        borderColor: "rgba(0, 0, 255, 1)",
         data: maxReturnPerBinIndexArr.map((idx) => ({
           x: riskArr[idx],
           y: retArr[idx],
         })),
         backgroundColor: "rgba(0, 0, 255, 1)",
+        cubicInterpolationMode: "monotone",
+        tension: 0.4,
       },
       {
         type: "scatter",
@@ -238,6 +257,21 @@ const Optimizer = ({ arr, children }) => {
           y: retArr[index],
         })),
         backgroundColor: "rgba(0, 255, 255, 1)",
+      },
+      {
+        type: "line",
+        label: "Tangency Portfolio",
+        data: [
+          {
+            x: 0,
+            y: riskFreeRate,
+          },
+          {
+            x: riskArr[maxSharpeRatio[1]],
+            y: retArr[maxSharpeRatio[1]],
+          },
+        ],
+        borderColor: "rgba(0, 0, 0, 1)",
       },
     ],
   };
