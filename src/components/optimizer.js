@@ -19,7 +19,9 @@ import { Chart, Pie } from "react-chartjs-2";
 const arrDotProd = (arr1, arr2) => {
   // Return the dot product of two 1-dimensional arrays
   if (arr1.length === 0 || arr1.length !== arr2.length) {
-    throw new Error("Expected two 1-dimensional arrays");
+    throw new Error(
+      "Expected two 1-dimensional arrays of numbers of equal length > 0"
+    );
   }
   let prodSum = 0;
   for (let i = 0; i < arr1.length; i++) {
@@ -57,20 +59,39 @@ const arrMatProduct = (arr, mat) => {
  * @return {number[]}
  */
 const genNormRandWeightArr = (arrLength, constraint) => {
-  // Return a normalized (sum = 1) array of weights subject to constraint
-  if (arrLength <= 0) {
-    throw new Error("Expected one 1-dimensional array");
+  // Returns a normalized (sum = 1) array of positive weights, each less than a constraint
+  if (arrLength < 2 || arrLength > 20) {
+    throw new Error("Expected 2 <= arrLength <= 20");
+  } else if (constraint < 1 / arrLength || constraint > 1) {
+    throw new Error("Expected constraint in [1/arrLength, 1]");
   }
   let res = new Array(arrLength);
   let runSum = 0;
-  for (let i = 0; i < arrLength - 1; i++) {
-    res[i] = Math.random() * constraint;
+  for (let i = 0; i < arrLength; i++) {
+    res[i] = Math.random() ** 5; // Exponent helps spread out Markowitz bullet
     runSum += res[i];
   }
-  if (1 - runSum < 0 || 1 - runSum > constraint) {
-    return genNormRandWeightArr(arrLength, constraint);
+  let excessVal = 0;
+  for (let i = 0; i < arrLength; i++) {
+    res[i] /= runSum;
+    if (res[i] > constraint) {
+      excessVal += res[i] - constraint;
+      res[i] = constraint;
+    }
   }
-  res[arrLength - 1] = 1 - runSum;
+  if (excessVal > 0) {
+    let diff;
+    for (let i = 0; i < arrLength; i++) {
+      diff = constraint - res[i];
+      if (diff >= excessVal) {
+        res[i] += excessVal;
+        break;
+      }
+      excessVal -= diff;
+      res[i] = constraint;
+    }
+  }
+  res.sort(() => Math.random() - 0.5);
   return res;
 };
 

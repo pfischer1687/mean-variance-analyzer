@@ -2,6 +2,9 @@ import * as React from "react";
 import * as AssetData from "../../data/asset-data-test.json";
 import Optimizer from "./optimizer.js";
 
+const minNumAssets = 2;
+const maxNumAssets = 20;
+
 // Get JSON asset tickers for dropdown select list
 const keys = Object.keys(AssetData);
 keys.pop(); // removes "default"
@@ -11,9 +14,14 @@ const selectList = keys.map((key) => (
   </option>
 ));
 
-// Generate the Form for user to choose portfolio assets
-const minNumAssets = 2;
-const maxNumAssets = 20;
+/**
+ * @param {function} handleSubmit
+ * @param {number} numAssets
+ * @param {function} handleChange
+ * @param {function} addAsset
+ * @param {function} removeAsset
+ * @return {JSX}
+ */
 const generateForm = (
   handleSubmit,
   numAssets,
@@ -21,6 +29,7 @@ const generateForm = (
   addAsset,
   removeAsset
 ) => {
+  // Generate form for user to choose portfolio assets
   return (
     <>
       <form onSubmit={handleSubmit}>
@@ -51,8 +60,12 @@ const generateForm = (
   );
 };
 
-// Make sure all select tags are filled and have unique values
+/**
+ * @param {number[]} values
+ * @return {boolean}
+ */
 const validateForm = (values) => {
+  // Validate that all select tags are filled and have unique values
   let hashSet = new Set();
   for (let i = 0; i < values.length; i++) {
     if (values[i] === undefined || values[i] === "") {
