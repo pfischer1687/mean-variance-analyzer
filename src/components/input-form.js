@@ -2,7 +2,7 @@ import * as React from "react";
 import * as AssetData from "../../data/asset-data-test.json";
 import Optimizer from "./optimizer.js";
 
-// Get JSON asset data for dropdown list
+// Get JSON asset tickers for dropdown select list
 const keys = Object.keys(AssetData);
 keys.pop(); // removes "default"
 const selectList = keys.map((key) => (
@@ -12,9 +12,11 @@ const selectList = keys.map((key) => (
 ));
 
 // Generate the Form for user to choose portfolio assets
+const minNumAssets = 2;
+const maxNumAssets = 20;
 const generateForm = (
   handleSubmit,
-  NumOfAssets,
+  numAssets,
   handleChange,
   addAsset,
   removeAsset
@@ -22,34 +24,34 @@ const generateForm = (
   return (
     <>
       <form onSubmit={handleSubmit}>
-        {[...Array(NumOfAssets)].map((value, index) => (
+        {[...Array(numAssets)].map((value, index) => (
           <label key={index}>
-            Choose an asset:
-            <select
-              name={`asset${index}`}
-              index={index}
-              onChange={handleChange}
-            >
+            Asset {index + 1}:
+            <select index={index} onChange={handleChange}>
               <option value="">--Please choose an option--</option>
               {selectList}
             </select>
             <br />
           </label>
         ))}
+        {numAssets < maxNumAssets ? (
+          <button type="button" onClick={addAsset}>
+            + Add Asset
+          </button>
+        ) : null}
+        {numAssets > minNumAssets ? (
+          <button type="button" onClick={removeAsset}>
+            - Remove Asset
+          </button>
+        ) : null}
         <br />
         <input type="submit" value="Submit" />
       </form>
-      {NumOfAssets < 30 ? (
-        <button onClick={addAsset}>+ Add Asset</button>
-      ) : null}
-      {NumOfAssets > 2 ? (
-        <button onClick={removeAsset}>- Remove Asset</button>
-      ) : null}
     </>
   );
 };
 
-// Make sure all asset select tags have unique values
+// Make sure all select tags are filled and have unique values
 const validateForm = (values) => {
   let hashSet = new Set();
   for (let i = 0; i < values.length; i++) {
@@ -69,11 +71,10 @@ const validateForm = (values) => {
 class InputForm extends React.Component {
   constructor(props) {
     super(props);
-    this.initNumOfAssets = 2;
     this.state = {
       showForm: true,
-      NumOfAssets: this.initNumOfAssets,
-      values: Array(this.initNumOfAssets),
+      numAssets: minNumAssets,
+      values: Array(minNumAssets), // ticker names
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -82,9 +83,9 @@ class InputForm extends React.Component {
   }
 
   handleChange(event) {
-    let arr = this.state.values.slice();
-    arr[event.target.attributes.index.nodeValue] = event.target.value;
-    this.setState({ values: arr });
+    let tickers = this.state.values.slice();
+    tickers[event.target.attributes.index.nodeValue] = event.target.value;
+    this.setState({ values: tickers });
   }
 
   handleSubmit(event) {
@@ -95,23 +96,24 @@ class InputForm extends React.Component {
         showForm: false,
       }));
     }
+    return;
   }
 
   addAsset() {
-    let arr = this.state.values.slice();
-    arr.push(undefined);
+    let tickers = this.state.values.slice();
+    tickers.push(undefined);
     this.setState((state) => ({
-      NumOfAssets: this.state.NumOfAssets + 1,
-      values: arr,
+      numAssets: this.state.numAssets + 1,
+      values: tickers,
     }));
   }
 
   removeAsset() {
-    let arr = this.state.values.slice();
-    arr.pop();
+    let tickers = this.state.values.slice();
+    tickers.pop();
     this.setState((state) => ({
-      NumOfAssets: this.state.NumOfAssets - 1,
-      values: arr,
+      numAssets: this.state.numAssets - 1,
+      values: tickers,
     }));
   }
 
@@ -121,13 +123,13 @@ class InputForm extends React.Component {
         {this.state.showForm ? (
           generateForm(
             this.handleSubmit,
-            this.state.NumOfAssets,
+            this.state.numAssets,
             this.handleChange,
             this.addAsset,
             this.removeAsset
           )
         ) : (
-          <Optimizer arr={this.state.values} />
+          <Optimizer tickers={this.state.values} />
         )}
       </>
     );

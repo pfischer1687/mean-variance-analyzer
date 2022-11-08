@@ -11,8 +11,6 @@ import {
 } from "chart.js";
 import { Chart, Pie } from "react-chartjs-2";
 
-// is it possible to graphql query the data^ instead of importing again? what would be faster?
-
 /**
  * @param {number[]} arr1
  * @param {number[]} arr2
@@ -76,22 +74,22 @@ const genNormRandWeightArr = (arrLength, constraint) => {
   return res;
 };
 
-const Optimizer = ({ arr, children }) => {
-  let meanRetArr = new Array(arr.length);
-  for (let i = 0; i < arr.length; i++) {
-    meanRetArr[i] = AssetData[arr[i]].avgMoRetPct;
+const Optimizer = ({ tickers, children }) => {
+  let meanRetArr = new Array(tickers.length);
+  for (let i = 0; i < tickers.length; i++) {
+    meanRetArr[i] = AssetData[tickers[i]].avgMoRetPct;
   }
 
-  let covMatrix = new Array(arr.length);
-  for (let i = 0; i < arr.length; i++) {
-    covMatrix[i] = new Array(arr.length);
+  let covMatrix = new Array(tickers.length);
+  for (let i = 0; i < tickers.length; i++) {
+    covMatrix[i] = new Array(tickers.length);
   }
-  for (let i = 0; i < arr.length; i++) {
-    covMatrix[i][i] = AssetData[arr[i]].var;
+  for (let i = 0; i < tickers.length; i++) {
+    covMatrix[i][i] = AssetData[tickers[i]].var;
   }
-  for (let i = 0; i < arr.length; i++) {
-    for (let j = i + 1; j < arr.length; j++) {
-      covMatrix[i][j] = AssetData[arr[i]].cov[arr[j]];
+  for (let i = 0; i < tickers.length; i++) {
+    for (let j = i + 1; j < tickers.length; j++) {
+      covMatrix[i][j] = AssetData[tickers[i]].cov[tickers[j]];
       covMatrix[j][i] = covMatrix[i][j];
     }
   }
@@ -114,7 +112,7 @@ const Optimizer = ({ arr, children }) => {
   let minRisk = new Array(2); // [val, index]
   let maxRisk;
   for (let i = 0; i < numTrials; i++) {
-    weightsMat[i] = genNormRandWeightArr(arr.length, constraint);
+    weightsMat[i] = genNormRandWeightArr(tickers.length, constraint);
     retArr[i] = arrDotProd(meanRetArr, weightsMat[i]);
     riskArr[i] = Math.sqrt(arrMatProduct(weightsMat[i], covMatrix));
     sharpeRatio = (retArr[i] - riskFreeRate) / riskArr[i];
@@ -220,7 +218,7 @@ const Optimizer = ({ arr, children }) => {
                 "Portfolio weights:",
                 ...weightsMat[context.raw.idx].map(
                   (weight, index) =>
-                    `  ${arr[index]}: ${(weight * 100).toFixed(2)}%`
+                    `  ${tickers[index]}: ${(weight * 100).toFixed(2)}%`
                 ),
               ];
             } else if (label === "Efficient Frontier") {
@@ -234,7 +232,7 @@ const Optimizer = ({ arr, children }) => {
                 "Portfolio weights:",
                 ...weightsMat[context.raw.idx].map(
                   (weight, index) =>
-                    `  ${arr[index]}: ${(weight * 100).toFixed(2)}%`
+                    `  ${tickers[index]}: ${(weight * 100).toFixed(2)}%`
                 ),
               ];
             } else if (label === "Single Assets") {
@@ -304,7 +302,7 @@ const Optimizer = ({ arr, children }) => {
       {
         type: "scatter",
         label: "Single Assets",
-        data: arr.map((ticker) => ({
+        data: tickers.map((ticker) => ({
           x: Math.sqrt(AssetData[ticker].var),
           y: AssetData[ticker].avgMoRetPct,
           ticker: ticker,
@@ -338,7 +336,7 @@ const Optimizer = ({ arr, children }) => {
     ],
   };
 
-  const pieChartColors = arr.map(
+  const pieChartColors = tickers.map(
     (ticker) =>
       `rgba(${Math.floor(255 * Math.random())}, ${Math.floor(
         255 * Math.random()
@@ -347,7 +345,7 @@ const Optimizer = ({ arr, children }) => {
 
   // Pie chart
   const pieData = {
-    labels: arr,
+    labels: tickers,
     datasets: [
       {
         label: "Portfolio Weight Allocations for Max Sharpe Ratio",
@@ -366,7 +364,7 @@ const Optimizer = ({ arr, children }) => {
     `Standard Deviation: ${riskArr[maxSharpeRatio[1]].toFixed(2)}%`,
     "Portfolio weights:",
     ...weightsMat[maxSharpeRatio[1]].map(
-      (weight, index) => `${arr[index]}: ${(weight * 100).toFixed(2)}%`
+      (weight, index) => `${tickers[index]}: ${(weight * 100).toFixed(2)}%`
     ),
   ];
 
@@ -376,8 +374,8 @@ const Optimizer = ({ arr, children }) => {
         <Chart type="scatter" options={options} data={data} />
       </div>
       <Pie data={pieData} />
-      {sharpeRatioInfo.map((Element) => (
-        <p>{Element}</p>
+      {sharpeRatioInfo.map((Element, index) => (
+        <p key={index}>{Element}</p>
       ))}
     </>
   );
