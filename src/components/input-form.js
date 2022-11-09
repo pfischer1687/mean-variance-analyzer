@@ -78,6 +78,7 @@ const validateForm = (values) => {
     }
     hashSet.add(values[i]);
   }
+
   return true;
 };
 
