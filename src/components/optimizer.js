@@ -17,8 +17,9 @@ import { minNumAssets, maxNumAssets } from "./input-form.js";
 // check this
 // check this
 // check this
-const constraint = 1;
-const riskFreeRate = 0;
+const constraintPct = 100;
+const constraint = constraintPct / 100;
+const riskFreeRatePct = 0;
 // check this
 // check this
 // check this
@@ -152,17 +153,7 @@ const Optimizer = ({ tickers, children }) => {
   }
   // End covariance matrix
 
-  // check this
-  // check this
-  // check this
-  // check this
-  // check this
-  const numTrials = 1000;
-  // check this
-  // check this
-  // check this
-  // check this
-  // check this
+  const numTrials = 100000;
   const numPlotPoints = 1000;
   let weightsMat = []; // dim: numTrials x tickers.length
   let retArr = [];
@@ -175,7 +166,7 @@ const Optimizer = ({ tickers, children }) => {
     weightsMat[i] = genNormRandWeightArr(tickers.length, constraint);
     retArr[i] = arrDotProd(meanRetArr, weightsMat[i]);
     riskArr[i] = Math.sqrt(arrMatProduct(weightsMat[i], covMatrix));
-    sharpeRatio = (retArr[i] - riskFreeRate) / riskArr[i];
+    sharpeRatio = (retArr[i] - riskFreeRatePct) / riskArr[i];
     if (i === 0) {
       minRisk[0] = riskArr[0];
       minRisk[1] = 0;
@@ -305,7 +296,7 @@ const Optimizer = ({ tickers, children }) => {
             } else if (label === "Efficient Frontier") {
               return [
                 `Sharpe Ratio: ${(
-                  (retArr[context.raw.idx] - riskFreeRate) /
+                  (retArr[context.raw.idx] - riskFreeRatePct) /
                   riskArr[context.raw.idx]
                 ).toFixed(2)}`,
                 `Monthly Return: ${context.raw.y.toFixed(2)}%`,
@@ -400,20 +391,10 @@ const Optimizer = ({ tickers, children }) => {
       {
         type: "scatter",
         label: "Markowitz Bullet",
-        // check this
-        // check this
-        // check this
-        // check this
-        // check this
-        data: riskArr.map((risk, index) => ({
-          x: risk,
-          y: retArr[index],
-        })),
-        // check this
-        // check this
-        // check this
-        // check this
-        // check this
+        data: [...Array(numPlotPoints)].map((_) => {
+          let idx = Math.floor(numTrials * Math.random());
+          return { x: riskArr[idx], y: retArr[idx] };
+        }),
         backgroundColor: "rgba(0, 255, 255, 1)",
       },
       {
@@ -422,7 +403,7 @@ const Optimizer = ({ tickers, children }) => {
         data: [
           {
             x: 0,
-            y: riskFreeRate,
+            y: riskFreeRatePct,
           },
           {
             x: riskArr[maxSharpeRatio[1]],

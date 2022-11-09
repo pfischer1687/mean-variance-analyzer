@@ -2,8 +2,8 @@ import * as React from "react";
 import * as AssetData from "../../data/asset-data-test.json";
 import Optimizer from "./optimizer.js";
 
-const minNumAssets = 2;
-const maxNumAssets = 20;
+export const minNumAssets = 2;
+export const maxNumAssets = 20;
 
 // Get JSON asset tickers for dropdown select list
 const keys = Object.keys(AssetData);
