@@ -18,13 +18,15 @@ import { minNumAssets, maxNumAssets } from "./input-form.js";
 // check this
 // check this
 const constraintPct = 100;
+const riskFreeRatePct = 3.72;
+// check this
+// check this
+// check this
+// check this
+// check this
+
 const constraint = constraintPct / 100;
-const riskFreeRatePct = 0;
-// check this
-// check this
-// check this
-// check this
-// check this
+const annualizedPeriods = 12; // Monthly data has 12 periods annually
 
 /**
  * @param {number[]} arr1
@@ -132,7 +134,7 @@ const Optimizer = ({ tickers, children }) => {
   // plots them, and displays the mean-variance optimal portfolio
   let meanRetArr = [];
   for (let i = 0; i < tickers.length; i++) {
-    meanRetArr[i] = AssetData[tickers[i]].avgMoRetPct;
+    meanRetArr[i] = annualizedPeriods * AssetData[tickers[i]].avgMoRetPct;
   }
 
   // Begin covariance matrix
@@ -142,18 +144,19 @@ const Optimizer = ({ tickers, children }) => {
   }
 
   for (let i = 0; i < tickers.length; i++) {
-    covMatrix[i][i] = AssetData[tickers[i]].var; // Diagonal elements contain variances
+    covMatrix[i][i] = annualizedPeriods * AssetData[tickers[i]].var; // Diagonal elements contain variances
   }
 
   for (let i = 0; i < tickers.length; i++) {
     for (let j = i + 1; j < tickers.length; j++) {
-      covMatrix[i][j] = AssetData[tickers[i]].cov[tickers[j]];
+      covMatrix[i][j] =
+        annualizedPeriods * AssetData[tickers[i]].cov[tickers[j]];
       covMatrix[j][i] = covMatrix[i][j]; // Off-diagonal elements contain covariances and are symmetric
     }
   }
   // End covariance matrix
 
-  const numTrials = 100000;
+  const numTrials = 500000;
   const numPlotPoints = 1000;
   let weightsMat = []; // dim: numTrials x tickers.length
   let retArr = [];
@@ -228,19 +231,6 @@ const Optimizer = ({ tickers, children }) => {
     (idx) => idx !== undefined
   );
 
-  // check this
-  // check this
-  // check this
-  // check this
-  // check this
-  maxReturnPerBinIndexArr.pop();
-  maxReturnPerBinIndexArr.pop(); // Remove last two less accurate points
-  // check this
-  // check this
-  // check this
-  // check this
-  // check this
-
   ChartJS.register(
     LinearScale,
     PointElement,
@@ -256,20 +246,6 @@ const Optimizer = ({ tickers, children }) => {
     events: ["click", "mousemove"],
     responsive: true,
     plugins: {
-      // check this
-      // check this
-      // check this
-      // check this
-      // check this
-      title: {
-        display: true,
-        text: "Chart.js Line Chart - Cubic interpolation mode",
-      },
-      // check this
-      // check this
-      // check this
-      // check this
-      // check this
       tooltip: {
         filter: function (context) {
           let label = context.dataset.label;
@@ -285,7 +261,7 @@ const Optimizer = ({ tickers, children }) => {
             if (label === "Max Sharpe Ratio") {
               return [
                 `Sharpe Ratio: ${maxSharpeRatio[0].toFixed(2)}`,
-                `Monthly Return: ${context.raw.y.toFixed(2)}%`,
+                `Annualized Return: ${context.raw.y.toFixed(2)}%`,
                 `Standard Deviation: ${context.raw.x.toFixed(2)}%`,
                 "Portfolio weights:",
                 ...weightsMat[context.raw.idx].map(
@@ -299,7 +275,7 @@ const Optimizer = ({ tickers, children }) => {
                   (retArr[context.raw.idx] - riskFreeRatePct) /
                   riskArr[context.raw.idx]
                 ).toFixed(2)}`,
-                `Monthly Return: ${context.raw.y.toFixed(2)}%`,
+                `Annualized Return: ${context.raw.y.toFixed(2)}%`,
                 `Standard Deviation: ${context.raw.x.toFixed(2)}%`,
                 "Portfolio weights:",
                 ...weightsMat[context.raw.idx].map(
@@ -310,7 +286,7 @@ const Optimizer = ({ tickers, children }) => {
             } else if (label === "Single Assets") {
               return [
                 context.raw.ticker,
-                `Monthly Return: ${context.raw.y.toFixed(2)}%`,
+                `Annualized Return: ${context.raw.y.toFixed(2)}%`,
                 `Standard Deviation: ${context.raw.x.toFixed(2)}%`,
               ];
             }
@@ -335,7 +311,7 @@ const Optimizer = ({ tickers, children }) => {
         display: true,
         title: {
           display: true,
-          text: "Average Monthly Differential Return (%)",
+          text: "Annualized Differential Return (%)",
         },
         beginAtZero: true,
       },
@@ -359,17 +335,6 @@ const Optimizer = ({ tickers, children }) => {
       {
         type: "line",
         label: "Efficient Frontier",
-        // check this
-        // check this
-        // check this
-        // check this
-        // check this
-        fill: false,
-        // check this
-        // check this
-        // check this
-        // check this
-        // check this
         borderColor: "rgba(0, 0, 255, 1)",
         data: maxReturnPerBinIndexArr.map((idx) => ({
           x: riskArr[idx],
@@ -382,8 +347,8 @@ const Optimizer = ({ tickers, children }) => {
         type: "scatter",
         label: "Single Assets",
         data: tickers.map((ticker) => ({
-          x: Math.sqrt(AssetData[ticker].var),
-          y: AssetData[ticker].avgMoRetPct,
+          x: Math.sqrt(annualizedPeriods * AssetData[ticker].var),
+          y: annualizedPeriods * AssetData[ticker].avgMoRetPct,
           ticker: ticker,
         })),
         backgroundColor: "rgba(255, 100, 100, 1)",
@@ -438,7 +403,7 @@ const Optimizer = ({ tickers, children }) => {
 
   const maxSharpeRatioInfo = [
     `Max Sharpe Ratio: ${maxSharpeRatio[0].toFixed(2)}`,
-    `Monthly Return: ${retArr[maxSharpeRatio[1]].toFixed(2)}%`,
+    `Annualized Return: ${retArr[maxSharpeRatio[1]].toFixed(2)}%`,
     `Standard Deviation: ${riskArr[maxSharpeRatio[1]].toFixed(2)}%`,
     "Portfolio weights:",
     ...weightsMat[maxSharpeRatio[1]].map(
