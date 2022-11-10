@@ -2,6 +2,7 @@ import * as React from "react";
 import * as AssetData from "../../data/asset-data-test.json";
 import Optimizer from "./optimizer.js";
 import { Formik, Field, Form, ErrorMessage, FieldArray } from "formik";
+import * as Yup from "yup";
 
 export const minNumAssets = 2;
 export const maxNumAssets = 20;
@@ -184,6 +185,21 @@ allTickersSet.delete("default");
 //     this.removeAsset = this.removeAsset.bind(this);
 //   }
 
+const SignupSchema = Yup.object().shape({
+  assets: Yup.array(Yup.string())
+    .compact((v) => {
+      return v === undefined || !allTickersSet.has(v.toUpperCase());
+    })
+    .min(2)
+    .test("Unique", "Values need to be unique", (values) => {
+      let fValues = values.filter(Boolean).map((v) => v.toUpperCase());
+      return new Set(fValues).size === fValues.length;
+    })
+    .required("Required"),
+  constraintPct: Yup.number().min(0).max(100).required("Required"),
+  riskFreeRatePct: Yup.number().min(0).max(100).required("Required"),
+});
+
 class InputForm extends React.Component {
   constructor(props) {
     super(props);
@@ -201,18 +217,40 @@ class InputForm extends React.Component {
     return (
       <>
         <Formik
-          initialValues={{ assets: ["", ""] }}
-          onSubmit={(values) =>
+          initialValues={{
+            assets: ["", ""],
+            constraintPct: 100,
+            riskFreeRatePct: 3.72,
+          }}
+          validationSchema={SignupSchema}
+          onSubmit={(values) => {
             setTimeout(() => {
               alert(JSON.stringify(values, null, 2));
-            }, 500)
-          }
+            }, 500);
+            // let assetsSet = new Set();
+            // values.assets.forEach((asset) => {
+            //   if (
+            //     asset !== "" &&
+            //     (!allTickersSet.has(asset) || assetsSet.has(asset))
+            //   ) {
+            //     alert(
+            //       "Please enter unique assets by clicking them on the dropdown menu"
+            //     );
+            //     return;
+            //   }
+            //   if (asset !== "") {
+            //     assetsSet.add(asset);
+            //   }
+            // });
+            // if (assetsSet.size < 2) {
+            //   alert("Please enter at least two asset tickers");
+            // }
+          }}
         >
-          {({ values }) => (
+          {({ values, errors, touched }) => (
             <Form>
-              <FieldArray
-                name="assets"
-                render={(arrayHelpers) => (
+              <FieldArray name="assets">
+                {({ insert, remove, push }) => (
                   <div>
                     {values.assets.map((value, index) => (
                       <label key={index}>
@@ -228,22 +266,18 @@ class InputForm extends React.Component {
                           )}
                         </datalist>
                         {values.assets.length <= minNumAssets ? null : (
-                          <button
-                            type="button"
-                            onClick={() => arrayHelpers.remove(index)}
-                          >
+                          <button type="button" onClick={() => remove(index)}>
                             -
                           </button>
                         )}
                         <br />
                       </label>
                     ))}
+                    <ErrorMessage name="assets" />
                     {values.assets.length >= maxNumAssets ? null : (
                       <button
                         type="button"
-                        onClick={() =>
-                          arrayHelpers.insert(values.assets.length, "")
-                        }
+                        onClick={() => insert(values.assets.length, "")}
                       >
                         + Add Asset
                       </button>
@@ -251,20 +285,22 @@ class InputForm extends React.Component {
                     <br />
                     <label htmlFor="constraintPct">
                       Max Allocation (%):
-                      <Field name="constraintPct" />
+                      <Field id="constraintPct" name="constraintPct" />
                     </label>
+                    <ErrorMessage name="constraintPct" />
                     <br />
                     <label htmlFor="riskFreeRatePct">
                       Benchmark (%):
-                      <Field name="riskFreeRatePct" />
+                      <Field id="riskFreeRatePct" name="riskFreeRatePct" />
                     </label>
+                    <ErrorMessage name="riskFreeRatePct" />
                     <br />
                     <div>
                       <button type="submit">Submit</button>
                     </div>
                   </div>
                 )}
-              />
+              </FieldArray>
             </Form>
           )}
         </Formik>
