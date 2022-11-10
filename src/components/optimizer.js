@@ -303,7 +303,7 @@ const Optimizer = ({ tickers, children }) => {
         display: true,
         title: {
           display: true,
-          text: "Standard Deviation",
+          text: "Annualized Standard Deviation (%)",
         },
         beginAtZero: true,
       },

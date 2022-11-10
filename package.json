@@ -17,6 +17,7 @@
   "dependencies": {
     "@mdx-js/react": "^2.1.5",
     "chart.js": "^3.9.1",
+    "formik": "^2.2.9",
     "gatsby": "^4.24.4",
     "gatsby-plugin-image": "^2.24.0",
     "gatsby-plugin-mdx": "^4.3.0",
