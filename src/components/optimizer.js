@@ -275,6 +275,8 @@ const Optimizer = ({ tickers, constraintPct, riskFreeRatePct, children }) => {
                 `Annualized Return: ${context.raw.y.toFixed(2)}%`,
                 `Standard Deviation: ${context.raw.x.toFixed(2)}%`,
               ];
+            } else if (label === "Tangency Portfolio" && context.raw.x === 0) {
+              return [`Benchmark: ${context.raw.y.toFixed(2)}%`];
             }
             return;
           },
