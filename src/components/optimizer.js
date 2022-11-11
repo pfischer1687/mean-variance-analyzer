@@ -246,37 +246,37 @@ const Optimizer = ({ tickers, constraintPct, riskFreeRatePct, children }) => {
             let label = context.dataset.label;
             if (label === "Max Sharpe Ratio") {
               return [
-                `Sharpe Ratio: ${maxSharpeRatio[0].toFixed(2)}`,
-                `Annualized Return: ${context.raw.y.toFixed(2)}%`,
-                `Standard Deviation: ${context.raw.x.toFixed(2)}%`,
+                `Sharpe Ratio: ${Number(maxSharpeRatio[0]).toFixed(2)}`,
+                `Annualized Return: ${Number(context.raw.y).toFixed(2)}%`,
+                `Standard Deviation: ${Number(context.raw.x).toFixed(2)}%`,
                 "Portfolio weights:",
                 ...weightsMat[context.raw.idx].map(
                   (weight, index) =>
-                    `  ${tickers[index]}: ${(weight * 100).toFixed(2)}%`
+                    `  ${tickers[index]}: ${Number(weight * 100).toFixed(2)}%`
                 ),
               ];
             } else if (label === "Efficient Frontier") {
               return [
-                `Sharpe Ratio: ${(
+                `Sharpe Ratio: ${Number(
                   (retArr[context.raw.idx] - riskFreeRatePct) /
-                  riskArr[context.raw.idx]
+                    riskArr[context.raw.idx]
                 ).toFixed(2)}`,
-                `Annualized Return: ${context.raw.y.toFixed(2)}%`,
-                `Standard Deviation: ${context.raw.x.toFixed(2)}%`,
+                `Annualized Return: ${Number(context.raw.y).toFixed(2)}%`,
+                `Standard Deviation: ${Number(context.raw.x).toFixed(2)}%`,
                 "Portfolio weights:",
                 ...weightsMat[context.raw.idx].map(
                   (weight, index) =>
-                    `  ${tickers[index]}: ${(weight * 100).toFixed(2)}%`
+                    `  ${tickers[index]}: ${Number(weight * 100).toFixed(2)}%`
                 ),
               ];
             } else if (label === "Single Assets") {
               return [
                 context.raw.ticker,
-                `Annualized Return: ${context.raw.y.toFixed(2)}%`,
-                `Standard Deviation: ${context.raw.x.toFixed(2)}%`,
+                `Annualized Return: ${Number(context.raw.y).toFixed(2)}%`,
+                `Standard Deviation: ${Number(context.raw.x).toFixed(2)}%`,
               ];
             } else if (label === "Tangency Portfolio" && context.raw.x === 0) {
-              return [`Benchmark: ${context.raw.y.toFixed(2)}%`];
+              return [`Benchmark: ${Number(context.raw.y).toFixed(2)}%`];
             }
             return;
           },
@@ -394,11 +394,13 @@ const Optimizer = ({ tickers, constraintPct, riskFreeRatePct, children }) => {
   };
 
   const maxSharpeRatioInfo = [
-    `Max Sharpe Ratio: ${maxSharpeRatio[0].toFixed(2)}`,
-    `Annualized Return: ${retArr[maxSharpeRatio[1]].toFixed(2)}%`,
-    `Standard Deviation: ${riskArr[maxSharpeRatio[1]].toFixed(2)}%`,
+    `Max Sharpe Ratio: ${Number(maxSharpeRatio[0]).toFixed(2)}`,
+    `Annualized Return: ${Number(retArr[maxSharpeRatio[1]]).toFixed(2)}%`,
+    `Standard Deviation: ${Number(riskArr[maxSharpeRatio[1]]).toFixed(2)}%`,
     "Portfolio weights:",
-    ...pieChartSortedArr.map((arr) => `${arr[0]}: ${arr[1].toFixed(2)}%`),
+    ...pieChartSortedArr.map(
+      (arr) => `${arr[0]}: ${Number(arr[1]).toFixed(2)}%`
+    ),
   ];
 
   return (
