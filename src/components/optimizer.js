@@ -12,7 +12,8 @@ import {
 import { Chart, Pie } from "react-chartjs-2";
 import { minNumAssets, maxNumAssets } from "./input-form.js";
 
-const annualizedPeriods = 12; // Monthly data has 12 periods annually
+const numTrials = 500000;
+const numPlotPoints = 1000;
 
 /**
  * @param {number[]} arr1
@@ -122,7 +123,7 @@ const Optimizer = ({ tickers, constraintPct, riskFreeRatePct, children }) => {
 
   let meanRetArr = [];
   for (let i = 0; i < tickers.length; i++) {
-    meanRetArr[i] = annualizedPeriods * AssetData[tickers[i]].avgMoRetPct;
+    meanRetArr[i] = AssetData[tickers[i]].annRetPct;
   }
 
   // Begin covariance matrix
@@ -132,20 +133,17 @@ const Optimizer = ({ tickers, constraintPct, riskFreeRatePct, children }) => {
   }
 
   for (let i = 0; i < tickers.length; i++) {
-    covMatrix[i][i] = annualizedPeriods * AssetData[tickers[i]].var; // Diagonal elements contain variances
+    covMatrix[i][i] = AssetData[tickers[i]].annVar; // Diagonal elements contain variances
   }
 
   for (let i = 0; i < tickers.length; i++) {
     for (let j = i + 1; j < tickers.length; j++) {
-      covMatrix[i][j] =
-        annualizedPeriods * AssetData[tickers[i]].cov[tickers[j]];
+      covMatrix[i][j] = AssetData[tickers[i]].cov[tickers[j]];
       covMatrix[j][i] = covMatrix[i][j]; // Off-diagonal elements contain covariances and are symmetric
     }
   }
   // End covariance matrix
 
-  const numTrials = 500000;
-  const numPlotPoints = 1000;
   let weightsMat = []; // dim: numTrials x tickers.length
   let retArr = [];
   let riskArr = [];
@@ -335,8 +333,8 @@ const Optimizer = ({ tickers, constraintPct, riskFreeRatePct, children }) => {
         type: "scatter",
         label: "Single Assets",
         data: tickers.map((ticker) => ({
-          x: Math.sqrt(annualizedPeriods * AssetData[ticker].var),
-          y: annualizedPeriods * AssetData[ticker].avgMoRetPct,
+          x: Math.sqrt(AssetData[ticker].annVar),
+          y: AssetData[ticker].annRetPct,
           ticker: ticker,
         })),
         backgroundColor: "rgba(255, 100, 100, 1)",
@@ -376,12 +374,16 @@ const Optimizer = ({ tickers, constraintPct, riskFreeRatePct, children }) => {
       )}, ${Math.floor(255 * Math.random())}`
   );
 
+  const pieChartSortedArr = weightsMat[maxSharpeRatio[1]]
+    .map((weight, index) => [tickers[index], weight * 100])
+    .sort((arr1, arr2) => arr2[1] - arr1[1]);
+
   const pieData = {
-    labels: tickers,
+    labels: pieChartSortedArr.map((arr) => arr[0]),
     datasets: [
       {
         label: "Portfolio Weight Allocations for Max Sharpe Ratio",
-        data: weightsMat[maxSharpeRatio[1]].map((weight) => weight * 100),
+        data: pieChartSortedArr.map((arr) => arr[1]),
         backgroundColor: pieChartColors.map((color) => color + ", 0.2)"),
         borderColor: pieChartColors.map((color) => color + ", 1)"),
         borderWidth: 1,
@@ -394,9 +396,7 @@ const Optimizer = ({ tickers, constraintPct, riskFreeRatePct, children }) => {
     `Annualized Return: ${retArr[maxSharpeRatio[1]].toFixed(2)}%`,
     `Standard Deviation: ${riskArr[maxSharpeRatio[1]].toFixed(2)}%`,
     "Portfolio weights:",
-    ...weightsMat[maxSharpeRatio[1]].map(
-      (weight, index) => `${tickers[index]}: ${(weight * 100).toFixed(2)}%`
-    ),
+    ...pieChartSortedArr.map((arr) => `${arr[0]}: ${arr[1].toFixed(2)}%`),
   ];
 
   return (

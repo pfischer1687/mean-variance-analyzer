@@ -55,7 +55,8 @@ const genInputForm = (inputForm) => {
         riskFreeRatePct: 3.72,
       }}
       validationSchema={SignupSchema}
-      onSubmit={(values) => {
+      onSubmit={async (values) => {
+        await new Promise((r) => setTimeout(r, 500));
         inputForm.setState({
           showForm: false,
           tickers: filterArr(values.assets),
