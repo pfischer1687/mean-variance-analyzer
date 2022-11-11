@@ -32,7 +32,13 @@ const SignupSchema = Yup.object().shape({
       return new Set(fValues).size === fValues.length;
     })
     .required("Required"),
-  constraintPct: Yup.number().min(0).max(100).required("Required"),
+  constraintPct: Yup.number()
+    .test("Min", "Values must be >= 100/(# assets - 1)", (v, context) => {
+      let numAssets = parseFloat(context.parent.assets.length);
+      return numAssets >= 2 && v >= 100 / (numAssets - 1);
+    })
+    .max(100)
+    .required("Required"),
   riskFreeRatePct: Yup.number().min(-50).max(50).required("Required"),
 });
 
@@ -59,7 +65,7 @@ const genInputForm = (inputForm) => {
         });
       }}
     >
-      {({ values }) => (
+      {({ values, errors, touched }) => (
         <Form>
           <FieldArray name="assets">
             {({ insert, remove }) => (
@@ -84,6 +90,7 @@ const genInputForm = (inputForm) => {
                   </label>
                 ))}
                 <ErrorMessage name="assets" className="field-error" />
+                <ErrorMessage name="tmp" />
 
                 {values.assets.length >= maxNumAssets ? null : (
                   <button
