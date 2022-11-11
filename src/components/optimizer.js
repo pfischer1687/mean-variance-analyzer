@@ -12,20 +12,6 @@ import {
 import { Chart, Pie } from "react-chartjs-2";
 import { minNumAssets, maxNumAssets } from "./input-form.js";
 
-// check this
-// check this
-// check this
-// check this
-// check this
-const constraintPct = 100;
-const riskFreeRatePct = 3.72;
-// check this
-// check this
-// check this
-// check this
-// check this
-
-const constraint = constraintPct / 100;
 const annualizedPeriods = 12; // Monthly data has 12 periods annually
 
 /**
@@ -129,9 +115,11 @@ const genNormRandWeightArr = (arrLength, constraint) => {
  * @param {JSX} children
  * @return {JSX}
  */
-const Optimizer = ({ tickers, children }) => {
+const Optimizer = ({ tickers, constraintPct, riskFreeRatePct, children }) => {
   // Returns Optimizer React component which runs Monte Carlo simulation of portfolios with random allocations,
   // plots them, and displays the mean-variance optimal portfolio
+  const constraint = constraintPct / 100;
+
   let meanRetArr = [];
   for (let i = 0; i < tickers.length; i++) {
     meanRetArr[i] = annualizedPeriods * AssetData[tickers[i]].avgMoRetPct;
