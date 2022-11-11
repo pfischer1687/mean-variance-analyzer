@@ -39,15 +39,9 @@ const Layout = ({ pageTitle, children }) => {
             </Link>
           </li>
           <li className={navLinkItem}>
-            {pageTitle === "Start Page" ? (
-              <a href="/start" className={navLinkText}>
-                Start
-              </a>
-            ) : (
-              <Link to="/start" className={navLinkText}>
-                Start
-              </Link>
-            )}
+            <Link to="/start" className={navLinkText}>
+              Start
+            </Link>
           </li>
         </ul>
       </nav>

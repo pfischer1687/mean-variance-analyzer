@@ -58,7 +58,7 @@ const genInputForm = (inputForm) => {
       onSubmit={async (values) => {
         await new Promise((r) => setTimeout(r, 500));
         inputForm.setState({
-          showForm: false,
+          showPlot: true,
           tickers: filterArr(values.assets),
           ticker: values.assets,
           constraintPct: values.constraintPct,
@@ -129,7 +129,7 @@ class InputForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showForm: true,
+      showPlot: false,
       tickers: [],
       constraintPct: 100,
       riskFreeRatePct: 3.72,
@@ -138,15 +138,14 @@ class InputForm extends React.Component {
   render() {
     return (
       <>
-        {this.state.showForm ? (
-          genInputForm(this)
-        ) : (
+        {genInputForm(this)}
+        {this.state.showPlot ? (
           <Optimizer
             tickers={this.state.tickers}
             constraintPct={this.state.constraintPct}
             riskFreeRatePct={this.state.riskFreeRatePct}
           />
-        )}
+        ) : null}
       </>
     );
   }
