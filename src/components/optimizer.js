@@ -321,6 +321,16 @@ const Optimizer = ({ tickers, constraintPct, riskFreeRatePct, children }) => {
         backgroundColor: "rgba(255, 255, 0, 1)",
       },
       {
+        type: "scatter",
+        label: "Single Assets",
+        data: tickers.map((ticker) => ({
+          x: Math.sqrt(AssetData[ticker].annVar),
+          y: AssetData[ticker].annRetPct,
+          ticker: ticker,
+        })),
+        backgroundColor: "rgba(255, 100, 100, 1)",
+      },
+      {
         type: "line",
         label: "Efficient Frontier",
         borderColor: "rgba(0, 0, 255, 1)",
@@ -330,16 +340,6 @@ const Optimizer = ({ tickers, constraintPct, riskFreeRatePct, children }) => {
           idx: idx,
         })),
         backgroundColor: "rgba(0, 0, 255, 1)",
-      },
-      {
-        type: "scatter",
-        label: "Single Assets",
-        data: tickers.map((ticker) => ({
-          x: Math.sqrt(AssetData[ticker].annVar),
-          y: AssetData[ticker].annRetPct,
-          ticker: ticker,
-        })),
-        backgroundColor: "rgba(255, 100, 100, 1)",
       },
       {
         type: "scatter",

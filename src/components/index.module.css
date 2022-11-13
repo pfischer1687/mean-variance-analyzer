@@ -1,0 +1,15 @@
+.index-grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 20px;
+  height: 80vh;
+}
+.header-container {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  column-gap: 20px;
+  height: 80vh;
+}
+.header-container h1 {
+  font-size: 5rem;
+}

@@ -15,15 +15,12 @@
     "clean": "gatsby clean"
   },
   "dependencies": {
-    "@mdx-js/react": "^2.1.5",
     "chart.js": "^3.9.1",
     "formik": "^2.2.9",
     "gatsby": "^4.24.4",
     "gatsby-plugin-image": "^2.24.0",
-    "gatsby-plugin-mdx": "^4.3.0",
+    "gatsby-plugin-manifest": "^4.24.0",
     "gatsby-plugin-sharp": "^4.24.0",
-    "gatsby-source-filesystem": "^4.24.0",
-    "gatsby-transformer-sharp": "^4.24.0",
     "react": "^18.1.0",
     "react-chartjs-2": "^4.3.1",
     "react-dom": "^18.1.0",

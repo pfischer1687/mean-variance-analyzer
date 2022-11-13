@@ -1,16 +1,6 @@
 import * as React from "react";
 import { Link, useStaticQuery, graphql } from "gatsby";
-import {
-  container,
-  heading,
-  navLinks,
-  navLinkItem,
-  navLinkText,
-  siteTitle,
-  footerLinks,
-  footerLinkItem,
-  footerLinkText,
-} from "./layout.module.css";
+import * as styles from "./layout.module.css";
 
 const Layout = ({ pageTitle, children }) => {
   const data = useStaticQuery(graphql`
@@ -24,40 +14,42 @@ const Layout = ({ pageTitle, children }) => {
   `);
 
   return (
-    <div className={container}>
-      <header className={siteTitle}>{data.site.siteMetadata.title}</header>
+    <div className={styles.container}>
       <nav>
-        <ul className={navLinks}>
-          <li className={navLinkItem}>
-            <Link to="/" className={navLinkText}>
-              Home
+        <ul className={styles.navLinks}>
+          <li className={styles.navLinkHome}>
+            <Link to="/" className={styles.navLinkText}>
+              MVA (logo placeholder)
             </Link>
           </li>
-          <li className={navLinkItem}>
-            <Link to="/tutorial" className={navLinkText}>
+          <li className={styles.navLinkItem}>
+            <Link to="/tutorial" className={styles.navLinkText}>
               Tutorial
             </Link>
           </li>
-          <li className={navLinkItem}>
-            <Link to="/start" className={navLinkText}>
+          <li className={styles.navLinkItem}>
+            <Link to="/start" className={styles.navLinkText}>
               Start
             </Link>
           </li>
         </ul>
       </nav>
+      {/* <header className={styles.siteTitle}>
+        {data.site.siteMetadata.title}
+      </header> */}
       <main>
-        <h1 className={heading}>{pageTitle}</h1>
+        {/* <h1 className={styles.heading}>{pageTitle}</h1> */}
         {children}
       </main>
       <footer>
-        <ul className={footerLinks}>
-          <li className={footerLinkItem}>
-            <Link to="/about" className={footerLinkText}>
+        <ul className={styles.footerLinks}>
+          <li className={styles.footerLinkItem}>
+            <Link to="/about" className={styles.footerLinkText}>
               About
             </Link>
           </li>
-          <li className={footerLinkItem}>
-            <Link to="/privacy" className={footerLinkText}>
+          <li className={styles.footerLinkItem}>
+            <Link to="/privacy" className={styles.footerLinkText}>
               Privacy & Terms
             </Link>
           </li>

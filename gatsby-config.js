@@ -1,18 +1,21 @@
 module.exports = {
   siteMetadata: {
-    title: "Simple Sharpe Ratio Optimizer",
+    title: "Mean-Variance Analyzer",
   },
   plugins: [
     "gatsby-plugin-image",
     "gatsby-plugin-sharp",
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `markdown`,
-        path: `${__dirname}/markdown/`,
+        name: `Simple Sharpe Ratio Optimizer`,
+        short_name: `SSRO`,
+        start_url: `/`,
+        background_color: `#f7f0eb`,
+        theme_color: `#a2466c`,
+        display: `standalone`,
+        icon: "src/favicon.png",
       },
     },
-    "gatsby-plugin-mdx",
-    "gatsby-transformer-sharp",
   ],
 };
