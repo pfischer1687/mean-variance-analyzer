@@ -1,8 +1,10 @@
 .index-grid-container {
   display: grid;
-  grid-template-columns: 4fr 3fr;
+  grid-template-columns: 1fr 1fr;
   column-gap: 20px;
   height: 75vh;
+  position: relative;
+  isolation: isolate;
 }
 .header-container {
   display: grid;

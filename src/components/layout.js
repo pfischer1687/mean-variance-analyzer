@@ -40,6 +40,7 @@ const Layout = ({ pageTitle, children }) => {
       <main>
         {/* <h1 className={styles.heading}>{pageTitle}</h1> */}
         {children}
+        <div className={styles.spacer}></div>
       </main>
       <footer>
         <ul className={styles.footerLinks}>
