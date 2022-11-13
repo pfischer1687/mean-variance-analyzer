@@ -3,19 +3,26 @@
   grid-template-columns: 1fr 1fr;
   column-gap: 20px;
   height: 75vh;
-  position: relative;
-  isolation: isolate;
 }
 .header-container {
   display: grid;
   grid-template-rows: 1fr 1fr;
   height: 1rem;
 }
-.header-container h1 {
+.hero-text-top {
   font-size: 5rem;
   line-height: 5rem;
   padding-left: 2rem;
   padding-top: 2rem;
+  opacity: 0.85;
+}
+.hero-text-bottom {
+  font-size: 5rem;
+  line-height: 5rem;
+  padding-left: 2rem;
+  padding-top: 2rem;
+  position: absolute;
+  z-index: -2;
 }
 
 .header-container p {

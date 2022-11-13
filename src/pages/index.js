@@ -15,7 +15,8 @@ const IndexPage = () => {
           width={300}
         />
         <div className={styles.headerContainer}>
-          <h1>Mean-Variance Analyzer</h1>
+          <h2 className={styles.heroTextTop}>Mean-Variance Analyzer</h2>
+          <h2 className={styles.heroTextBottom}>Mean-Variance Analyzer</h2>
           <div>
             <p>
               This is a mean-variance analyzer for financial portfolios via
