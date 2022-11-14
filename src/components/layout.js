@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Link, useStaticQuery, graphql } from "gatsby";
 import * as styles from "./layout.module.css";
+import { StaticImage } from "gatsby-plugin-image";
 
 const Layout = ({ pageTitle, children }) => {
   const data = useStaticQuery(graphql`
@@ -19,7 +20,13 @@ const Layout = ({ pageTitle, children }) => {
         <ul className={styles.navLinks}>
           <li className={styles.navLinkHome}>
             <Link to="/" className={styles.navLinkText}>
-              MVA (logo placeholder)
+              <StaticImage
+                alt="Clifford, a reddish-brown pitbull, dozing in a bean bag chair"
+                src="../images/mva-logo-small.png"
+                className={styles.containerImg}
+                width={60}
+              />{" "}
+              Mean-Variance Analyzer
             </Link>
           </li>
           <li className={styles.navLinkItem}>

@@ -32,17 +32,18 @@
 }
 
 .nav-link-home {
-  padding-left: 2rem;
+  padding-left: 1rem;
   padding-right: 2rem;
   margin-right: auto;
 }
 
 .nav-link-item {
-  padding-right: 2rem;
+  padding-right: 5rem;
 }
 
 .nav-link-text {
   color: white;
+  text-decoration: none;
 }
 
 .site-title {

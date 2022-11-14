@@ -18,12 +18,14 @@ const IndexPage = () => {
       <div className={styles.indexGridContainer}>
         <StaticImage
           alt="Clifford, a reddish-brown pitbull, dozing in a bean bag chair"
-          src="../images/clifford.jpg"
+          src="../images/mva-logo-large.png"
           className={styles.containerImg}
         />
         <div className={styles.headerContainer}>
           <h2 className={styles.heroTextTop}>Mean-Variance Analyzer</h2>
-          <h2 className={styles.heroTextBottom}>Mean-Variance Analyzer</h2>
+          <h2 className={styles.heroTextBottom} aria-hidden="true">
+            Mean-Variance Analyzer
+          </h2>
           <div>
             <p className={styles.hidden}>
               This is a mean-variance analyzer for financial portfolios via
