@@ -14,7 +14,7 @@
   line-height: 5rem;
   padding-left: 2rem;
   padding-top: 2rem;
-  opacity: 0.85;
+  opacity: 0.75;
 }
 .hero-text-bottom {
   font-size: 5rem;
@@ -23,6 +23,7 @@
   padding-top: 2rem;
   position: absolute;
   z-index: -2;
+  max-width: 500px;
 }
 
 .header-container p {
@@ -46,4 +47,20 @@
   color: white;
   text-decoration: none;
   font-size: 1.5rem;
+}
+.container-img {
+  margin-left: -20rem;
+}
+
+.hidden {
+  opacity: 0;
+  filter: blur(5px);
+  transform: translateX(-100%);
+  transition: all 1s;
+}
+
+.show {
+  opacity: 1;
+  filter: blur(0);
+  transform: translateX(0);
 }
