@@ -4,31 +4,31 @@ import * as styles from "./layout.module.css";
 import { StaticImage } from "gatsby-plugin-image";
 
 const Layout = ({ pageTitle, children }) => {
-  const data = useStaticQuery(graphql`
-    query {
-      site {
-        siteMetadata {
-          title
-        }
-      }
-    }
-  `);
+  // const data = useStaticQuery(graphql`
+  //   query {
+  //     site {
+  //       siteMetadata {
+  //         title
+  //       }
+  //     }
+  //   }
+  // `);
 
   return (
-    <div className={styles.container}>
+    <div>
       <nav>
         <ul className={styles.navLinks}>
           <li className={`${styles.navLinkHome} ${styles.buttonText}`}>
-            <span>
-              <Link to="/" className={styles.navLinkText}>
-                <StaticImage
-                  alt="Clifford, a reddish-brown pitbull, dozing in a bean bag chair"
-                  src="../images/mva-logo-small.png"
-                  width={60}
-                />{" "}
+            <Link to="/" className={styles.navLinkText}>
+              <StaticImage
+                alt="Clifford, a reddish-brown pitbull, dozing in a bean bag chair"
+                src="../images/mva-logo-small.png"
+                width={60}
+              />{" "}
+              <div className={styles.homeButtonText}>
                 Mean-Variance Analyzer
-              </Link>
-            </span>
+              </div>
+            </Link>
           </li>
           <li className={`${styles.navLinkItem} ${styles.buttonText}`}>
             <Link to="/tutorial" className={styles.navLinkText}>
@@ -45,7 +45,7 @@ const Layout = ({ pageTitle, children }) => {
       {/* <header className={styles.siteTitle}>
         {data.site.siteMetadata.title}
       </header> */}
-      <main>
+      <main className={styles.container}>
         {/* <h1 className={styles.heading}>{pageTitle}</h1> */}
         {children}
         <div className={styles.spacer}></div>

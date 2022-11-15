@@ -10,15 +10,15 @@ const IndexPage = () => {
     const hiddenElements = document.querySelectorAll(`.${styles.hidden}`);
     hiddenElements.forEach((e, index) => {
       e.classList.add(`${styles.show}`);
-      e.style.transitionDelay = `${index * 500}ms`;
+      e.style.transitionDelay = `${(index + 1) * 500}ms`;
     });
   });
   return (
     <Layout pageTitle="Home Page">
       <div className={styles.indexGridContainer}>
         <StaticImage
-          alt="Clifford, a reddish-brown pitbull, dozing in a bean bag chair"
           src="../images/mva-logo-large.png"
+          alt="Mean-Variance Analyzer MVA logo"
         />
         <div className={styles.headerContainer}>
           <h2 className={styles.heroTextTop}>Mean-Variance Analyzer</h2>
