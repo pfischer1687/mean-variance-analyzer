@@ -5,12 +5,12 @@ import InputForm from "../components/input-form";
 
 const StartPage = () => {
   return (
-    <Layout pageTitle="Start Page">
+    <Layout pageTitle="Start">
       <InputForm /> {/* Includes optimizer component */}
     </Layout>
   );
 };
 
-export const Head = () => <Seo title="Start Page" />;
+export const Head = () => <Seo title="Start" />;
 
 export default StartPage;

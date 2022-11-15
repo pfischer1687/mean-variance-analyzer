@@ -14,7 +14,7 @@ const IndexPage = () => {
     });
   });
   return (
-    <Layout pageTitle="Home Page">
+    <Layout pageTitle="Home">
       <div className={styles.indexGridContainer}>
         <StaticImage
           src="../images/mva-logo-large.png"
@@ -46,6 +46,6 @@ const IndexPage = () => {
   );
 };
 
-export const Head = () => <Seo title="Home Page" />;
+export const Head = () => <Seo title="Home" />;
 
 export default IndexPage;
