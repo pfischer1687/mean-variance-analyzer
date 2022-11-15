@@ -29,11 +29,14 @@ const IndexPage = () => {
             <p className={styles.hidden}>
               This is a mean-variance analyzer for financial portfolios via
               Monte Carlo simulation. Learn more by following the{" "}
-              <Link to="/tutorial">tutorial</Link>.
+              <Link to="/tutorial" className={styles.tutorialLink}>
+                tutorial
+              </Link>
+              .
             </p>
             <button className={`${styles.hidden} ${styles.buttonText}`}>
               <Link to="/start">
-                <span>Start now</span>
+                <span>Get started!</span>
               </Link>
             </button>
           </div>

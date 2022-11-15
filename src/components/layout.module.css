@@ -32,7 +32,7 @@
 }
 
 .nav-link-home {
-  padding-left: 1rem;
+  padding-left: 2rem;
   padding-right: 2rem;
   margin-right: auto;
 }
@@ -83,12 +83,16 @@
 .footer-links {
   display: flex;
   list-style: none;
-  padding-left: 0;
+  justify-content: right;
 }
 .footer-link-item {
-  padding-right: 2rem;
+  padding-right: 7rem;
 }
 
 .footer-link-text {
   color: white;
+}
+
+.footer-copyright {
+  margin-right: auto;
 }

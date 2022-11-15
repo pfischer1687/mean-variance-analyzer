@@ -52,6 +52,7 @@ const Layout = ({ pageTitle, children }) => {
       </main>
       <footer>
         <ul className={styles.footerLinks}>
+          <li className={styles.footerCopyright}>© 2022 All rights reserved</li>
           <li className={styles.footerLinkItem}>
             <Link to="/about" className={styles.footerLinkText}>
               About
