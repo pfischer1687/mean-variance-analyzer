@@ -48,10 +48,6 @@
   text-decoration: none;
   font-size: 1.5rem;
 }
-.container-img {
-  /* margin-left: -100%; */
-  /* width: 50rem; */
-}
 
 .hidden {
   opacity: 0;
@@ -64,4 +60,29 @@
   opacity: 1;
   filter: blur(0);
   transform: translateX(0);
+}
+
+.button-text span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button-text span:after {
+  content: "\00bb";
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+.button-text:hover span {
+  padding-right: 25px;
+  margin-left: -25px;
+}
+
+.button-text:hover span:after {
+  opacity: 1;
+  right: 0;
 }

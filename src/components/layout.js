@@ -18,25 +18,26 @@ const Layout = ({ pageTitle, children }) => {
     <div className={styles.container}>
       <nav>
         <ul className={styles.navLinks}>
-          <li className={styles.navLinkHome}>
-            <Link to="/" className={styles.navLinkText}>
-              <StaticImage
-                alt="Clifford, a reddish-brown pitbull, dozing in a bean bag chair"
-                src="../images/mva-logo-small.png"
-                className={styles.containerImg}
-                width={60}
-              />{" "}
-              Mean-Variance Analyzer
-            </Link>
+          <li className={`${styles.navLinkHome} ${styles.buttonText}`}>
+            <span>
+              <Link to="/" className={styles.navLinkText}>
+                <StaticImage
+                  alt="Clifford, a reddish-brown pitbull, dozing in a bean bag chair"
+                  src="../images/mva-logo-small.png"
+                  width={60}
+                />{" "}
+                Mean-Variance Analyzer
+              </Link>
+            </span>
           </li>
-          <li className={styles.navLinkItem}>
+          <li className={`${styles.navLinkItem} ${styles.buttonText}`}>
             <Link to="/tutorial" className={styles.navLinkText}>
-              Tutorial
+              <span>Tutorial </span>
             </Link>
           </li>
-          <li className={styles.navLinkItem}>
+          <li className={`${styles.navLinkItem} ${styles.buttonText}`}>
             <Link to="/start" className={styles.navLinkText}>
-              Start
+              <span>Start </span>
             </Link>
           </li>
         </ul>

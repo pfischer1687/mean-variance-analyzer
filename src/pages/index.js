@@ -19,7 +19,6 @@ const IndexPage = () => {
         <StaticImage
           alt="Clifford, a reddish-brown pitbull, dozing in a bean bag chair"
           src="../images/mva-logo-large.png"
-          className={styles.containerImg}
         />
         <div className={styles.headerContainer}>
           <h2 className={styles.heroTextTop}>Mean-Variance Analyzer</h2>
@@ -32,8 +31,10 @@ const IndexPage = () => {
               Monte Carlo simulation. Learn more by following the{" "}
               <Link to="/tutorial">tutorial</Link>.
             </p>
-            <button className={styles.hidden}>
-              <Link to="/start">Start now</Link>
+            <button className={`${styles.hidden} ${styles.buttonText}`}>
+              <Link to="/start">
+                <span>Start now</span>
+              </Link>
             </button>
           </div>
         </div>

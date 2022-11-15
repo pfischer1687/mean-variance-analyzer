@@ -39,6 +39,33 @@
 
 .nav-link-item {
   padding-right: 5rem;
+  transition: all 0.5s;
+  cursor: pointer;
+}
+
+.button-text span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button-text span:after {
+  content: "\00bb";
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+.button-text:hover span {
+  padding-right: 25px;
+  margin-left: -25px;
+}
+
+.button-text:hover span:after {
+  opacity: 1;
+  right: 0;
 }
 
 .nav-link-text {
