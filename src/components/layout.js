@@ -28,7 +28,7 @@ const Layout = ({ pageTitle, children }) => {
       <nav>
         <ul className={styles.navLinks}>
           <li className={`${styles.navLinkHome} ${styles.buttonText}`}>
-            {pageTitle == "Home" ? (
+            {pageTitle === "Home" ? (
               <a href="/" className={styles.navLinkText}>
                 <StaticImage
                   alt="Clifford, a reddish-brown pitbull, dozing in a bean bag chair"
@@ -70,14 +70,14 @@ const Layout = ({ pageTitle, children }) => {
       </nav>
 
       <nav className={styles.mobileNavLinks}>
-        {pageTitle == "Home" ? <a href="/">Home</a> : <Link to="/">Home</Link>}
+        {pageTitle === "Home" ? <a href="/">Home</a> : <Link to="/">Home</Link>}
 
-        {pageTitle == "Tutorial" ? (
+        {pageTitle === "Tutorial" ? (
           <a href="/tutorial">Tutorial</a>
         ) : (
           <Link to="/tutorial">Tutorial</Link>
         )}
-        {pageTitle == "Start" ? (
+        {pageTitle === "Start" ? (
           <a href="/start">Start now</a>
         ) : (
           <Link to="/start">Start now</Link>

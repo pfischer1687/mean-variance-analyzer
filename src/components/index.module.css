@@ -1,15 +1,15 @@
-.index-grid-container {
+/* .index-grid-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
   column-gap: 20px;
   height: 75vh;
-}
+} */
 .header-container {
   display: grid;
   grid-template-rows: 1fr 1fr;
   height: 1rem;
 }
-.hero-text-top {
+/* .hero-text-top {
   font-size: 5rem;
   line-height: 5rem;
   padding-left: 2rem;
@@ -24,19 +24,19 @@
   position: absolute;
   z-index: -2;
   max-width: 500px;
-}
+} */
 
-.header-container p {
+/* .header-container p {
   font-size: 1.25rem;
   padding-left: 2rem;
   margin-top: -3rem;
   max-width: 30rem;
-}
+} */
 
 .header-container div button {
   font-size: 2rem;
-  margin-left: 5rem;
-  background-color: green;
+  /* margin-left: 5rem; */
+  background-color: #096002;
   border-radius: 0.5rem;
   border: none;
   box-shadow: 0 8px 16px 0 rgba(194, 194, 194, 0.2),
@@ -90,5 +90,78 @@
 }
 
 .tutorial-link {
-  color: green;
+  color: #096002;
+}
+
+/* Responsive */
+@media screen and (min-width: 750px) {
+  .hero-text-top {
+    font-size: 5rem;
+    line-height: 5rem;
+    padding-left: 2rem;
+    padding-top: 2rem;
+    opacity: 0.75;
+  }
+  .hero-text-bottom {
+    font-size: 5rem;
+    line-height: 5rem;
+    padding-left: 2rem;
+    padding-top: 2rem;
+    position: absolute;
+    z-index: -2;
+    max-width: 500px;
+  }
+  .index-grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 20px;
+    height: 75vh;
+  }
+  .header-container p {
+    font-size: 1.25rem;
+    padding-left: 2rem;
+    margin-top: -3rem;
+    max-width: 30rem;
+  }
+
+  .header-container div button {
+    margin-left: 5rem;
+  }
+}
+
+@media screen and (max-width: 749px) {
+  .hero-text-top {
+    font-size: 4rem;
+    line-height: 4rem;
+    padding-top: -1rem;
+    margin-left: -2rem;
+    opacity: 0.75;
+  }
+  .hero-text-bottom {
+    font-size: 4rem;
+    line-height: 4rem;
+    padding-top: -1rem;
+    margin-left: -2rem;
+    position: absolute;
+    z-index: -2;
+    max-width: 500px;
+  }
+
+  .index-grid-container img {
+    display: none;
+  }
+  .index-grid-container {
+    display: flex;
+    grid-template-columns: 1fr;
+    height: 75vh;
+  }
+  .header-container p {
+    font-size: 1.1rem;
+    margin-left: -2rem;
+    margin-top: -2.5rem;
+    max-width: 18rem;
+  }
+  .header-container div button {
+    margin-right: 5.5rem;
+  }
 }

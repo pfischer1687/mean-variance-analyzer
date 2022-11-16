@@ -9,7 +9,7 @@
   background-position: center;
   background-size: cover;
   background-image: url("../images/green-waves.svg");
-  clip-path: polygon(0 0, 100% 0, 100% 7.5%, 0 80%);
+  /* clip-path: polygon(0 0, 100% 0, 100% 7.5%, 0 80%); */
   height: 90vh;
   position: absolute;
   inset: 0;
@@ -33,7 +33,7 @@
   z-index: 2;
 }
 .nav-link-home {
-  padding-left: 2rem;
+  padding-left: 1rem;
   padding-right: 2rem;
   margin-right: auto;
   cursor: pointer;
@@ -43,7 +43,7 @@
 .hamburger-menu {
   position: absolute;
   top: 2rem;
-  right: 4rem;
+  right: 3rem;
   display: block;
   width: 2rem;
   cursor: pointer;
@@ -132,6 +132,7 @@
 .nav-link-text {
   color: white;
   text-decoration: none;
+  font-weight: bold;
 }
 
 .site-title {
@@ -141,12 +142,12 @@
   margin: 3rem 0;
 }
 
-.footer-links {
+/* .footer-links {
   display: flex;
   list-style: none;
   justify-content: right;
-}
-.footer-link-item {
+} */
+/* .footer-link-item {
   padding-right: 7rem;
 }
 
@@ -156,7 +157,7 @@
 
 .footer-copyright {
   margin-right: auto;
-}
+} */
 
 /* Responsive
 ------------------------------*/
@@ -175,6 +176,23 @@
   .mobile-nav-links {
     display: none;
   }
+  .footer-links {
+    display: flex;
+    list-style: none;
+    justify-content: right;
+  }
+  .footer-link-item {
+    padding-right: 7rem;
+  }
+  .footer-link-text {
+    color: white;
+  }
+  .footer-copyright {
+    margin-right: auto;
+  }
+  .spacer {
+    clip-path: polygon(0 0, 100% 0, 100% 7.5%, 0 80%);
+  }
 }
 
 @media screen and (max-width: 749px) {
@@ -183,5 +201,27 @@
   }
   .home-button-text {
     display: none;
+  }
+  .footer-links {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    list-style: none;
+    /* justify-content: center; */
+    margin-left: 0.75rem;
+    margin-top: -1rem;
+  }
+  .footer-link-item {
+    /* padding-left: 7rem; */
+    text-align: left;
+  }
+  .footer-link-text {
+    color: white;
+  }
+  .footer-copyright {
+    /* padding-left: 7rem; */
+    text-align: left;
+  }
+  .spacer {
+    clip-path: polygon(0 0, 100% 0, 100% 7.5%, 0 50%);
   }
 }
