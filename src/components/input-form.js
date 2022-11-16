@@ -3,6 +3,7 @@ import * as AssetData from "../../data/asset-data-test.json";
 import Optimizer from "./optimizer.js";
 import { Formik, Field, Form, ErrorMessage, FieldArray } from "formik";
 import * as Yup from "yup";
+import * as styles from "../components/input-form.module.css";
 
 export const minNumAssets = 2;
 export const maxNumAssets = 20;
@@ -48,80 +49,117 @@ const SignupSchema = Yup.object().shape({
  */
 const genInputForm = (inputForm) => {
   return (
-    <Formik
-      initialValues={{
-        assets: ["", ""],
-        constraintPct: 100,
-        riskFreeRatePct: 3.72,
-      }}
-      validationSchema={SignupSchema}
-      onSubmit={async (values) => {
-        await new Promise((r) => setTimeout(r, 500));
-        inputForm.setState({
-          showPlot: true,
-          tickers: filterArr(values.assets),
-          ticker: values.assets,
-          constraintPct: values.constraintPct,
-          riskFreeRatePct: values.riskFreeRatePct,
-        });
-      }}
-    >
-      {({ values, errors, touched }) => (
-        <Form>
-          <FieldArray name="assets">
-            {({ insert, remove }) => (
-              <div>
-                {values.assets.map((value, index) => (
-                  <label key={index}>
-                    Asset {index + 1}:
-                    <Field name={`assets.${index}`} list="assets-list" />
-                    <datalist id="assets-list">
-                      {Array.from(allTickersSet).map((ticker, tickerIndex) => (
-                        <option key={tickerIndex} value={ticker}>
-                          {`${ticker} (${AssetData[ticker].title})`}
-                        </option>
-                      ))}
-                    </datalist>
-                    {values.assets.length <= minNumAssets ? null : (
-                      <button type="button" onClick={() => remove(index)}>
-                        -
-                      </button>
-                    )}
-                    <br />
-                  </label>
-                ))}
-                <ErrorMessage name="assets" className="field-error" />
-                <ErrorMessage name="tmp" />
-
-                {values.assets.length >= maxNumAssets ? null : (
-                  <button
-                    type="button"
-                    onClick={() => insert(values.assets.length, "")}
-                  >
-                    + Add Asset
-                  </button>
-                )}
-                <br />
-
-                <label htmlFor="constraintPct">Max Allocation (%):</label>
-                <Field id="constraintPct" name="constraintPct" />
-                <ErrorMessage name="constraintPct" className="field-error" />
-                <br />
-
-                <label htmlFor="riskFreeRatePct">Benchmark (%): </label>
-                <Field id="riskFreeRatePct" name="riskFreeRatePct" />
-                <ErrorMessage name="riskFreeRatePct" className="field-error" />
-                <br />
-
+    <div className={styles.container}>
+      <h2 className={styles.formLabels}>Please enter the information:</h2>
+      <Formik
+        initialValues={{
+          assets: ["", ""],
+          constraintPct: 100,
+          riskFreeRatePct: 3.72,
+        }}
+        validationSchema={SignupSchema}
+        onSubmit={async (values) => {
+          await new Promise((r) => setTimeout(r, 500));
+          inputForm.setState({
+            showPlot: true,
+            tickers: filterArr(values.assets),
+            ticker: values.assets,
+            constraintPct: values.constraintPct,
+            riskFreeRatePct: values.riskFreeRatePct,
+          });
+        }}
+      >
+        {({ values, errors, touched }) => (
+          <Form>
+            <FieldArray name="assets">
+              {({ insert, remove }) => (
                 <div>
-                  <button type="submit">Submit</button>
+                  {values.assets.map((value, index) => (
+                    <div key={index}>
+                      <label
+                        htmlFor={`assets.${index}`}
+                        className={styles.formLabels}
+                      >
+                        Asset {index + 1}:{" "}
+                      </label>
+                      <br />
+                      <Field
+                        id={`assets.${index}`}
+                        name={`assets.${index}`}
+                        list="assets-list"
+                        className={styles.formInputs}
+                      />
+                      <datalist id="assets-list">
+                        {Array.from(allTickersSet).map(
+                          (ticker, tickerIndex) => (
+                            <option key={tickerIndex} value={ticker}>
+                              {`${ticker} (${AssetData[ticker].title})`}
+                            </option>
+                          )
+                        )}
+                      </datalist>
+                      {values.assets.length <= minNumAssets ? null : (
+                        <button type="button" onClick={() => remove(index)}>
+                          -
+                        </button>
+                      )}
+                      <br />
+                    </div>
+                  ))}
+                  <ErrorMessage name="assets" className="field-error" />
+                  <ErrorMessage name="tmp" />
+
+                  {values.assets.length >= maxNumAssets ? null : (
+                    <button
+                      className={styles.addAssetButton}
+                      type="button"
+                      onClick={() => insert(values.assets.length, "")}
+                    >
+                      + Add Asset
+                    </button>
+                  )}
+                  <br />
+
+                  <label className={styles.formLabels} htmlFor="constraintPct">
+                    Max Allocation (%):
+                  </label>
+                  <Field
+                    className={styles.formInputs}
+                    id="constraintPct"
+                    name="constraintPct"
+                  />
+                  <ErrorMessage name="constraintPct" className="field-error" />
+                  <br />
+
+                  <label
+                    className={styles.formLabels}
+                    htmlFor="riskFreeRatePct"
+                  >
+                    Benchmark (%):{" "}
+                  </label>
+                  <Field
+                    className={styles.formInputs}
+                    id="riskFreeRatePct"
+                    name="riskFreeRatePct"
+                  />
+                  <ErrorMessage
+                    name="riskFreeRatePct"
+                    className="field-error"
+                  />
+                  <br />
+
+                  <div>
+                    <button type="submit" className={styles.submitButton}>
+                      Submit
+                    </button>
+                  </div>
                 </div>
-              </div>
-            )}
-          </FieldArray>
-        </Form>
-      )}
-    </Formik>
+              )}
+            </FieldArray>
+          </Form>
+        )}
+      </Formik>
+    </div>
   );
 };
 
