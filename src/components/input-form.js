@@ -27,20 +27,36 @@ const SignupSchema = Yup.object().shape({
     .compact((v) => {
       return v === undefined || !allTickersSet.has(v.toUpperCase());
     })
-    .min(2)
-    .test("Unique", "Values need to be unique", (values) => {
+    .min(2, "Must have at least 2 valid asset tickers")
+    .test("Unique", "Asset tickers must be unique", (values) => {
       let fValues = filterArr(values);
       return new Set(fValues).size === fValues.length;
     })
     .required("Required"),
   constraintPct: Yup.number()
-    .test("Min", "Values must be >= 100/(# assets - 1)", (v, context) => {
+    .typeError("Must be a number")
+    .test("MinAssets", "Must have at least 2 asset tickers", (v, context) => {
       let numAssets = parseFloat(context.parent.assets.length);
-      return numAssets >= 2 && v >= 100 / (numAssets - 1);
+      return numAssets >= 2;
     })
-    .max(100)
+    .test(
+      "Min",
+      "Max allocation must be such that: 100% / (#assets - 1) <= allocation <= 100%",
+      (v, context) => {
+        let numAssets = parseFloat(context.parent.assets.length);
+        return v >= 100 / (numAssets - 1);
+      }
+    )
+    .max(
+      100,
+      "Max allocation must be such that: 100% / (#assets - 1) <= allocation <= 100%"
+    )
     .required("Required"),
-  riskFreeRatePct: Yup.number().min(-50).max(50).required("Required"),
+  riskFreeRatePct: Yup.number()
+    .typeError("Must be a number")
+    .min(-50, "Benchmark must be such that: -50% <= benchmark <= 50%")
+    .max(50, "Benchmark must be such that: -50% <= benchmark <= 50%")
+    .required("Required"),
 });
 
 /**
@@ -51,6 +67,9 @@ const genInputForm = (inputForm) => {
   return (
     <div className={styles.container}>
       <h2 className={styles.formLabels}>Please enter the information:</h2>
+      <p className={styles.formLabels}>
+        If you have any questions, please refer to the tutorial (link)
+      </p>
       <Formik
         initialValues={{
           assets: ["", ""],
@@ -74,40 +93,49 @@ const genInputForm = (inputForm) => {
             <FieldArray name="assets">
               {({ insert, remove }) => (
                 <div>
-                  {values.assets.map((value, index) => (
-                    <div key={index}>
-                      <label
-                        htmlFor={`assets.${index}`}
-                        className={styles.formLabels}
-                      >
-                        Asset {index + 1}:{" "}
-                      </label>
-                      <br />
-                      <Field
-                        id={`assets.${index}`}
-                        name={`assets.${index}`}
-                        list="assets-list"
-                        className={styles.formInputs}
-                      />
-                      <datalist id="assets-list">
-                        {Array.from(allTickersSet).map(
-                          (ticker, tickerIndex) => (
-                            <option key={tickerIndex} value={ticker}>
-                              {`${ticker} (${AssetData[ticker].title})`}
-                            </option>
-                          )
+                  <div>
+                    {values.assets.map((value, index) => (
+                      <div key={index}>
+                        <label
+                          htmlFor={`assets.${index}`}
+                          className={styles.formLabels}
+                        >
+                          Asset {index + 1}:{" "}
+                        </label>
+                        <br />
+                        <Field
+                          id={`assets.${index}`}
+                          name={`assets.${index}`}
+                          list="assets-list"
+                          className={styles.formInputs}
+                        />
+                        <datalist id="assets-list">
+                          {Array.from(allTickersSet).map(
+                            (ticker, tickerIndex) => (
+                              <option key={tickerIndex} value={ticker}>
+                                {`${ticker} (${AssetData[ticker].title})`}
+                              </option>
+                            )
+                          )}
+                        </datalist>
+                        {values.assets.length <= minNumAssets ? null : (
+                          <button
+                            type="button"
+                            onClick={() => remove(index)}
+                            className={styles.removeButton}
+                          >
+                            X
+                          </button>
                         )}
-                      </datalist>
-                      {values.assets.length <= minNumAssets ? null : (
-                        <button type="button" onClick={() => remove(index)}>
-                          -
-                        </button>
-                      )}
-                      <br />
-                    </div>
-                  ))}
-                  <ErrorMessage name="assets" className="field-error" />
-                  <ErrorMessage name="tmp" />
+                        <br />
+                      </div>
+                    ))}
+                    <ErrorMessage
+                      name="assets"
+                      className={styles.fieldError}
+                      component="div"
+                    />
+                  </div>
 
                   {values.assets.length >= maxNumAssets ? null : (
                     <button
@@ -123,12 +151,18 @@ const genInputForm = (inputForm) => {
                   <label className={styles.formLabels} htmlFor="constraintPct">
                     Max Allocation (%):
                   </label>
-                  <Field
-                    className={styles.formInputs}
-                    id="constraintPct"
-                    name="constraintPct"
-                  />
-                  <ErrorMessage name="constraintPct" className="field-error" />
+                  <div>
+                    <Field
+                      className={styles.formInputs}
+                      id="constraintPct"
+                      name="constraintPct"
+                    />
+                    <ErrorMessage
+                      name="constraintPct"
+                      className={styles.fieldError}
+                      component="div"
+                    />
+                  </div>
                   <br />
 
                   <label
@@ -137,15 +171,18 @@ const genInputForm = (inputForm) => {
                   >
                     Benchmark (%):{" "}
                   </label>
-                  <Field
-                    className={styles.formInputs}
-                    id="riskFreeRatePct"
-                    name="riskFreeRatePct"
-                  />
-                  <ErrorMessage
-                    name="riskFreeRatePct"
-                    className="field-error"
-                  />
+                  <div>
+                    <Field
+                      className={styles.formInputs}
+                      id="riskFreeRatePct"
+                      name="riskFreeRatePct"
+                    />
+                    <ErrorMessage
+                      name="riskFreeRatePct"
+                      className={styles.fieldError}
+                      component="div"
+                    />
+                  </div>
                   <br />
 
                   <div>

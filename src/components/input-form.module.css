@@ -45,6 +45,23 @@
   cursor: pointer;
   height: 2.5rem;
 }
+.field-error {
+  font-size: 1rem;
+  color: red;
+  margin-left: 25%;
+  margin-bottom: 1rem;
+}
+.remove-button {
+  color: white;
+  background-color: #096002;
+  font-size: 0.75rem;
+  border-radius: 0.5rem;
+  border: none;
+  margin-left: 0.5rem;
+
+  width: 2rem;
+  cursor: pointer;
+}
 
 /* Responsive */
 @media screen and (min-width: 750px) {
