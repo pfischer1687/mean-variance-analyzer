@@ -11,6 +11,7 @@ import {
 } from "chart.js";
 import { Chart, Pie } from "react-chartjs-2";
 import { minNumAssets, maxNumAssets } from "./input-form.js";
+import * as styles from "./optimizer.module.css";
 
 const numTrials = 500000;
 const numPlotPoints = 1000;
@@ -404,19 +405,26 @@ const Optimizer = ({ tickers, constraintPct, riskFreeRatePct, children }) => {
   ];
 
   return (
-    <>
-      <div style={{ height: "300px" }}>
+    <div className={styles.container}>
+      <div className={styles.scatterPlot}>
         <Chart
           type="scatter"
           options={monteCarloPlotOptions}
           data={monteCarloPlotData}
+          color="#FFF"
         />
       </div>
-      <Pie data={pieData} />
-      {maxSharpeRatioInfo.map((Element, index) => (
-        <p key={index}>{Element}</p>
-      ))}
-    </>
+      <div className={styles.pieChartStyle}>
+        <div>
+          <Pie data={pieData} />
+        </div>
+        <div className={styles.pieChartInfo}>
+          {maxSharpeRatioInfo.map((Element, index) => (
+            <p key={index}>{Element}</p>
+          ))}
+        </div>
+      </div>
+    </div>
   );
 };
 
