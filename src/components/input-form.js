@@ -163,7 +163,6 @@ const genInputForm = (inputForm) => {
                       component="div"
                     />
                   </div>
-                  <br />
 
                   <label
                     className={styles.formLabels}
@@ -183,7 +182,6 @@ const genInputForm = (inputForm) => {
                       component="div"
                     />
                   </div>
-                  <br />
 
                   <div>
                     <button type="submit" className={styles.submitButton}>

@@ -5,12 +5,10 @@
   left: 5%;
   border-radius: 3rem;
 }
-.form-labels {
-  margin-left: 26%;
-}
+
 .form-inputs {
   width: 50%;
-  margin-left: 25%;
+
   height: 2rem;
   margin-bottom: 1rem;
   padding-left: 1rem;
@@ -21,7 +19,6 @@
   border: 3px solid #096002;
 }
 .add-asset-button {
-  margin-left: 42%;
   margin-bottom: 1rem;
   color: white;
   background-color: #096002;
@@ -33,7 +30,6 @@
   cursor: pointer;
 }
 .submit-button {
-  margin-left: 43%;
   margin-bottom: 1rem;
   color: white;
   background-color: #096002;
@@ -48,7 +44,7 @@
 .field-error {
   font-size: 1rem;
   color: red;
-  margin-left: 25%;
+
   margin-bottom: 1rem;
 }
 .remove-button {
@@ -68,11 +64,31 @@
   .container {
     padding: 1rem 5rem;
   }
+  .form-labels {
+    margin-left: 26%;
+  }
+  .form-inputs {
+    margin-left: 25%;
+  }
+  .submit-button {
+    margin-left: 43%;
+  }
+  .add-asset-button {
+    margin-left: 42%;
+  }
+  .field-error {
+    margin-left: 25%;
+  }
 }
 
 @media screen and (max-width: 749px) {
   .container {
     padding: 1rem 1rem;
     margin-bottom: 2rem;
+    text-align: center;
+  }
+  .form-labels {
+    /* margin-left: 26%; */
+    /* text-align: center; */
   }
 }
