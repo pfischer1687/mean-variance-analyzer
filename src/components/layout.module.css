@@ -206,7 +206,6 @@
     display: grid;
     grid-template-rows: 1fr 1fr 1fr;
     list-style: none;
-    /* justify-content: center; */
     margin-left: 0.75rem;
     margin-top: -1rem;
   }

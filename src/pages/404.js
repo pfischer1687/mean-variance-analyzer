@@ -2,19 +2,34 @@ import * as React from "react";
 import Layout from "../components/layout";
 import { StaticImage } from "gatsby-plugin-image";
 import Seo from "../components/seo";
+import * as styles from "../components/about.module.css";
 
 const NotFoundPage = () => {
   return (
     <Layout pageTitle="404: Page not found">
-      <p>
-        Sorry 😔, we couldn’t find what you were looking for. Please enjoy this
-        picture of a cute dog and then click any of the links above or below to
-        navigate through the site.
-      </p>
-      <StaticImage
-        alt="Clifford, a reddish-brown pitbull, dozing in a bean bag chair"
-        src="../images/clifford.jpg"
-      />
+      <div className={styles.textContainer}>
+        <h2>404: Page Not Found</h2>
+        <p>
+          Sorry, we couldn’t find what you were looking for. Please enjoy this
+          picture of a cute dog and then click any of the navigation links above
+          or footer links below to navigate through the site.
+        </p>
+        <StaticImage
+          alt="Cute gray dog lying in a driveway with its tongue sticking out"
+          src="../images/dog-pic.jpg"
+          width={600}
+        />
+        <p>
+          Photo by{" "}
+          <a href="https://unsplash.com/@mutedtone?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">
+            Christopher Ayme
+          </a>{" "}
+          on{" "}
+          <a href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">
+            Unsplash
+          </a>
+        </p>
+      </div>
     </Layout>
   );
 };

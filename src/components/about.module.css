@@ -7,6 +7,10 @@
   border-radius: 3rem;
 }
 
+a {
+  color: #096002;
+}
+
 /* Responsive */
 @media screen and (min-width: 750px) {
   .text-container {
