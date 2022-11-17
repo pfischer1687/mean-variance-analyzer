@@ -405,7 +405,7 @@ const Optimizer = ({ tickers, constraintPct, riskFreeRatePct, children }) => {
   ];
 
   return (
-    <div className={styles.container}>
+    <div>
       <div className={styles.scatterPlot}>
         <Chart
           type="scatter"
@@ -415,7 +415,7 @@ const Optimizer = ({ tickers, constraintPct, riskFreeRatePct, children }) => {
         />
       </div>
       <div className={styles.pieChartStyle}>
-        <div>
+        <div className={styles.pieChartElement}>
           <Pie data={pieData} />
         </div>
         <div className={styles.pieChartInfo}>

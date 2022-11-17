@@ -6,6 +6,9 @@
   border-radius: 3rem;
 }
 
+h2 {
+  margin-bottom: -0.5rem;
+}
 .form-inputs {
   width: 50%;
 
@@ -66,6 +69,7 @@
   }
   .form-labels {
     margin-left: 26%;
+    padding-right: 26%;
   }
   .form-inputs {
     margin-left: 25%;
