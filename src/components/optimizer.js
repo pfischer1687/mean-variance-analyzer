@@ -15,6 +15,7 @@ import * as styles from "./optimizer.module.css";
 
 const numTrials = 500000;
 const numPlotPoints = 1000;
+const noEfficientFrontierRiskBins = 15;
 
 /**
  * @param {number[]} arr1
@@ -180,7 +181,6 @@ const Optimizer = ({ tickers, constraintPct, riskFreeRatePct, children }) => {
 
   // Determine efficient frontier by breaking Monte Carlo simulations into "bins" of risk and finding the max
   // return in each risk bin
-  const noEfficientFrontierRiskBins = 15; // Keep small enough to be able to click on individual points
   const binDividerLength = (maxRisk - minRisk[0]) / noEfficientFrontierRiskBins;
   let binDividerRisks = [];
   binDividerRisks[0] = minRisk[0] + binDividerLength;

@@ -9,6 +9,11 @@
 
 a {
   color: #096002;
+  cursor: pointer;
+}
+.latex-image {
+  filter: invert(100%);
+  padding-left: 1rem;
 }
 
 /* Responsive */
