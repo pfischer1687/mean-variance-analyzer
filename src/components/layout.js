@@ -100,8 +100,13 @@ const Layout = ({ pageTitle, children }) => {
             </Link>
           </li>
           <li className={styles.footerLinkItem}>
+            <Link to="/terms" className={styles.footerLinkText}>
+              Terms of Service
+            </Link>
+          </li>
+          <li className={styles.footerLinkItem}>
             <Link to="/privacy" className={styles.footerLinkText}>
-              Privacy & Terms
+              Privacy Policy
             </Link>
           </li>
         </ul>

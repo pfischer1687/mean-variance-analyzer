@@ -395,7 +395,7 @@ const Optimizer = ({ tickers, constraintPct, riskFreeRatePct, children }) => {
   };
 
   const maxSharpeRatioInfo = [
-    `Max Sharpe Ratio: ${Number(maxSharpeRatio[0]).toFixed(2)}`,
+    `Sharpe Ratio: ${Number(maxSharpeRatio[0]).toFixed(2)}`,
     `Annualized Return: ${Number(retArr[maxSharpeRatio[1]]).toFixed(2)}%`,
     `Standard Deviation: ${Number(riskArr[maxSharpeRatio[1]]).toFixed(2)}%`,
     "Portfolio weights:",
@@ -419,6 +419,7 @@ const Optimizer = ({ tickers, constraintPct, riskFreeRatePct, children }) => {
           <Pie data={pieData} />
         </div>
         <div className={styles.pieChartInfo}>
+          <h2>Max Sharpe Ratio Portfolio:</h2>
           {maxSharpeRatioInfo.map((Element, index) => (
             <p key={index}>{Element}</p>
           ))}

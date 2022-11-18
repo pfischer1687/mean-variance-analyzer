@@ -26,6 +26,9 @@
     /* padding-top: 2rem; */
     margin-left: 5%;
   }
+  .pie-chart-info p {
+    padding-left: 1rem;
+  }
   .pie-chart-element {
     width: 20rem;
     margin-left: 40%;
