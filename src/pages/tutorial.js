@@ -3,6 +3,7 @@ import Layout from "../components/layout";
 import Seo from "../components/seo";
 import * as styles from "../components/about.module.css";
 import { Link } from "gatsby";
+import { StaticImage } from "gatsby-plugin-image";
 
 const TutorialPage = () => {
   return (
@@ -54,7 +55,7 @@ const TutorialPage = () => {
           </sup>
           ):
           <div>
-            <img
+            <StaticImage
               className={styles.latexImage}
               src="https://quicklatex.com/cache3/26/ql_2b2abd9bd8d35c251a62f05e825eed26_l3.png"
               alt="Equation for differential return"
@@ -63,7 +64,7 @@ const TutorialPage = () => {
           The ex ante Sharpe Ratio is then defined as the expected value of d
           divided by sigma<sub>d</sub>, the predicted standard deviation of d:
           <div>
-            <img
+            <StaticImage
               className={styles.latexImage}
               src="https://quicklatex.com/cache3/28/ql_99a98af633d649a3f50e2ec80c9dea28_l3.png"
               alt="Equation for ex ante Sharpe ratio"
@@ -88,12 +89,12 @@ const TutorialPage = () => {
           efficient frontier.
         </p>
         <h2>Tutorial</h2>
-        <img src="../images/tutorial-home.png" alt="tmp" />
+        <StaticImage src="../images/tutorial-home.png" alt="tmp" />
         <p>
           You can begin by clicking any of the links labeled "start" from the
           home page (above)
         </p>
-        <img src="../images/tutorial-input-form.png" alt="tmp" />
+        <StaticImage src="../images/tutorial-input-form.png" alt="tmp" />
         <p>
           This will take you to the input form (above). Fill out the information
           (detailed above). First you fill out asset tickers, but be at least 2
@@ -107,7 +108,7 @@ const TutorialPage = () => {
           development which is 3.72% but you can enter any value between -50%
           and 50% to benchmark against a specific rate, asset, or portfolio.
         </p>
-        <img src="../images/tutorial-optimizer.png" alt="tmp" />
+        <StaticImage src="../images/tutorial-optimizer.png" alt="tmp" />
         <p>
           Then if there are no errors in the input fields listed on the form,
           you can press submit and should see the information like the above
