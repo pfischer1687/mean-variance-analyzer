@@ -10,10 +10,10 @@ const AboutPage = () => {
       <div className={styles.textContainer}>
         <h2>About Mean-Variance Analyzer</h2>
         <p>
-          MVA is an educational web app designed for students interested in
-          finance to begin their journey learning about the history of portfolio
-          optimization. Please read the <Link to="/tutorial">tutorial</Link> to
-          learn more!
+          Test. MVA is an educational web app designed for students interested
+          in finance to begin their journey learning about the history of
+          portfolio optimization. Please read the{" "}
+          <Link to="/tutorial">tutorial</Link> to learn more!
         </p>
         <h2>About the Developer</h2>
         <p>
