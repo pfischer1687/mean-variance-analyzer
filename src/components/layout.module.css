@@ -180,6 +180,7 @@
     display: flex;
     list-style: none;
     justify-content: right;
+    padding-top: 1rem;
   }
   .footer-link-item {
     padding-right: 7rem;

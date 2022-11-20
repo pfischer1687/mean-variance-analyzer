@@ -4,6 +4,11 @@ import Seo from "../components/seo";
 import * as styles from "../components/about.module.css";
 import { Link } from "gatsby";
 
+const getDataGithub = "https://github.com/pfischer1687/get-json-data-for-mva";
+const privacyLink = "/privacy";
+const websiteUrl = "#";
+const devsWebsite = "https://paulfischer.dev/";
+
 const TermsPage = () => {
   return (
     <Layout pageTitle="Terms">
@@ -12,22 +17,34 @@ const TermsPage = () => {
         <p>Last updated 11/17/2022</p>
         <h3>INTRODUCTION</h3>
         <p>
-          This web site was developed by a student ONLY for educational
-          purposes. Nothing on this web site or any page within its domain
-          should be considered as financial advice or a recommendation for any
-          type of investment. Please read the following document carefully, and
-          understand that by using the web site you are agreeing to be bound by
-          these terms of service, otherwise you may not use this web site. By
-          using the Site, you agree not to enter any personally identifiable
-          information that is linkable to you. Please refer to the{" "}
-          <Link to="/privacy">Privacy Policy</Link> for more information.
+          This site was developed by a student ONLY for educational purposes.
+          Nothing on this site or any page within its domain should be
+          considered as financial advice or a recommendation for any type of
+          investment. The site may provide financial information or market data,
+          and you are encouraged to view the{" "}
+          <a href={getDataGithub}>source code</a> for how this data was
+          gathered, including the choices made by the developer that inevitably
+          affect its accuracy. That said, by using this site you agree that we
+          are not liable in any way for the accuracy of any data or information
+          given on the site, as well as for the site's availability or
+          functionality. Any decisions based upon the use of the site are your
+          sole responsibility and by using the site you agree that we are not
+          liable for any action or inaction taken based on the site's
+          information or data. We encourage you to seek professional qualified
+          financial services before making any investment decisions. By using
+          the Site, you also agree not to enter any personally identifiable
+          information that is linkable to you, please refer to the{" "}
+          <Link to={privacyLink}>Privacy Policy</Link> for more information.
+          Please read the following document carefully, and understand that by
+          using the web site you are agreeing to be bound by these terms of
+          service, otherwise you may not use this site.
         </p>
         <h3>AGREEMENT TO TERMS</h3>
         <p>
           These Terms of Service constitute a legally binding agreement made
           between you, whether personally or on behalf of an entity (“you”) and
-          the devloper (“we,” “us” or “our”), concerning your access to and use
-          of the [website name.com] website as well as any other media form,
+          the Site's devloper (“we,” “us” or “our”), concerning your access to
+          and use of the {websiteUrl} website as well as any other media form,
           media channel, mobile website or mobile application related, linked,
           or otherwise connected thereto (collectively, the “Site”).
         </p>
@@ -487,21 +504,22 @@ const TermsPage = () => {
         <h3>PRIVACY POLICY</h3>
         <p>
           We care about data privacy and security. Please review our{" "}
-          <Link to="/privacy">Privacy Policy</Link>. By using the Site, you
+          <Link to={privacyLink}>Privacy Policy</Link>. By using the Site, you
           agree to be bound by our Privacy Policy, which is incorporated into
-          these Terms of Service. Please be advised the Site is hosted in the
-          United States. By using the Site, you agree not to enter any
-          personally identifiable information that is linkable to you. We
-          emphasize again that the Site was developed for educational purposes
-          and is not meant for the user to get financial advice regarding their
-          personal finances.
+          these Terms of Service. Please be advised the Site was developed in
+          the United States and is hosted on{" "}
+          <Link to="https://www.gatsbyjs.com/products/cloud/">
+            Gatsby Cloud
+          </Link>
+          , which has a global edge network. By using the Site, you agree not to
+          enter any personally identifiable information that is linkable to you.
         </p>
         <p>
           If you access the Site from the European Union, Asia, or any other
           region of the world with laws or other requirements governing personal
           data collection, use, or disclosure that differ from applicable laws
           in the United States, then through your continued use of the Site, you
-          are transferring your data to the United States, and you expressly
+          may be transferring your data to the United States, and you expressly
           consent to have your data transferred to and processed in the United
           States.
         </p>
@@ -798,7 +816,7 @@ const TermsPage = () => {
         <p>
           In order to resolve a complaint regarding the Site or to receive
           further information regarding use of the Site, please contact us via
-          the information on the developer's <a href="#">website</a>.
+          the information on the developer's <a href={devsWebsite}>website</a>.
         </p>
       </div>
     </Layout>

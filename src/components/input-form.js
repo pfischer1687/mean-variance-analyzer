@@ -4,6 +4,7 @@ import Optimizer from "./optimizer.js";
 import { Formik, Field, Form, ErrorMessage, FieldArray } from "formik";
 import * as Yup from "yup";
 import * as styles from "../components/input-form.module.css";
+import { Link } from "gatsby";
 
 export const minNumAssets = 2;
 export const maxNumAssets = 20;
@@ -68,8 +69,9 @@ const genInputForm = (inputForm) => {
     <div className={styles.container}>
       <h2 className={styles.formLabels}>Please enter the information:</h2>
       <p className={styles.formLabels}>
-        If you have any questions, please refer to the tutorial (link). Also
-        make sure you refer to the terms of service (link).
+        If you have any questions, please refer to the{" "}
+        <Link to="/tutorial">Tutorial</Link>. By using this site, you agree to
+        the <Link to="/terms">Terms of Service</Link>.
       </p>
       <Formik
         initialValues={{

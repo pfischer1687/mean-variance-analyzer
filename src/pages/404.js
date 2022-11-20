@@ -17,7 +17,6 @@ const NotFoundPage = () => {
         <StaticImage
           alt="Cute gray dog lying in a driveway with its tongue sticking out"
           src="../images/dog-pic.jpg"
-          width={600}
         />
         <p>
           Photo by{" "}

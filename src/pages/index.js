@@ -6,6 +6,7 @@ import * as styles from "../components/index.module.css";
 import { Link } from "gatsby";
 
 const IndexPage = () => {
+  // For text flying in from left animation
   React.useEffect(() => {
     const hiddenElements = document.querySelectorAll(`.${styles.hidden}`);
     hiddenElements.forEach((e, index) => {
@@ -13,6 +14,7 @@ const IndexPage = () => {
       e.style.transitionDelay = `${(index + 1) * 500}ms`;
     });
   });
+
   return (
     <Layout pageTitle="Home">
       <div className={styles.indexGridContainer}>
@@ -27,12 +29,12 @@ const IndexPage = () => {
           </h2>
           <div>
             <p className={styles.hidden}>
-              This is a mean-variance analyzer for financial portfolios via
-              Monte Carlo simulation. Learn more by following the{" "}
+              Learn about modern portfolio theory - interactively! If you're new
+              here, please start by following the{" "}
               <Link to="/tutorial" className={styles.tutorialLink}>
                 tutorial
               </Link>
-              .
+              . Otherwise, click the link below to get started!
             </p>
             <button className={`${styles.hidden} ${styles.buttonText}`}>
               <Link to="/start">

@@ -11,19 +11,17 @@ const TutorialPage = () => {
       <div className={styles.textContainer}>
         <h2>Introduction</h2>
         <p>
-          By using this you agree to be bound by the{" "}
-          <Link to="/terms">Terms of Service</Link>. No guarantee about the
-          accuacy of this data. Welcome to Mean-Variance Analyzer! MVA is an
-          educational tool meant to help people interested in finance start
-          their journey learning about the history of portfolio optimization. In
-          1952, economist Harry Markowitz published the article "Portfolio
-          Selection" in The Journal of Finance
+          Welcome to Mean-Variance Analyzer! MVA is an educational tool meant to
+          help students interested in finance start their journey learning about
+          the history of portfolio optimization. In 1952, economist Harry
+          Markowitz published the article "Portfolio Selection" in The Journal
+          of Finance
           <sup>
             <a href="#references">[1]</a>
-          </sup>
-          . This introduced modern portfolio theory (also called mean-variance
-          analysis) where the expected return of a portfolio is maximized for a
-          given level of risk, measured by the variance of asset prices. The
+          </sup>{" "}
+          which introduced modern portfolio theory (also called mean-variance
+          analysis), where the expected return of a portfolio is maximized for a
+          given level of risk, measured by the variance of its asset prices. The
           optimized partf of the risk-return spectrum is called the efficient
           frontier.
         </p>

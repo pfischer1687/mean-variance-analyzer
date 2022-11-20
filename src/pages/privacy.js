@@ -4,6 +4,12 @@ import Seo from "../components/seo";
 import * as styles from "../components/about.module.css";
 import { Link } from "gatsby";
 
+const termsLink = "/terms";
+const sourceCodeLink = "https://github.com/pfischer1687/mean-variance-analyzer";
+const siteTitle = "Mean-Variance Analyzer";
+const websiteUrl = "#";
+const devsWebsite = "https://paulfischer.dev/";
+
 const PrivacyPage = () => {
   return (
     <Layout pageTitle="Privacy">
@@ -13,30 +19,39 @@ const PrivacyPage = () => {
         <h3>INTRODUCTION</h3>
         <p>
           This web site was developed by a student ONLY for educational
-          purposes. Nothing on this web site or any page within its domain
-          should be considered as financial advice or a recommendation for any
-          type of investment. Please read the following document carefully, and
-          understand that by using the web site you are agreeing to be bound by
-          the <Link to="/terms">Terms of Service</Link>, otherwise you may not
-          use this web site. By using the Site, you agree not to enter any
+          purposes. Nothing on this site or any page within its domain should be
+          considered as financial advice or a recommendation for any type of
+          investment. Please read the following document carefully and
+          understand that by using this site you are agreeing to its{" "}
+          <Link to={termsLink}>Terms of Service</Link>, otherwise you may not
+          use this site. By using the site, you also agree not to enter any
           personally identifiable information that is linkable to you. At the
           time of the last update, the developer is not aware of any personal
-          information collected by the Site. This is a static web site where all
-          calculations are done on the client's device, and the developer is not
-          aware of any data that is stored beyond the current session of the
-          site's use.
+          information collected by the site (since there is not an option to
+          make an account). This is a static web site where all calculations are
+          done on the client's device, and the developer is not aware of any
+          cookies or data that is stored on the client's device beyond the
+          immediate session of the site's use. You are encouraged to view the{" "}
+          <a href={sourceCodeLink}>source code</a> to see for yourself how any
+          data may be handled. That said, please carefully read the following
+          document to understand your rights regarding your personal
+          information. This site is currently hosted on{" "}
+          <a href="https://www.gatsbyjs.com/products/cloud/">Gatsby Cloud</a> so
+          by using it you acknowledge that you have read and understood their{" "}
+          <a href="https://www.gatsbyjs.com/privacy-policy">Privacy Policy</a>{" "}
+          as well.
         </p>
         <h3>PRIVACY NOTICE</h3>
         <p>
-          This privacy notice for Mean-Variance Analyzer (“Company,” “we,” “us,”
-          or “our“), describes how and why we might collect, store, use, and/or
-          share (“process“) your information when you use our services
-          (“Services“), such as when you:
+          This privacy notice for {siteTitle} (“Company,” “we,” “us,” or “our“),
+          describes how and why we might collect, store, use, and/or share
+          (“process“) your information when you use our services (“Services“),
+          such as when you:
         </p>
         <ul>
           <li>
-            Visit our website at [Website URL], or any website of ours that
-            links to this privacy notice
+            Visit our website at {websiteUrl}, or any website of ours that links
+            to this privacy notice
           </li>
           <li>
             Engage with us in other related ways ― including any sales,
@@ -48,7 +63,7 @@ const PrivacyPage = () => {
           you understand your privacy rights and choices. If you do not agree
           with our policies and practices, please do not use our Services. If
           you still have any questions or concerns, please contact us via the
-          information on the developer's <a href="#">website</a>.
+          information on the developer's <a href={devsWebsite}>website</a>.
         </p>
         <p>
           This privacy policy was created by Termly’s{" "}
@@ -69,61 +84,62 @@ const PrivacyPage = () => {
         </p>
 
         <p>
-          <b>What personal information do we process?</b>When you visit, use, or
-          navigate our Services, we may process personal information depending
-          on how you interact with Mean-Variance Analyzer and the Services, the
+          <b>What personal information do we process?</b> When you visit, use,
+          or navigate our Services, we may process personal information
+          depending on how you interact with {siteTitle} and the Services, the
           choices you make, and the products and features you use.
         </p>
         <p>
-          <b>Do we process any sensitive personal information?</b>We do not
+          <b>Do we process any sensitive personal information?</b> We do not
           intend to process sensitive personal information. As mentioned
-          multiple times in the <Link to="/terms">Terms of Service</Link>, by
+          multiple times in the <Link to={termsLink}>Terms of Service</Link>, by
           using the Site, you agree not to enter any personally identifiable
           information that is linkable to you.
         </p>
         <p>
-          <b>Do you receive any information from third parties?</b>We may
+          <b>Do you receive any information from third parties?</b> We may
           receive information from public databases, marketing partners, social
           media platforms, and other outside sources.
         </p>
         <p>
-          <b>How do you process my information? </b>We process your information
-          to provide, improve, and administer our Services, communicate with
-          you, for security and fraud prevention, and to comply with law. We may
-          also process your information for other purposes with your consent. We
-          process your information only when we have a valid legal reason to do
-          so.
+          <b>How do you process my information? </b> We may process your
+          information to provide, improve, and administer our Services,
+          communicate with you, for security and fraud prevention, and to comply
+          with law. We may also process your information for other purposes with
+          your consent. We process your information only when we have a valid
+          legal reason to do so.
         </p>
         <p>
           <b>
             In what situations and with which types of parties do we share
             personal information?
-          </b>
+          </b>{" "}
           We may share information in specific situations and with specific
           categories of third parties.
         </p>
         <p>
-          <b>How do we keep your information safe?</b>We have organizational and
-          technical processes and procedures in place to protect your personal
-          information. However, no electronic transmission over the internet or
-          information storage technology can be guaranteed to be 100% secure, so
-          we cannot promise or guarantee that hackers, cybercriminals, or other
-          unauthorized third parties will not be able to defeat our security and
-          improperly collect, access, steal, or modify your information.
+          <b>How do we keep your information safe?</b> We have organizational
+          and technical processes and procedures in place to protect your
+          personal information. However, no electronic transmission over the
+          internet or information storage technology can be guaranteed to be
+          100% secure, so we cannot promise or guarantee that hackers,
+          cybercriminals, or other unauthorized third parties will not be able
+          to defeat our security and improperly collect, access, steal, or
+          modify your information.
         </p>
         <p>
-          <b>What are your rights?</b>Depending on where you are located
+          <b>What are your rights?</b> Depending on where you are located
           geographically, the applicable privacy law may mean you have certain
           rights regarding your personal information.
         </p>
         <p>
-          <b>How do I exercise my rights?</b>The easiest way to exercise your
+          <b>How do I exercise my rights?</b> The easiest way to exercise your
           rights is by contacting us. We will consider and act upon any request
           in accordance with applicable data protection laws.
         </p>
         <p>
-          Want to learn more about what Mean-Variance Analyzer does with any
-          information we collect? Review the notice in full below.
+          Want to learn more about what {siteTitle} does with any information we
+          collect? Review the notice in full below.
         </p>
         <h3>TABLE OF CONTENTS</h3>
         <ol>
@@ -153,22 +169,23 @@ const PrivacyPage = () => {
         <h4>Personal information you disclose to us</h4>
         <p>
           <b>In Short:</b>{" "}
-          <i>We collect personal information that you provide to us.</i>
+          <i>We may collect personal information that you provide to us.</i>
         </p>
         <p>
-          We collect personal information that you voluntarily provide to us
+          We may collect personal information that you voluntarily provide to us
           when you express an interest in obtaining information about us or our
           products and Services, when you participate in activities on the
           Services, or otherwise when you contact us.
         </p>
         <p>
-          <b>Personal Information Provided by You.</b>The personal information
+          <b>Personal Information Provided by You.</b> The personal information
           that we collect depends on the context of your interactions with us
           and the Services, the choices you make, and the products and features
           you use.
         </p>
         <p>
-          <b>Sensitive Information.</b> We do not process sensitive information.
+          <b>Sensitive Information.</b> We do not intend to process sensitive
+          information.
         </p>
         {/* Payment Data */}
         {/* Social Media Login Data */}
@@ -182,46 +199,46 @@ const PrivacyPage = () => {
         <p>
           <i>
             <b>In Short:</b> Some information — such as your Internet Protocol
-            (IP) address and/or browser and device characteristics — is
+            (IP) address and/or browser and device characteristics — may be
             collected automatically when you visit our Services.
           </i>
         </p>
         <p>
-          We automatically collect certain information when you visit, use, or
-          navigate the Services. This information does not reveal your specific
-          identity (like your name or contact information) but may include
-          device and usage information, such as your IP address, browser and
-          device characteristics, operating system, language preferences,
+          We may automatically collect certain information when you visit, use,
+          or navigate the Services. This information does not reveal your
+          specific identity (like your name or contact information) but may
+          include device and usage information, such as your IP address, browser
+          and device characteristics, operating system, language preferences,
           referring URLs, device name, country, location, information about how
           and when you use our Services, and other technical information. This
-          information is primarily needed to maintain the security and operation
-          of our Services, and for our internal analytics and reporting
-          purposes.
+          information might be primarily needed to maintain the security and
+          operation of our Services, and for our internal analytics and
+          reporting purposes.
         </p>
         {/* Cookie Notice */}
-        <p>The information we collect includes:</p>
+        <p>The information we may collect includes:</p>
         <ul>
           <li>
             <i>Log and Usage Data</i>. Log and usage data is service-related,
-            diagnostic, usage, and performance information our servers
-            automatically collect when you access or use our Services and which
-            we record in log files. Depending on how you interact with us, this
-            log data may include your IP address, device information, browser
-            type, and settings and information about your activity in the
-            Services (such as the date/time stamps associated with your usage,
-            pages and files viewed, searches, and other actions you take such as
-            which features you use), device event information (such as system
-            activity, error reports (sometimes called “crash dumps”), and
-            hardware settings).
+            diagnostic, usage, and performance information that may be
+            automatically collected when you access or use our Services and
+            which may be recorded in log files. Depending on how you interact
+            with us, this log data may include your IP address, device
+            information, browser type, and settings and information about your
+            activity in the Services (such as the date/time stamps associated
+            with your usage, pages and files viewed, searches, and other actions
+            you take such as which features you use), device event information
+            (such as system activity, error reports (sometimes called “crash
+            dumps”), and hardware settings).
           </li>
           <li>
-            <i>Device Data</i>. We collect device data such as information about
-            your computer, phone, tablet, or other device you use to access the
-            Services. Depending on the device used, this device data may include
-            information such as your IP address (or proxy server), device and
-            application identification numbers, location, browser type, hardware
-            model, Internet service provider and/or mobile carrier, operating
-            system, and system configuration information.
+            <i>Device Data</i>. We may collect device data such as information
+            about your computer, phone, tablet, or other device you use to
+            access the Services. Depending on the device used, this device data
+            may include information such as your IP address (or proxy server),
+            device and application identification numbers, location, browser
+            type, hardware model, Internet service provider and/or mobile
+            carrier, operating system, and system configuration information.
           </li>
           {/* <li><i>Location Data.</i> </li> */}
         </ul>
@@ -253,15 +270,15 @@ const PrivacyPage = () => {
         <h3>2. HOW DO WE PROCESS YOUR INFORMATION?</h3>
         <p>
           <i>
-            <b>In Short:</b>We process your information to provide, improve, and
-            administer our Services, communicate with you, for security and
-            fraud prevention, and to comply with law. We may also process your
-            information for other purposes with your consent.
+            <b>In Short:</b> We may process your information to provide,
+            improve, and administer our Services, communicate with you, for
+            security and fraud prevention, and to comply with law. We may also
+            process your information for other purposes with your consent.
           </i>
         </p>
         <p>
           <b>
-            We process your personal information for a variety of reasons,
+            We may process your personal information for a variety of reasons,
             depending on how you interact with our Services, including:
           </b>
         </p>
@@ -278,9 +295,10 @@ const PrivacyPage = () => {
             potential issues you might have with the requested service.
           </li>
           <li>
-            <b>To send administrative information to you.</b>We may process your
-            information to send you details about our products and services,
-            changes to our terms and policies, and other similar information.
+            <b>To send administrative information to you.</b> We may process
+            your information to send you details about our products and
+            services, changes to our terms and policies, and other similar
+            information.
           </li>
           <li>
             <b>To fulfill and manage your orders. </b>We may process your
@@ -363,14 +381,14 @@ const PrivacyPage = () => {
           data protection laws of the personal information described in this
           privacy notice, since we determine the means and/or purposes of the
           data processing we perform. This privacy notice does not apply to the
-          personal information we process as a “data processor” on behalf of our
-          customers. In those situations, the customer that we provide services
-          to and with whom we have entered into a data processing agreement is
-          the “data controller” responsible for your personal information, and
-          we merely process your information on their behalf in accordance with
-          your instructions. If you want to know more about our customers’
-          privacy practices, you should read their privacy policies and direct
-          any questions you have to them.
+          personal information we may process as a “data processor” on behalf of
+          our customers. In those situations, the customer that we provide
+          services to and with whom we have entered into a data processing
+          agreement is the “data controller” responsible for your personal
+          information, and we merely process your information on their behalf in
+          accordance with your instructions. If you want to know more about our
+          customers’ privacy practices, you should read their privacy policies
+          and direct any questions you have to them.
         </p>
         <p>
           <u>
@@ -448,7 +466,7 @@ const PrivacyPage = () => {
           We may share your data with third-party vendors, service providers,
           contractors, or agents (“third parties”) who perform services for us
           or on our behalf and require access to such information to do that
-          work. We have contracts in place with our third parties, which are
+          work. We may have contracts in place with our third parties, which are
           designed to help safeguard your personal information. This means that
           they cannot do anything with your personal information unless we have
           instructed them to do it. They will also not share your personal
@@ -620,7 +638,7 @@ const PrivacyPage = () => {
           been collected, we will deactivate the account and take reasonable
           measures to promptly delete such data from our records. If you become
           aware of any data we may have collected from children under age 18,
-          please contact us at the developer's website linked to above.
+          please contact us at the developer's website link listed above.
         </p>
         <h3>12. WHAT ARE YOUR PRIVACY RIGHTS?</h3>
         <p>
@@ -667,8 +685,8 @@ const PrivacyPage = () => {
         </p>
         <p>
           <b>
-            <u>Withdrawing your consent: </u>
-          </b>
+            <u>Withdrawing your consent:</u>
+          </b>{" "}
           If we are relying on your consent to process your personal
           information, which may be express and/or implied consent depending on
           the applicable law, you have the right to withdraw your consent at any
@@ -863,9 +881,10 @@ const PrivacyPage = () => {
           </li>
         </ul>
         <p>
-          To exercise these rights, you can contact us the developer via the
-          link to his website above. If you have a complaint about how we handle
-          your data, we would like to hear from you.
+          To exercise these rights, you can contact us via the link to the
+          developer's website given both above and below. If you have a
+          complaint about how we handle your data, we would like to hear from
+          you.
         </p>
         {/* <h4>Financial Incentives</h4> */}
         {/* Metrics */}
@@ -889,7 +908,7 @@ const PrivacyPage = () => {
         <p>
           If you have questions or comments about this notice, you may contact
           the developer via the information provided on his{" "}
-          <a href="#">website</a>.
+          <a href={devsWebsite}>website</a>.
         </p>
         {/* If you are a resident in the European Economic Area, the “data  */}
         <h3>
