@@ -18,8 +18,13 @@ a {
 }
 .latex-image-s {
   filter: invert(100%);
-  margin: 0.5rem;
+  margin-left: 0.5rem;
   width: 4rem;
+}
+.latex-image-s-calc {
+  filter: invert(100%);
+  margin-left: 0.5rem;
+  width: 7rem;
 }
 
 /* Responsive */
