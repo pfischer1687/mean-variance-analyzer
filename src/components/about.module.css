@@ -11,9 +11,15 @@ a {
   color: #096002;
   cursor: pointer;
 }
-.latex-image {
+.latex-image-d {
   filter: invert(100%);
-  padding-left: 1rem;
+  margin-left: 0.5rem;
+  width: 7rem;
+}
+.latex-image-s {
+  filter: invert(100%);
+  margin: 0.5rem;
+  width: 4rem;
 }
 
 /* Responsive */
