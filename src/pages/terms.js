@@ -28,16 +28,16 @@ const TermsPage = () => {
           are not liable in any way for the accuracy of any data or information
           given on the site, as well as for the site's availability or
           functionality. Any decisions based upon the use of the site are your
-          sole responsibility and by using the site you agree that we are not
-          liable for any action or inaction taken based on the site's
-          information or data. We encourage you to seek professional qualified
-          financial services before making any investment decisions. By using
-          the Site, you also agree not to enter any personally identifiable
-          information that is linkable to you, please refer to the{" "}
+          sole responsibility and by using the site you agree that the site's
+          developer is not liable for any action or inaction taken based on the
+          site's information or data. We encourage you to seek professional
+          qualified financial services before making any investment decisions.
+          By using the Site, you also agree not to enter any personally
+          identifiable information that is linkable to you, please refer to the{" "}
           <Link to={privacyLink}>Privacy Policy</Link> for more information.
           Please read the following document carefully, and understand that by
-          using the web site you are agreeing to be bound by these terms of
-          service, otherwise you may not use this site.
+          using the site you are agreeing to be bound by these terms of service,
+          otherwise you may not use the site.
         </p>
         <h3>AGREEMENT TO TERMS</h3>
         <p>

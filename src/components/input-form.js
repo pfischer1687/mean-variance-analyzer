@@ -67,11 +67,13 @@ const SignupSchema = Yup.object().shape({
 const genInputForm = (inputForm) => {
   return (
     <div className={styles.container}>
-      <h2 className={styles.formLabels}>Please enter the information:</h2>
+      <h2 className={styles.formLabels}>
+        Please enter the sample portfolio's information below.
+      </h2>
       <p className={styles.formLabels}>
         If you have any questions, please refer to the{" "}
-        <Link to="/tutorial">Tutorial</Link>. By using this site, you agree to
-        the <Link to="/terms">Terms of Service</Link>.
+        <Link to="/tutorial">Tutorial</Link>. Note that by using this site, you
+        agree to the <Link to="/terms">Terms of Service</Link>.
       </p>
       <Formik
         initialValues={{

@@ -14,7 +14,7 @@ const TutorialPage = () => {
         <h2>Introduction</h2>
         <p>
           Welcome to Mean-Variance Analyzer! MVA is an educational tool meant to
-          help students interested in finance start their journey learning about
+          help people interested in finance start their journey learning about
           the history of portfolio optimization. In 1952, economist Harry
           Markowitz published "Portfolio Selection" which introduced modern
           portfolio theory (MPT), or mean-variance analysis.
@@ -22,9 +22,9 @@ const TutorialPage = () => {
             <a href="#references">[1]</a>
           </sup>{" "}
           The goal of MPT is to maximize the expected return of a portfolio for
-          a given level of risk - measured by the variance of its asset prices.
-          The optimized part of the risk-return spectrum is referred to as the
-          efficient frontier.
+          a given level of risk - which is measured by the variance of its asset
+          prices. The optimized part of the risk-return spectrum is referred to
+          as the efficient frontier.
         </p>
         <p>
           In 1966, economist William Sharpe published "Mutual Fund Performance"
@@ -46,9 +46,8 @@ const TutorialPage = () => {
           </sup>{" "}
           To calculate this value, we first define the differential return d as
           a function of the historical return R<sub>F</sub> on fund F and the
-          historical return R<sub>B</sub> on a benchmark portfolio or security
-          (often the annualized 3 month Treasury bill rate, which at the time of
-          this site's development was 3.72%):
+          return R<sub>B</sub> on a benchmark portfolio or security (often the
+          annualized 3 month Treasury bill rate):
           <sup>
             <a href="#references">[5]</a>
           </sup>
@@ -72,23 +71,21 @@ const TutorialPage = () => {
           />
         </div>
         <p>
-          This site contains a preloaded set of data based on {numAssets}{" "}
-          popular assets including stocks, ETFs, cryptocurrencies, and more.
-          This data contains the annualized returns (in %) from the average
-          monthly close price for each asset over its max period, the variance
-          of these values, and their covariance with respect to each other
-          asset's values. When calculating the Sharpe ratio, it is common to use
-          the monthly close prices.
+          This site contains a preloaded set of data from {numAssets} popular
+          assets including stocks, ETFs, cryptocurrencies, and more. This data
+          contains the annualized returns from the average monthly close price
+          for each asset over its max period, the variance of these values, and
+          the covariance with respect to each others' values. When calculating
+          the Sharpe ratio, it is common to use the monthly close prices.
           <sup>
             <a href="#references">[6]</a>
           </sup>{" "}
           Since portfolio optimization is an extension of asset diversification,
           the developer chose to calculate the covariances only over periods
-          where both assets had data, while separately still capturing each
-          asset's returns and variance over a larger period of time for better
-          accuracy (in his amateur opinion). Note that this may negatively
-          affect the accuracy of the results and we are not liable for the
-          accuracy of this data nor its resulting information as per the{" "}
+          where both assets had data, while still capturing each individual
+          asset's returns and variances over their max periods of time. Note
+          that this may affect the accuracy of the results and we are not liable
+          for the accuracy of this data nor its resulting information as per the{" "}
           <Link to="/terms">Terms of Service</Link>. Please refer to the{" "}
           <a href="https://github.com/pfischer1687/get-json-data-for-mva">
             source code
@@ -125,29 +122,29 @@ const TutorialPage = () => {
           choosing the largest return from within each bin. Note that the
           efficient frontier here is approxmiated via Monte Carlo simulation and
           a more accurate calculation can be done via quadratic programming -
-          which is beyond the scope of this tutorial but the reader is
+          however, this is beyond the scope of this tutorial and the reader is
           encouraged to learn more about this after experimenting with the site.
           <sup>
             <a href="#references">[7]</a>
           </sup>{" "}
           1,000 of the 500,000 randomly generated portfolios are chosen at
           random and plotted to outline a hyperbolic shape known as the
-          Markowitz bullet, which shows the general distribution of returns as a
-          function of different allocations. The tangency portfolio represents
-          the line of best capital allocation when the risk-free investment is
-          incorporated into the portfolio and can be visualized by drawing a
-          straight line from the risk-free rate (or benchmark) to the Sharpe
-          ratio. In general, the tangency portfolio extends past the Sharpe
-          ratio, but this part is hidden on the site to better see the efficient
-          frontier.
+          Markowitz bullet, which shows the general distribution of differential
+          returns and their risks as a function of different allocations. The
+          tangency portfolio represents the line of best capital allocation when
+          the risk-free (or benchmark) investment is incorporated into the
+          portfolio and can be visualized by drawing a straight line from the
+          risk-free rate to the Sharpe ratio. In general, the tangency portfolio
+          extends past the Sharpe ratio, but this part is hidden on the site to
+          better see the efficient frontier.
         </p>
         <p>
           Note, on this site we only cover one of the earliest and most basic
           formulas for portfolio optimization. The field has grown a lot since
           then and the site is meant only for educational purposes to get the
           reader started on their journey towards eventually learning about how
-          portfolio optimization is done in practice today (i.e. this site's
-          information can not be considered as financial advice or
+          portfolio optimization is done in practice today (in other words, this
+          site's information cannot be considered financial advice or
           recommendations for any investments as per the{" "}
           <Link to="/terms">Terms of Service</Link>). Standard calculations of
           the annualized ex ante Sharpe ratio have a wide range of criticisms,
@@ -164,44 +161,65 @@ const TutorialPage = () => {
           downside volatility more than upside), the Treynor ratio (which
           measures the risk by its beta, or how its volatility correlates with
           the market's), the Black-Litterman model (which takes into account an
-          investor's beliefs about the future of an asset's returns), and many
+          investor's beliefs about the future of an asset's returns), among many
           more.
           <sup>
             <a href="#references">[9]</a>
           </sup>
         </p>
         <h2>Tutorial</h2>
-        <StaticImage src="../images/tutorial-home.png" alt="tmp" />
         <p>
-          You can begin by clicking any of the links labeled "start" from the
-          home page (above)
+          To get started, click either the "Get started!" link on the home page
+          (below) or the "Start" link in the navigation menu.
         </p>
-        <StaticImage src="../images/tutorial-input-form.png" alt="tmp" />
+        <StaticImage
+          src="../images/tutorial-home.png"
+          alt="MVA home screen"
+          className={styles.tutorialImg}
+        />
         <p>
-          This will take you to the input form (above). Fill out the information
-          (detailed above). First you fill out asset tickers, but be at least 2
-          and they must be already in the data file (only a limited selection
-          for educational purposes). Then put the maxcimum allocation to any
-          asset in the portfolio. The default is 100%, but often it is
-          recommended with a large enough portfolio to never allocate more than
-          30% to an individual asset. The number has to be larger than
-          100/(#assets - 1) and less than or eaul to 100% Then you can enter the
-          benchmark. By default is the the 3 onth T-bill at the time of
-          development which is 3.72% but you can enter any value between -50%
-          and 50% to benchmark against a specific rate, asset, or portfolio.
+          This should take you to the start page input form (below). Enter all
+          the assets of interest into the corrsponding input fields. You can
+          start typing a ticker or company name and if it is in the preloaded
+          dataset it should appear in the dropdown datalist and be clickable.
+          You must enter at least two unique tickers from the dataset and you
+          can press the "+ Add Asset" button to add up to 20 assets. It is
+          recommended to choose assets of the same class (i.e. stocks or
+          cryptocurrencies) since it is hard to compare assets of different
+          classes (you are encouraged though to see this for yourself). Once you
+          have chosen all your assets, you have the option to set the maximum
+          allocation that can be given to any individual asset in the portfolio
+          (the default is 100%). This number must be larger than 100% / (#assets
+          - 1) and less than or equal to 100%. Then you have the option to enter
+          a custom benchmark. The default value is the the 3 month Treasury bill
+          rate at the time of this site's development (3.72%
+          <sup>
+            <a href="#references">[5]</a>
+          </sup>
+          ) but you can enter any value between -50% and 50% to use a custom
+          rate, asset, or portfolio as your benchmark.
         </p>
-        <StaticImage src="../images/tutorial-optimizer.png" alt="tmp" />
+        <StaticImage
+          src="../images/tutorial-input-form.png"
+          alt="Start page input form"
+        />
         <p>
-          Then if there are no errors in the input fields listed on the form,
-          you can press submit and should see the information like the above
-          picture. The scatter plot mentions the values discussed in the
-          previous section, and the maximum sharpe ratio information is detailed
-          below with a pic chart visually representing the allocations to each
-          asset in the portfolio.
+          If there are no errors in the input fields, a scatter plot should
+          appear (below) giving a visual representation of the approximated
+          maximim Sharpe ratio, single asset returns, efficient frontier,
+          Markowitz bullet and tangency portfolio (as explained in the previous
+          section). Below that will be a pie chart visualizing the allocations
+          that produced the maximum sharpe ratio and it corresponding
+          information.
         </p>
+        <StaticImage
+          src="../images/tutorial-optimizer.png"
+          alt="Sample Markowitz bullet scatter plot with optimal Sharpe ratio pie chart"
+        />
         <p>
-          And there you go, it's that easy! Have fun and I hope you learn
-          something.
+          Now you're ready to have some fun experimenting! Thank you for
+          visiting this site and reading the tutorial. I hope you enjoy it and
+          learn something new!
         </p>
         <h2 id="references">References</h2>
         <ol>
