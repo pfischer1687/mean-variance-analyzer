@@ -31,10 +31,8 @@ const IndexPage = () => {
             <p className={styles.hidden}>
               Learn about modern portfolio theory - interactively! If you're new
               here, please start by following the{" "}
-              <Link to="/tutorial" className={styles.tutorialLink}>
-                tutorial
-              </Link>
-              . Otherwise, click the link below to get started!
+              <Link to="/tutorial">tutorial</Link>. Otherwise, click the link
+              below to get started!
             </p>
             <button className={`${styles.hidden} ${styles.buttonText}`}>
               <Link to="/start">

@@ -197,6 +197,9 @@
 }
 
 @media screen and (max-width: 749px) {
+  .nav-links {
+    padding: 1rem;
+  }
   .nav-link-item {
     display: none;
   }
@@ -222,6 +225,6 @@
     text-align: left;
   }
   .spacer {
-    clip-path: polygon(0 0, 100% 0, 100% 7.5%, 0 50%);
+    clip-path: polygon(0 0, 100% 0, 100% 3.5%, 0 45%);
   }
 }
