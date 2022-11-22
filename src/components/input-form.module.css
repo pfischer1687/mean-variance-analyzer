@@ -5,21 +5,18 @@
   left: 5%;
   border-radius: 3rem;
 }
-
 h2 {
   margin-bottom: -0.5rem;
 }
 .form-inputs {
   width: 50%;
-
   height: 2rem;
   margin-bottom: 1rem;
   padding-left: 1rem;
   font-size: 1rem;
 }
 .form-inputs:focus {
-  outline: none;
-  border: 3px solid #096002;
+  outline: #096002 solid 3px;
 }
 .add-asset-button {
   margin-bottom: 1rem;
@@ -47,7 +44,6 @@ h2 {
 .field-error {
   font-size: 1rem;
   color: red;
-
   margin-bottom: 1rem;
 }
 .remove-button {
@@ -57,7 +53,6 @@ h2 {
   border-radius: 0.5rem;
   border: none;
   margin-left: 0.5rem;
-
   width: 2rem;
   cursor: pointer;
 }

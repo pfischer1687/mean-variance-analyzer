@@ -1,22 +1,13 @@
 import * as React from "react";
-import { Link, useStaticQuery, graphql } from "gatsby";
+import { Link } from "gatsby";
 import * as styles from "./layout.module.css";
 import { StaticImage } from "gatsby-plugin-image";
 
 const Layout = ({ pageTitle, children }) => {
-  // const data = useStaticQuery(graphql`
-  //   query {
-  //     site {
-  //       siteMetadata {
-  //         title
-  //       }
-  //     }
-  //   }
-  // `);
   React.useEffect(() => {
     const hamburgerMenuBtn = document.querySelector(`.${styles.hamburgerMenu}`);
     const mobileMenu = document.querySelector(`.${styles.mobileNavLinks}`);
-    hamburgerMenuBtn.addEventListener("click", (e) => {
+    hamburgerMenuBtn.addEventListener("click", () => {
       hamburgerMenuBtn.classList.toggle(styles.hamburgerMenuIsActive);
       mobileMenu.classList.toggle(styles.mobileNavLinksIsActive);
     });

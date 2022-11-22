@@ -16,21 +16,21 @@ allTickersSet.delete("default");
  * @param {string[]} arr
  * @return {string[]}
  */
-const filterArr = (arr) => {
+const filterStrArr = (arr) => {
   return arr
     .filter(Boolean)
     .map((v) => v.toUpperCase())
     .sort();
 };
 
-const SignupSchema = Yup.object().shape({
+const InputSchema = Yup.object().shape({
   assets: Yup.array(Yup.string())
     .compact((v) => {
       return v === undefined || !allTickersSet.has(v.toUpperCase());
     })
     .min(2, "Must have at least 2 valid asset tickers")
     .test("Unique", "Asset tickers must be unique", (values) => {
-      let fValues = filterArr(values);
+      let fValues = filterStrArr(values);
       return new Set(fValues).size === fValues.length;
     })
     .required("Required"),
@@ -70,33 +70,35 @@ const genInputForm = (inputForm) => {
       <h2 className={styles.formLabels}>
         Please enter the sample portfolio's information below.
       </h2>
+
       <p className={styles.formLabels}>
         If you have any questions, please refer to the{" "}
         <Link to="/tutorial">Tutorial</Link>. Note that by using this site, you
         agree to the <Link to="/terms">Terms of Service</Link>.
       </p>
+
       <Formik
         initialValues={{
           assets: ["", ""],
           constraintPct: 100,
           riskFreeRatePct: 3.72,
         }}
-        validationSchema={SignupSchema}
+        validationSchema={InputSchema}
         onSubmit={(values) => {
           inputForm.setState({
             showPlot: true,
-            tickers: filterArr(values.assets),
+            tickers: filterStrArr(values.assets),
             ticker: values.assets,
             constraintPct: values.constraintPct,
             riskFreeRatePct: values.riskFreeRatePct,
           });
         }}
       >
-        {({ values, errors, touched }) => (
+        {({ values }) => (
           <Form>
             <FieldArray name="assets">
               {({ insert, remove }) => (
-                <div>
+                <>
                   <div>
                     {values.assets.map((value, index) => (
                       <div key={index}>
@@ -107,12 +109,14 @@ const genInputForm = (inputForm) => {
                           Asset {index + 1}:{" "}
                         </label>
                         <br />
+
                         <Field
                           id={`assets.${index}`}
                           name={`assets.${index}`}
                           list="assets-list"
                           className={styles.formInputs}
                         />
+
                         <datalist id="assets-list">
                           {Array.from(allTickersSet).map(
                             (ticker, tickerIndex) => (
@@ -122,6 +126,7 @@ const genInputForm = (inputForm) => {
                             )
                           )}
                         </datalist>
+
                         {values.assets.length <= minNumAssets ? null : (
                           <button
                             type="button"
@@ -155,6 +160,7 @@ const genInputForm = (inputForm) => {
                   <label className={styles.formLabels} htmlFor="constraintPct">
                     Max Allocation (%):
                   </label>
+
                   <div>
                     <Field
                       className={styles.formInputs}
@@ -174,6 +180,7 @@ const genInputForm = (inputForm) => {
                   >
                     Benchmark (%):{" "}
                   </label>
+
                   <div>
                     <Field
                       className={styles.formInputs}
@@ -192,7 +199,7 @@ const genInputForm = (inputForm) => {
                       Submit
                     </button>
                   </div>
-                </div>
+                </>
               )}
             </FieldArray>
           </Form>
