@@ -15,7 +15,7 @@ import * as styles from "./optimizer.module.css";
 
 const numTrials = 500000;
 const numPlotPoints = 1000;
-const noEfficientFrontierRiskBins = 15;
+const maxNumEfficientFrontierRiskBins = 15;
 
 /**
  * @param {number[]} arr1
@@ -181,10 +181,11 @@ const Optimizer = ({ tickers, constraintPct, riskFreeRatePct, children }) => {
 
   // Determine efficient frontier by breaking Monte Carlo simulations into "bins" of risk and finding the max
   // return in each risk bin
-  const binDividerLength = (maxRisk - minRisk[0]) / noEfficientFrontierRiskBins;
+  const binDividerLength =
+    (maxRisk - minRisk[0]) / maxNumEfficientFrontierRiskBins;
   let binDividerRisks = [];
   binDividerRisks[0] = minRisk[0] + binDividerLength;
-  for (let i = 1; i < noEfficientFrontierRiskBins - 1; i++) {
+  for (let i = 1; i < maxNumEfficientFrontierRiskBins - 1; i++) {
     binDividerRisks[i] = binDividerRisks[i - 1] + binDividerLength;
   }
 
@@ -217,6 +218,18 @@ const Optimizer = ({ tickers, constraintPct, riskFreeRatePct, children }) => {
   maxReturnPerBinIndexArr = maxReturnPerBinIndexArr.filter(
     (idx) => idx !== undefined
   );
+
+  // Remove points from efficient frontier where bottom section takes on more risk than the max return asset
+  const numValidBinIndices = maxReturnPerBinIndexArr.length - 1;
+  for (let i = numValidBinIndices; i > 0; i--) {
+    if (
+      retArr[maxReturnPerBinIndexArr[i]] < retArr[maxReturnPerBinIndexArr[0]]
+    ) {
+      maxReturnPerBinIndexArr.pop();
+    } else {
+      break;
+    }
+  }
 
   ChartJS.register(
     LinearScale,

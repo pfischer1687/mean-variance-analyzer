@@ -55,7 +55,7 @@ const TutorialPage = () => {
         </p>
         <div>
           <StaticImage
-            className={styles.latexImageD}
+            className={`${styles.latexImage} ${styles.latexImageD}`}
             src="../images/differential-return.png"
             alt="Equation for differential return"
           />
@@ -66,7 +66,7 @@ const TutorialPage = () => {
         </p>
         <div>
           <StaticImage
-            className={styles.latexImageA}
+            className={`${styles.latexImage} ${styles.latexImageA}`}
             src="../images/average-return.png"
             alt="Equation for average differential return"
           />
@@ -76,7 +76,7 @@ const TutorialPage = () => {
         </p>
         <div>
           <StaticImage
-            className={styles.latexImageSt}
+            className={`${styles.latexImage} ${styles.latexImageSt}`}
             src="../images/standard-deviation.png"
             alt="Equation for standard deviation"
           />
@@ -87,7 +87,7 @@ const TutorialPage = () => {
         </p>
         <div>
           <StaticImage
-            className={styles.latexImageS}
+            className={`${styles.latexImage} ${styles.latexImageS}`}
             src="../images/sharpe-ratio.png"
             alt="Equation for ex post Sharpe ratio"
           />
@@ -131,7 +131,7 @@ const TutorialPage = () => {
         </p>
         <div>
           <StaticImage
-            className={styles.latexImageSCalc}
+            className={`${styles.latexImage} ${styles.latexImageSCalc}`}
             src="../images/maximize-sharpe.png"
             alt="Equation for ex post Sharpe ratio in terms of weights"
           />
@@ -140,8 +140,8 @@ const TutorialPage = () => {
           In our case, the portfolio that produces the largest Sharpe ratio out
           of the 500,000 is plotted on a graph of each portfolio's mean return
           vs. its risk, or standard deviation. The efficient frontier is
-          calculated by splitting the risk into 15 equally spaced bins and
-          choosing the largest return from within each bin. Note that the
+          calculated by splitting the risk into at most 15 equally spaced bins
+          and choosing the largest return from within each bin. Note that the
           efficient frontier here is approxmiated via Monte Carlo simulation and
           a more accurate calculation can be done via quadratic programming -
           however, this is beyond the scope of this tutorial and the reader is
@@ -225,19 +225,24 @@ const TutorialPage = () => {
         <StaticImage
           src="../images/tutorial-input-form.png"
           alt="Start page input form"
+          className={styles.tutorialImg}
         />
         <p>
           If there are no errors in the input fields, a scatter plot should
           appear (below) giving a visual representation of the approximated
           maximum Sharpe ratio, single asset returns, efficient frontier,
           Markowitz bullet and tangency portfolio (as explained in the previous
-          section). Below that will be a pie chart visualizing the allocations
+          section). You can hover over or click on points on the plot to see the
+          portfolios that produce each point on the efficient frontier (as well
+          as for the max Sharpe ratio and the information for the single
+          assets). Below that will be a pie chart visualizing the allocations
           that produced the maximum sharpe ratio and its corresponding
           information.
         </p>
         <StaticImage
           src="../images/tutorial-optimizer.png"
           alt="Sample Markowitz bullet scatter plot with optimal Sharpe ratio pie chart"
+          className={styles.tutorialImg}
         />
         <p>
           Now you're ready to have some fun experimenting! Thank you for

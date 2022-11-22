@@ -204,8 +204,8 @@
     display: none;
   }
   .footer-links {
-    display: grid;
-    grid-template-rows: 1fr 1fr 1fr;
+    /* display: grid; */
+    /* grid-template-rows: 1fr 1fr 1fr; */
     list-style: none;
     margin-left: 0.75rem;
     margin-top: -1rem;

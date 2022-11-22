@@ -2,7 +2,7 @@
   "name": "mean-variance-analyzer",
   "version": "1.0.0",
   "private": true,
-  "description": "Educational web app touching on the beginning of modern portfolio theory",
+  "description": "Educational web app allowing users to interact with basic modern portfolio theory",
   "author": "pfischer1687",
   "keywords": [
     "gatsby"
