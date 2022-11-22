@@ -13,17 +13,27 @@ a {
 .latex-image-d {
   filter: invert(100%);
   margin-left: 0.5rem;
+  width: 8rem;
+}
+.latex-image-a {
+  filter: invert(100%);
+  margin-left: 0.5rem;
   width: 7rem;
+}
+.latex-image-st {
+  filter: invert(100%);
+  margin-left: 0.5rem;
+  width: 11rem;
 }
 .latex-image-s {
   filter: invert(100%);
   margin-left: 0.5rem;
-  width: 4rem;
+  width: 4.5rem;
 }
 .latex-image-s-calc {
   filter: invert(100%);
   margin-left: 0.5rem;
-  width: 7rem;
+  width: 8.5rem;
 }
 .tutorial-img {
   margin: 1rem;

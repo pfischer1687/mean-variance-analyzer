@@ -14,8 +14,8 @@ const TutorialPage = () => {
         <h2>Introduction</h2>
         <p>
           Welcome to Mean-Variance Analyzer! MVA is an educational tool meant to
-          help people interested in finance start their journey learning about
-          the history of portfolio optimization. In 1952, economist Harry
+          help people new to financial engineering start their journey learning
+          about the history of portfolio optimization. In 1952, economist Harry
           Markowitz published "Portfolio Selection" which introduced modern
           portfolio theory (MPT), or mean-variance analysis.
           <sup>
@@ -39,14 +39,15 @@ const TutorialPage = () => {
           <sup>
             <a href="#references">[3]</a>
           </sup>{" "}
-          In 1994, he published "The Sharpe Ratio" which defined the ex ante
-          Sharpe ratio.
+          In 1994, he published "The Sharpe Ratio" which defined the ex post, or
+          historic Sharpe ratio S<sub>h</sub>.
           <sup>
             <a href="#references">[4]</a>
           </sup>{" "}
-          To calculate this value, we first define the differential return d as
-          a function of the historical return R<sub>F</sub> on fund F and the
-          return R<sub>B</sub> on a benchmark portfolio or security (often the
+          To calculate this value, we must first define the differential return
+          D<sub>t</sub> of an asset in period t as the difference between the
+          historical return R<sub>Ft</sub> on fund F and the return R
+          <sub>Bt</sub> on a benchmark portfolio or security (often the
           annualized 3 month Treasury bill rate):
           <sup>
             <a href="#references">[5]</a>
@@ -60,49 +61,70 @@ const TutorialPage = () => {
           />
         </div>
         <p>
-          The ex ante Sharpe Ratio can then be defined as the expected value of
-          d divided by sigma<sub>d</sub>, the predicted standard deviation of d:
+          We then define D-bar as the average value of D<sub>t</sub> over the
+          time period from t=1 to T:
+        </p>
+        <div>
+          <StaticImage
+            className={styles.latexImageA}
+            src="../images/average-return.png"
+            alt="Equation for average differential return"
+          />
+        </div>
+        <p>
+          We define the standard deviation during the period σ<sub>D</sub> as:
+        </p>
+        <div>
+          <StaticImage
+            className={styles.latexImageSt}
+            src="../images/standard-deviation.png"
+            alt="Equation for standard deviation"
+          />
+        </div>
+        <p>
+          We can then define the ex post Sharpe Ratio as the ratio of the
+          historic average differential return to its standard deviation:
         </p>
         <div>
           <StaticImage
             className={styles.latexImageS}
             src="../images/sharpe-ratio.png"
-            alt="Equation for ex ante Sharpe ratio"
+            alt="Equation for ex post Sharpe ratio"
           />
         </div>
         <p>
           This site contains a preloaded set of data from {numAssets} popular
           assets including stocks, ETFs, cryptocurrencies, and more. This data
-          contains the annualized returns from the average monthly close price
-          for each asset over its max period, the variance of these values, and
-          the covariance with respect to each others' values. When calculating
-          the Sharpe ratio, it is common to use the monthly close prices.
+          contains the annualized monthly returns from the historic close prices
+          for each asset over their max periods, the variances of these values,
+          and the covariances of these values with respect to each others'
+          values. When calculating the Sharpe ratio, it is common to use the
+          assets' monthly close prices.
           <sup>
             <a href="#references">[6]</a>
           </sup>{" "}
           Since portfolio optimization is an extension of asset diversification,
           the developer chose to calculate the covariances only over periods
           where both assets had data, while still capturing each individual
-          asset's returns and variances over their max periods of time. Note
-          that this may affect the accuracy of the results and we are not liable
-          for the accuracy of this data nor its resulting information as per the{" "}
+          assets' returns and variances over their max time periods. Note that
+          this may affect the accuracy of the results and we are not liable for
+          the accuracy of this data nor its resulting information as per the{" "}
           <Link to="/terms">Terms of Service</Link>. Please refer to the{" "}
           <a href="https://github.com/pfischer1687/get-json-data-for-mva">
             source code
           </a>{" "}
-          for how the data was gathered for more details.{" "}
+          for how this data was gathered for more details.{" "}
         </p>
         <p>
           This site uses Monte Carlo simulation to approximate the efficient
-          frontier from 500,000 random allocations to a given set of assets
-          (please see the site's{" "}
+          frontier from 500,000 random allocations (please see the site's{" "}
           <a href="https://github.com/pfischer1687/mean-variance-analyzer">
             source code
           </a>{" "}
-          for more details). The ex ante Sharpe ratio is calculated via the
+          for more details). The ex post Sharpe ratio is calculated via the
           following formula, where mu is the vector of mean returns, Q is the
-          covariance matrix, and x are the weights (allocations) such that they
-          are all positive and add to 1 (or 100%):
+          covariance matrix, and x is the vector of weights (or allocations)
+          such that they are all positive and add to 1 (or 100%):
           <sup>
             <a href="#references">[7]</a>
           </sup>
@@ -111,7 +133,7 @@ const TutorialPage = () => {
           <StaticImage
             className={styles.latexImageSCalc}
             src="../images/maximize-sharpe.png"
-            alt="Equation for ex ante Sharpe ratio in terms of weights"
+            alt="Equation for ex post Sharpe ratio in terms of weights"
           />
         </div>
         <p>
@@ -129,10 +151,10 @@ const TutorialPage = () => {
           </sup>{" "}
           1,000 of the 500,000 randomly generated portfolios are chosen at
           random and plotted to outline a hyperbolic shape known as the
-          Markowitz bullet, which shows the general distribution of differential
-          returns and their risks as a function of different allocations. The
-          tangency portfolio represents the line of best capital allocation when
-          the risk-free (or benchmark) investment is incorporated into the
+          Markowitz bullet which shows the general distribution of differential
+          returns and their risks as a function of the different allocations.
+          The tangency portfolio represents the line of best capital allocation
+          when the risk-free (or benchmark) investment is incorporated into the
           portfolio and can be visualized by drawing a straight line from the
           risk-free rate to the Sharpe ratio. In general, the tangency portfolio
           extends past the Sharpe ratio, but this part is hidden on the site to
@@ -147,7 +169,7 @@ const TutorialPage = () => {
           site's information cannot be considered financial advice or
           recommendations for any investments as per the{" "}
           <Link to="/terms">Terms of Service</Link>). Standard calculations of
-          the annualized ex ante Sharpe ratio have a wide range of criticisms,
+          the annualized ex post Sharpe ratio have a wide range of criticisms,
           such as how historical returns cannot guarantee an asset's future
           performance, how it assumes a normal distribution of returns which in
           practice may underestimate tail risk, how it does not take into
@@ -156,8 +178,8 @@ const TutorialPage = () => {
           <sup>
             <a href="#references">[8]</a>
           </sup>
-          , and many more. The reader is encouraged to look into other portfolio
-          optimization strategies such as the Sortino ratio (which penalizes
+          , and many more. The reader is encouraged to look into other similar
+          quantities and models such as the Sortino ratio (which penalizes
           downside volatility more than upside), the Treynor ratio (which
           measures the risk by its beta, or how its volatility correlates with
           the market's), the Black-Litterman model (which takes into account an
@@ -186,13 +208,14 @@ const TutorialPage = () => {
           can press the "+ Add Asset" button to add up to 20 assets. It is
           recommended to choose assets of the same class (i.e. stocks or
           cryptocurrencies) since it is hard to compare assets of different
-          classes (you are encouraged though to see this for yourself). Once you
-          have chosen all your assets, you have the option to set the maximum
-          allocation that can be given to any individual asset in the portfolio
-          (the default is 100%). This number must be larger than 100% / (#assets
-          - 1) and less than or equal to 100%. Then you have the option to enter
-          a custom benchmark. The default value is the the 3 month Treasury bill
-          rate at the time of this site's development (3.72%
+          classes (you are encouraged, however, to see for yourself why this may
+          be the case). Once you have chosen all your assets, you have the
+          option to set the maximum allocation that can be given to any
+          individual asset in the portfolio (the default is 100%). This number
+          must be larger than 100% / (#assets - 1) and less than or equal to
+          100%. Then you have the option to enter a custom benchmark. The
+          default value is the the 3 month Treasury bill rate at the time of
+          this site's development (November 2022: 3.72%
           <sup>
             <a href="#references">[5]</a>
           </sup>
@@ -206,10 +229,10 @@ const TutorialPage = () => {
         <p>
           If there are no errors in the input fields, a scatter plot should
           appear (below) giving a visual representation of the approximated
-          maximim Sharpe ratio, single asset returns, efficient frontier,
+          maximum Sharpe ratio, single asset returns, efficient frontier,
           Markowitz bullet and tangency portfolio (as explained in the previous
           section). Below that will be a pie chart visualizing the allocations
-          that produced the maximum sharpe ratio and it corresponding
+          that produced the maximum sharpe ratio and its corresponding
           information.
         </p>
         <StaticImage
