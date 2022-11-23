@@ -2,10 +2,16 @@
   "name": "mean-variance-analyzer",
   "version": "1.0.0",
   "private": true,
-  "description": "Educational web app allowing users to interact with basic modern portfolio theory",
-  "author": "pfischer1687",
+  "description": "Learn about modern portfolio theory - interactively!",
+  "author": "Paul Fischer <paulfischerdev@gmail.com>",
   "keywords": [
-    "gatsby"
+    "mean-variance analysis",
+    "modern portfolio theory",
+    "Sharpe ratio",
+    "mpt",
+    "tangency portfolio",
+    "Markowitz",
+    "financial cengineering"
   ],
   "scripts": {
     "develop": "gatsby develop",
@@ -21,10 +27,18 @@
     "gatsby-plugin-image": "^2.24.0",
     "gatsby-plugin-manifest": "^4.24.0",
     "gatsby-plugin-sharp": "^4.24.0",
+    "gatsby-source-filesystem": "^4.24.0",
     "gatsby-transformer-sharp": "^4.24.0",
     "react": "^18.1.0",
     "react-chartjs-2": "^4.3.1",
     "react-dom": "^18.1.0",
     "yup": "^0.32.11"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pfischer1687/mean-variance-analyzer"
+  },
+  "bugs": {
+    "url": "https://github.com/pfischer1687/mean-variance-analyzer/issues"
   }
 }
