@@ -246,6 +246,7 @@ const Optimizer = ({ tickers, constraintPct, riskFreeRatePct, children }) => {
     events: ["click", "mousemove"],
     responsive: true,
     plugins: {
+      // Tooltip plot labels
       tooltip: {
         filter: function (context) {
           let label = context.dataset.label;
@@ -383,17 +384,26 @@ const Optimizer = ({ tickers, constraintPct, riskFreeRatePct, children }) => {
   };
 
   // Pie chart
+  const pieChartOptions = {
+    plugins: {
+      tooltip: {
+        callbacks: {
+          label: function (context) {
+            return `${context.label}: ${Number(context.raw).toFixed(2)}%`;
+          },
+        },
+      },
+    },
+  };
   const pieChartColors = tickers.map(
     (ticker) =>
       `rgba(${Math.floor(255 * Math.random())}, ${Math.floor(
         255 * Math.random()
       )}, ${Math.floor(255 * Math.random())}`
   );
-
   const pieChartSortedArr = weightsMat[maxSharpeRatio[1]]
     .map((weight, index) => [tickers[index], weight * 100])
     .sort((arr1, arr2) => arr2[1] - arr1[1]);
-
   const pieData = {
     labels: pieChartSortedArr.map((arr) => arr[0]),
     datasets: [
@@ -406,7 +416,6 @@ const Optimizer = ({ tickers, constraintPct, riskFreeRatePct, children }) => {
       },
     ],
   };
-
   const maxSharpeRatioInfo = [
     `Sharpe Ratio: ${Number(maxSharpeRatio[0]).toFixed(2)}`,
     `Annualized Return: ${Number(retArr[maxSharpeRatio[1]]).toFixed(2)}%`,
@@ -429,7 +438,7 @@ const Optimizer = ({ tickers, constraintPct, riskFreeRatePct, children }) => {
       </div>
       <div className={styles.pieChartStyle}>
         <div className={styles.pieChartElement}>
-          <Pie data={pieData} />
+          <Pie data={pieData} options={pieChartOptions} />
         </div>
         <div className={styles.pieChartInfo}>
           <h2>Max Sharpe Ratio Portfolio:</h2>
@@ -438,6 +447,7 @@ const Optimizer = ({ tickers, constraintPct, riskFreeRatePct, children }) => {
           ))}
         </div>
       </div>
+      {children}
     </div>
   );
 };

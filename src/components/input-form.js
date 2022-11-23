@@ -17,6 +17,7 @@ allTickersSet.delete("default");
  * @return {string[]}
  */
 const filterStrArr = (arr) => {
+  // Return a copy of an array that contains only uppercase non-null strings in alphabetical order
   return arr
     .filter(Boolean)
     .map((v) => v.toUpperCase())
@@ -115,6 +116,7 @@ const genInputForm = (inputForm) => {
                           name={`assets.${index}`}
                           list="assets-list"
                           className={styles.formInputs}
+                          placeholder="Enter ticker"
                         />
 
                         <datalist id="assets-list">

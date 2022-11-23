@@ -14,6 +14,8 @@ h2 {
   margin-bottom: 1rem;
   padding-left: 1rem;
   font-size: 1rem;
+  border: none;
+  border-radius: 0.5rem;
 }
 .form-inputs:focus {
   outline: #096002 solid 3px;
@@ -83,7 +85,7 @@ h2 {
 @media screen and (max-width: 749px) {
   .container {
     padding: 1rem 1rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     text-align: center;
   }
 }
