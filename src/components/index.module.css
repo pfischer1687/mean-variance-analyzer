@@ -38,30 +38,6 @@
   transform: translateX(0);
 }
 
-/* For start button arrows animation */
-.button-text span {
-  cursor: pointer;
-  display: inline-block;
-  position: relative;
-  transition: 0.5s;
-}
-.button-text span:after {
-  content: "\00bb";
-  position: absolute;
-  opacity: 0;
-  top: 0;
-  right: -20px;
-  transition: 0.5s;
-}
-.button-text:hover span {
-  padding-right: 25px;
-  margin-left: -25px;
-}
-.button-text:hover span:after {
-  opacity: 1;
-  right: 0;
-}
-
 /* Responsive */
 @media screen and (min-width: 750px) {
   .index-grid-container {
@@ -91,6 +67,30 @@
   }
   .header-container div button {
     margin-left: 5rem;
+  }
+
+  /* Start button arrows animation on hover */
+  .button-text span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+  }
+  .button-text span:after {
+    content: "\00bb";
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+  }
+  .button-text:hover span {
+    padding-right: 25px;
+    margin-left: -25px;
+  }
+  .button-text:hover span:after {
+    opacity: 1;
+    right: 0;
   }
 }
 

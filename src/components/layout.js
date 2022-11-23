@@ -20,46 +20,55 @@ const Layout = ({ pageTitle, children }) => {
         <ul className={styles.navLinks}>
           <li className={`${styles.navLinkHome} ${styles.buttonText}`}>
             {pageTitle === "Home" ? (
-              <a href="/" className={styles.navLinkText}>
-                <StaticImage
-                  alt="Clifford, a reddish-brown pitbull, dozing in a bean bag chair"
-                  src="../images/mva-logo-small.png"
-                  width={60}
-                />{" "}
-                <div className={styles.homeButtonText}>
-                  Mean-Variance Analyzer
-                </div>
-              </a>
+              <span>
+                {/* Reloads when on same page for hamburger menu button click event listener */}
+                <a href="/" className={styles.navLinkText}>
+                  <StaticImage
+                    alt="Small MVA logo"
+                    src="../images/mva-logo-small.png"
+                    width={60}
+                  />{" "}
+                  <div className={styles.homeButtonText}>
+                    Mean-Variance Analyzer
+                  </div>
+                </a>
+              </span>
             ) : (
-              <Link to="/" className={styles.navLinkText}>
-                <StaticImage
-                  alt="Clifford, a reddish-brown pitbull, dozing in a bean bag chair"
-                  src="../images/mva-logo-small.png"
-                  width={60}
-                />{" "}
-                <div className={styles.homeButtonText}>
-                  Mean-Variance Analyzer
-                </div>
-              </Link>
+              <span>
+                <Link to="/" className={styles.navLinkText}>
+                  <StaticImage
+                    alt="Small MVA logo"
+                    src="../images/mva-logo-small.png"
+                    width={60}
+                  />{" "}
+                  <div className={styles.homeButtonText}>
+                    Mean-Variance Analyzer
+                  </div>
+                </Link>
+              </span>
             )}
           </li>
+
           <li className={`${styles.navLinkItem} ${styles.buttonText}`}>
             <Link to="/tutorial" className={styles.navLinkText}>
               <span>Tutorial </span>
             </Link>
           </li>
+
           <li className={`${styles.navLinkItem} ${styles.buttonText}`}>
             <Link to="/start" className={styles.navLinkText}>
               <span>Start </span>
             </Link>
           </li>
         </ul>
-        {/* Mobile navigation menu */}
+
+        {/* Mobile navigation hamburger button */}
         <button className={styles.hamburgerMenu}>
           <div className={styles.hamburgerMenuBar}></div>
         </button>
       </nav>
 
+      {/* Mobile navigation menu */}
       <nav className={styles.mobileNavLinks}>
         {pageTitle === "Home" ? <a href="/">Home</a> : <Link to="/">Home</Link>}
 
@@ -69,32 +78,33 @@ const Layout = ({ pageTitle, children }) => {
           <Link to="/tutorial">Tutorial</Link>
         )}
         {pageTitle === "Start" ? (
-          <a href="/start">Start now</a>
+          <a href="/start">Start</a>
         ) : (
-          <Link to="/start">Start now</Link>
+          <Link to="/start">Start</Link>
         )}
       </nav>
-      {/* <header className={styles.siteTitle}>
-        {data.site.siteMetadata.title}
-      </header> */}
+
       <main className={styles.container}>
-        {/* <h1 className={styles.heading}>{pageTitle}</h1> */}
         {children}
         <div className={styles.spacer}></div>
       </main>
+
       <footer>
         <ul className={styles.footerLinks}>
           <li className={styles.footerCopyright}>© 2022 All rights reserved</li>
+
           <li className={styles.footerLinkItem}>
             <Link to="/about" className={styles.footerLinkText}>
               About
             </Link>
           </li>
+
           <li className={styles.footerLinkItem}>
             <Link to="/terms" className={styles.footerLinkText}>
               Terms of Service
             </Link>
           </li>
+
           <li className={styles.footerLinkItem}>
             <Link to="/privacy" className={styles.footerLinkText}>
               Privacy Policy
