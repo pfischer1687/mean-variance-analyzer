@@ -1,16 +1,6 @@
 import * as React from "react";
 import * as AssetData from "../../data/asset-data.json";
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend,
-  ArcElement,
-} from "chart.js";
+import { Chart as ChartJS, registerables } from "chart.js";
 import { Chart, Pie } from "react-chartjs-2";
 import { minNumAssets, maxNumAssets } from "./input-form.js";
 import * as styles from "./optimizer.module.css";
@@ -19,16 +9,7 @@ const numTrials = 500000;
 const numPlotPoints = 1000;
 const maxNumEfficientFrontierRiskBins = 15;
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend,
-  ArcElement
-);
+ChartJS.register(...registerables);
 
 /**
  * @param {number[]} arr1
