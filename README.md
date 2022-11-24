@@ -39,7 +39,7 @@ Learn about modern portfolio theory - interactively! <a href="https://meanvarian
   </a> 
   - note that the developer is not not liable in any way for the
   accuracy or freshness of any data or information given on the site as
-  per the <a href="https://github.com/pfischer1687/get-json-data-for-mva" target="_blank" rel="noreferrer">here</a>. Note that the developer is not not liable in any way for the accuracy or freshness of any data or information given on the site as per the 
+  per the 
   <a href="https://meanvarianceanalyzermain.gatsbyjs.io/terms" target="_blank" rel="noreferrer">
     Terms of Service
   </a>
