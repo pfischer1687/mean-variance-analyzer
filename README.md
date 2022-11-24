@@ -29,14 +29,14 @@ Learn about modern portfolio theory - interactively! <a href="https://meanvarian
   start typing a ticker or company name and if it is in the preloaded
   dataset of over 100 popular assets it should appear in the dropdown
   datalist and be clickable (you can read more about how the data was
-  collected{" "}
+  collected 
   <a
     href="https://github.com/pfischer1687/get-json-data-for-mva"
     target="_blank"
     rel="noreferrer"
   >
     here
-  </a>{" "}
+  </a> 
   - note that the developer is not not liable in any way for the
   accuracy or freshness of any data or information given on the site as
   per the <a href="https://github.com/pfischer1687/get-json-data-for-mva" target="_blank" rel="noreferrer">here</a>. Note that the developer is not not liable in any way for the accuracy or freshness of any data or information given on the site as per the 
