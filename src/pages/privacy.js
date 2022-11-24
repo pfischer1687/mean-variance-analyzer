@@ -7,7 +7,7 @@ import { Link } from "gatsby";
 const termsLink = "/terms";
 const sourceCodeLink = "https://github.com/pfischer1687/mean-variance-analyzer";
 const siteTitle = "Mean-Variance Analyzer";
-const websiteUrl = "#";
+const websiteUrl = "https://meanvarianceanalyzermain.gatsbyjs.io/";
 const devsWebsite = "https://paulfischer.dev/";
 
 const PrivacyPage = () => {
@@ -25,20 +25,32 @@ const PrivacyPage = () => {
           understand that by using this site you are agreeing to its{" "}
           <Link to={termsLink}>Terms of Service</Link>, otherwise you may not
           use this site. By using the site, you also agree not to enter any
-          personally identifiable information that is linkable to you. At the
-          time of the last update, the developer is not aware of any personal
-          information collected by the site (since there is not an option to
-          make an account). This is a static web site where all calculations are
-          done on the client's device, and the developer is not aware of any
-          cookies or data that is stored on the client's device beyond the
-          immediate session of the site's use. You are encouraged to view the{" "}
-          <a href={sourceCodeLink}>source code</a> to see for yourself how any
-          data may be handled. That said, please carefully read the following
-          document to understand your rights regarding your personal
-          information. This site is currently hosted on{" "}
-          <a href="https://www.gatsbyjs.com/products/cloud/">Gatsby Cloud</a> so
-          by using it you acknowledge that you have read and understood their{" "}
-          <a href="https://www.gatsbyjs.com/privacy-policy">Privacy Policy</a>{" "}
+          personally identifiable information that is linkable to you. This is a
+          static web site where all calculations are done on the client's
+          device, and the developer is not aware of any cookies or data that is
+          stored on the client's device or anywhere else beyond the immediate
+          session of the site's use. You are encouraged to view the site's{" "}
+          <a href={sourceCodeLink} target="_blank" rel="noreferrer">
+            source code
+          </a>{" "}
+          to see for yourself how any data may be handled. That said, please
+          carefully read the following document to understand your rights
+          regarding your personal information. This site is currently hosted on{" "}
+          <a
+            href="https://www.gatsbyjs.com/products/cloud/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Gatsby Cloud
+          </a>{" "}
+          so by using it you acknowledge that you have read and understood their{" "}
+          <a
+            href="https://www.gatsbyjs.com/privacy-policy"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Privacy Policy
+          </a>{" "}
           as well.
         </p>
         <h3>PRIVACY NOTICE</h3>
@@ -67,7 +79,11 @@ const PrivacyPage = () => {
         </p>
         <p>
           This privacy policy was created by Termly’s{" "}
-          <a href="https://termly.io/products/privacy-policy-generator/">
+          <a
+            href="https://termly.io/products/privacy-policy-generator/"
+            target="_blank"
+            rel="noreferrer"
+          >
             Privacy Policy Generator
           </a>
           .
@@ -670,7 +686,11 @@ const PrivacyPage = () => {
           processing your personal information, you also have the right to
           complain to your local data protection supervisory authority. You can
           find their contact details here:{" "}
-          <a href="https://edpb.europa.eu/about-edpb/about-edpb/members_en">
+          <a
+            href="https://edpb.europa.eu/about-edpb/about-edpb/members_en"
+            target="_blank"
+            rel="noreferrer"
+          >
             https://edpb.europa.eu/about-edpb/about-edpb/members_en
           </a>
           .
@@ -678,7 +698,11 @@ const PrivacyPage = () => {
         <p>
           If you are located in Switzerland, the contact details for the data
           protection authorities are available here:{" "}
-          <a href="https://www.edoeb.admin.ch/edoeb/en/home.html">
+          <a
+            href="https://www.edoeb.admin.ch/edoeb/en/home.html"
+            target="_blank"
+            rel="noreferrer"
+          >
             https://www.edoeb.admin.ch/edoeb/en/home.html
           </a>
           .
@@ -908,7 +932,10 @@ const PrivacyPage = () => {
         <p>
           If you have questions or comments about this notice, you may contact
           the developer via the information provided on his{" "}
-          <a href={devsWebsite}>website</a>.
+          <a href={devsWebsite} target="_blank" rel="noreferrer">
+            website
+          </a>
+          .
         </p>
         {/* If you are a resident in the European Economic Area, the “data  */}
         <h3>

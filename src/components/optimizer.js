@@ -2,9 +2,11 @@ import * as React from "react";
 import * as AssetData from "../../data/asset-data.json";
 import {
   Chart as ChartJS,
+  CategoryScale,
   LinearScale,
   PointElement,
   LineElement,
+  Title,
   Tooltip,
   Legend,
   ArcElement,
@@ -16,6 +18,17 @@ import * as styles from "./optimizer.module.css";
 const numTrials = 500000;
 const numPlotPoints = 1000;
 const maxNumEfficientFrontierRiskBins = 15;
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+  ArcElement
+);
 
 /**
  * @param {number[]} arr1
@@ -230,15 +243,6 @@ const Optimizer = ({ tickers, constraintPct, riskFreeRatePct, children }) => {
       break;
     }
   }
-
-  ChartJS.register(
-    LinearScale,
-    PointElement,
-    LineElement,
-    Tooltip,
-    Legend,
-    ArcElement
-  );
 
   // Monte Carlo plot
   const monteCarloPlotOptions = {

@@ -5,8 +5,6 @@ import * as styles from "../components/about.module.css";
 import { Link } from "gatsby";
 import { StaticImage } from "gatsby-plugin-image";
 
-const numAssets = 10;
-
 const TutorialPage = () => {
   return (
     <Layout pageTitle="Tutorial">
@@ -28,21 +26,31 @@ const TutorialPage = () => {
           This should take you to the start page input form (below). Enter all
           the assets of interest into the corrsponding input fields. You can
           start typing a ticker or company name and if it is in the preloaded
-          dataset it should appear in the dropdown datalist and be clickable.
-          You must enter at least two unique tickers from the dataset and you
-          can press the "+ Add Asset" button to add up to 20 assets. It is
-          recommended to choose assets of the same class (i.e. stocks or
-          cryptocurrencies) since it is hard to compare assets of different
-          classes (you are encouraged, however, to see for yourself why this may
-          be the case). Once you have chosen all your assets, you have the
-          option to set the maximum allocation that can be given to any
-          individual asset in the portfolio (the default is 100%). This number
-          must be larger than 100% / (#assets - 1) and less than or equal to
-          100%. Then you have the option to enter a custom benchmark. The
-          default value is the the 3 month Treasury bill rate at the time of
-          this site's development (November 2022: 3.72%) but you can enter any
-          value between -50% and 50% to use a custom rate, asset, or portfolio
-          as your benchmark.
+          dataset of over 100 popular assets it should appear in the dropdown
+          datalist and be clickable (you can read more about how the data was
+          collected{" "}
+          <a
+            href="https://github.com/pfischer1687/get-json-data-for-mva"
+            target="_blank"
+            rel="noreferrer"
+          >
+            here
+          </a>{" "}
+          - note that the developer is not not liable in any way for the
+          accuracy or freshness of any data or information given on the site as
+          per the <Link to="/terms">Terms of Service</Link> nor is he liable for
+          any action or inaction taken due to the site's information as it is an
+          educational tool and not qualified to give real financial advice). You
+          must enter at least two unique tickers from the dataset and you can
+          press the "+ Add Asset" button to add up to 15 assets. Once you have
+          chosen all your assets, you have the option to set the maximum
+          allocation that can be given to any individual asset in the portfolio
+          (the default is 100%). This number must be larger than 100% / (#assets
+          - 1) and less than or equal to 100%. Then you have the option to enter
+          a custom benchmark - the default value is the the 3 month Treasury
+          bill rate at the time of this site's development (November 2022:
+          3.72%) but you can enter any value between -50% and 50% to use a
+          custom rate, asset, or portfolio as your benchmark.
         </p>
         <StaticImage
           src="../images/tutorial-input-form.png"
@@ -58,7 +66,7 @@ const TutorialPage = () => {
           see the portfolios that produce each point on the efficient frontier
           (as well as for the max Sharpe ratio and the information for the
           single assets). Below that will be a pie chart visualizing the
-          allocations that produced the maximum sharpe ratio and its
+          allocations that produced the maximum sharpe ratio and their
           corresponding information.
         </p>
         <StaticImage
@@ -74,10 +82,10 @@ const TutorialPage = () => {
         <h2>Background</h2>
         <p>
           In 1952, economist Harry Markowitz published "Portfolio Selection"
-          which introduced modern portfolio theory (MPT), or mean-variance
+          which first introduced modern portfolio theory (MPT), or mean-variance
           analysis.
           <sup>
-            <a href="#references">[1]</a>
+            <Link to="#references">[1]</Link>
           </sup>{" "}
           The goal of MPT is to maximize the expected return of a portfolio for
           a given level of risk - which is measured by the variance of its asset
@@ -89,18 +97,18 @@ const TutorialPage = () => {
           which defined the reward-to-variability ratio (now known as the Sharpe
           ratio).
           <sup>
-            <a href="#references">[2]</a>
+            <Link to="#references">[2]</Link>
           </sup>{" "}
           This research grew from his part in the development of the capital
           asset pricing model (CAPM) for which he shared the 1990 Alfred Nobel
           Memorial Prize in Economic Sciences with Markowitz and Merton Miller.
           <sup>
-            <a href="#references">[3]</a>
+            <Link to="#references">[3]</Link>
           </sup>{" "}
           In 1994, he published "The Sharpe Ratio" which defined the ex post, or
           historic Sharpe ratio S<sub>h</sub>.
           <sup>
-            <a href="#references">[4]</a>
+            <Link to="#references">[4]</Link>
           </sup>{" "}
           To calculate this value, we must first define the differential return
           D<sub>t</sub> of an asset in period t as the difference between the
@@ -108,7 +116,7 @@ const TutorialPage = () => {
           <sub>Bt</sub> on a benchmark portfolio or security (often the
           annualized 3 month Treasury bill rate):
           <sup>
-            <a href="#references">[5]</a>
+            <Link to="#references">[5]</Link>
           </sup>
         </p>
         <div>
@@ -151,7 +159,7 @@ const TutorialPage = () => {
           />
         </div>
         <p>
-          This site contains a preloaded set of data from {numAssets} popular
+          This site contains a preloaded set of data from over 100 popular
           assets including stocks, ETFs, cryptocurrencies, and more. This data
           contains the annualized monthly returns from the historic close prices
           for each asset over their max periods, the variances of these values,
@@ -159,16 +167,20 @@ const TutorialPage = () => {
           values. When calculating the Sharpe ratio, it is common to use the
           assets' monthly close prices.
           <sup>
-            <a href="#references">[6]</a>
+            <Link to="#references">[6]</Link>
           </sup>{" "}
           Since portfolio optimization is an extension of asset diversification,
           the developer chose to calculate the covariances only over periods
           where both assets had data, while still capturing each individual
           assets' returns and variances over their max time periods. Note that
-          this may affect the accuracy of the results and we are not liable for
-          the accuracy of this data nor its resulting information as per the{" "}
-          <Link to="/terms">Terms of Service</Link>. Please refer to the{" "}
-          <a href="https://github.com/pfischer1687/get-json-data-for-mva">
+          this choice may affect the accuracy of the results and we are not
+          liable for the accuracy of this data nor its resulting information as
+          per the <Link to="/terms">Terms of Service</Link>. Please refer to the{" "}
+          <a
+            href="https://github.com/pfischer1687/get-json-data-for-mva"
+            target="_blank"
+            rel="noreferrer"
+          >
             source code
           </a>{" "}
           for how this data was gathered for more details.{" "}
@@ -176,7 +188,11 @@ const TutorialPage = () => {
         <p>
           This site uses Monte Carlo simulation to approximate the efficient
           frontier from 500,000 random allocations (please see the site's{" "}
-          <a href="https://github.com/pfischer1687/mean-variance-analyzer">
+          <a
+            href="https://github.com/pfischer1687/mean-variance-analyzer"
+            target="_blank"
+            rel="noreferrer"
+          >
             source code
           </a>{" "}
           for more details). The ex post Sharpe ratio is calculated via the
@@ -184,7 +200,7 @@ const TutorialPage = () => {
           covariance matrix, and x is the vector of weights (or allocations)
           such that they are all positive and add to 1 (or 100%):
           <sup>
-            <a href="#references">[7]</a>
+            <Link to="#references">[7]</Link>
           </sup>
         </p>
         <div>
@@ -196,16 +212,16 @@ const TutorialPage = () => {
         </div>
         <p>
           In our case, the portfolio that produces the largest Sharpe ratio out
-          of the 500,000 is plotted on a graph of each portfolio's mean return
-          vs. its risk, or standard deviation. The efficient frontier is
-          calculated by splitting the risk into at most 15 equally spaced bins
-          and choosing the largest return from within each bin. Note that the
-          efficient frontier here is approxmiated via Monte Carlo simulation and
-          a more accurate calculation can be done via quadratic programming -
-          however, this is beyond the scope of this tutorial and the reader is
-          encouraged to learn more about this after experimenting with the site.
+          of the 500,000 is plotted on a graph of historic mean return vs. risk,
+          or standard deviation. The efficient frontier is calculated by
+          splitting the risk into at most 15 equally spaced bins and choosing
+          the largest return from within each bin. Note that the efficient
+          frontier here is approxmiated via Monte Carlo simulation and a more
+          accurate calculation can be done via quadratic programming - however,
+          this is beyond the scope of this tutorial and the reader is encouraged
+          to learn more about this after experimenting with the site.
           <sup>
-            <a href="#references">[7]</a>
+            <Link to="#references">[7]</Link>
           </sup>{" "}
           1,000 of the 500,000 randomly generated portfolios are chosen at
           random and plotted to outline a hyperbolic shape known as the
@@ -234,7 +250,7 @@ const TutorialPage = () => {
           account serial correlation of the portfolio's assets which has been
           shown in some cases to overestimate the calculation by over 65%
           <sup>
-            <a href="#references">[8]</a>
+            <Link to="#references">[8]</Link>
           </sup>
           , and many more. The reader is encouraged to look into other similar
           quantities and models such as the Sortino ratio (which penalizes
@@ -244,7 +260,7 @@ const TutorialPage = () => {
           investor's beliefs about the future of an asset's returns), among many
           more.
           <sup>
-            <a href="#references">[9]</a>
+            <Link to="#references">[9]</Link>
           </sup>
         </p>
         <h2 id="references">References</h2>
@@ -253,7 +269,11 @@ const TutorialPage = () => {
             Markowitz, H.M. (March 1952). "Portfolio Selection".{" "}
             <i>The Journal of Finance. </i>
             <b>7 </b>(1): 77–91.{" "}
-            <a href="https://www.jstor.org/stable/2975974?origin=crossref">
+            <a
+              href="https://www.jstor.org/stable/2975974?origin=crossref"
+              target="_blank"
+              rel="noreferrer"
+            >
               doi:10.2307/2975974
             </a>
             .
@@ -261,12 +281,19 @@ const TutorialPage = () => {
           <li>
             Sharpe, W. F. (1966). "Mutual Fund Performance".{" "}
             <i>Journal of Business</i>. <b>39</b> (S1): 119–138.{" "}
-            <a href="doi:10.1086/294846">doi:10.1086/294846</a>.
+            <a href="doi:10.1086/294846" target="_blank" rel="noreferrer">
+              doi:10.1086/294846
+            </a>
+            .
           </li>
           <li>
             Press release. NobelPrize.org. Nobel Prize Outreach AB 2022. Fri. 18
             Nov 2022.{" "}
-            <a href="https://www.nobelprize.org/prizes/economic-sciences/1990/press-release/">
+            <a
+              href="https://www.nobelprize.org/prizes/economic-sciences/1990/press-release/"
+              target="_blank"
+              rel="noreferrer"
+            >
               https://www.nobelprize.org/prizes/economic-sciences/1990/press-release/
             </a>
             .
@@ -275,7 +302,11 @@ const TutorialPage = () => {
             Sharpe, William F. (1994). "The Sharpe Ratio".{" "}
             <i>The Journal of Portfolio Management. </i>
             <b>21 </b>(1): 49–58.{" "}
-            <a href="https://jpm.pm-research.com/content/21/1/49">
+            <a
+              href="https://jpm.pm-research.com/content/21/1/49"
+              target="_blank"
+              rel="noreferrer"
+            >
               doi:10.3905/jpm.1994.409501
             </a>
             .
@@ -284,7 +315,11 @@ const TutorialPage = () => {
             Board of Governors of the Federal Reserve System (US), 3-Month
             Treasury Bill Secondary Market Rate, Discount Basis [TB3MS],
             retrieved from FRED, Federal Reserve Bank of St. Louis;{" "}
-            <a href="https://fred.stlouisfed.org/series/TB3MS">
+            <a
+              href="https://fred.stlouisfed.org/series/TB3MS"
+              target="_blank"
+              rel="noreferrer"
+            >
               https://fred.stlouisfed.org/series/TB3MS
             </a>
             , November 17, 2022.
@@ -292,13 +327,21 @@ const TutorialPage = () => {
           <li>
             Fernando, Jason. "Sharpe Ratio Formula and Definition with
             Examples." Investopedia. June 06, 2022.{" "}
-            <a href="https://www.investopedia.com/terms/s/sharperatio.asp">
+            <a
+              href="https://www.investopedia.com/terms/s/sharperatio.asp"
+              target="_blank"
+              rel="noreferrer"
+            >
               https://www.investopedia.com/terms/s/sharperatio.asp
             </a>
           </li>
           <li>
             "Maximizing the Sharpe ratio." IEOR 4500.{" "}
-            <a href="https://people.stat.sc.edu/sshen/events/backtesting/reference/maximizing%20the%20sharpe%20ratio.pdf">
+            <a
+              href="https://people.stat.sc.edu/sshen/events/backtesting/reference/maximizing%20the%20sharpe%20ratio.pdf"
+              target="_blank"
+              rel="noreferrer"
+            >
               https://people.stat.sc.edu/sshen/events/backtesting/reference/maximizing%20the%20sharpe%20ratio.pdf
             </a>
             .
@@ -306,7 +349,11 @@ const TutorialPage = () => {
           <li>
             Lo, Andrew W. "The statistics of Sharpe ratios." Financial analysts
             journal 58, no. 4 (2002): 36-52.{" "}
-            <a href="https://www.tandfonline.com/doi/abs/10.2469/faj.v58.n4.2453">
+            <a
+              href="https://www.tandfonline.com/doi/abs/10.2469/faj.v58.n4.2453"
+              target="_blank"
+              rel="noreferrer"
+            >
               doi:10.2469/faj.v58.n4.2453
             </a>
             .
@@ -314,7 +361,11 @@ const TutorialPage = () => {
           <li>
             Idzorek, Thomas M. "A step-by-step guide to the Black-Litterman
             model." July 20, 2004.{" "}
-            <a href="https://people.duke.edu/~charvey/Teaching/BA453_2006/Idzorek_onBL.pdf">
+            <a
+              href="https://people.duke.edu/~charvey/Teaching/BA453_2006/Idzorek_onBL.pdf"
+              target="_blank"
+              rel="noreferrer"
+            >
               https://people.duke.edu/~charvey/Teaching/BA453_2006/Idzorek_onBL.pdf
             </a>
           </li>

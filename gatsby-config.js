@@ -6,7 +6,7 @@ module.exports = {
     title: "Mean-Variance Analyzer",
     description: "Learn about modern portfolio theory - interactively!",
     author: "@PaulFis43236408",
-    // siteUrl: "#",
+    siteUrl: "https://meanvarianceanalyzermain.gatsbyjs.io/",
   },
   plugins: [
     "gatsby-plugin-image",

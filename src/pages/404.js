@@ -20,11 +20,19 @@ const NotFoundPage = () => {
         />
         <p>
           Photo by{" "}
-          <a href="https://unsplash.com/@mutedtone?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">
+          <a
+            href="https://unsplash.com/@mutedtone?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"
+            target="_blank"
+            rel="noreferrer"
+          >
             Christopher Ayme
           </a>{" "}
           on{" "}
-          <a href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">
+          <a
+            href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"
+            target="_blank"
+            rel="noreferrer"
+          >
             Unsplash
           </a>
         </p>
