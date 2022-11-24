@@ -94,8 +94,8 @@ Learn about modern portfolio theory - interactively! <a href="https://meanvarian
 Paul Fischer
 
 - Email: paulfischerdev@gmail.com
-- Twitter: <a href="https://twitter.com/PaulFis43236408">@PaulFis43236408</a>
-- GitHub: <a href="https://github.com/pfischer1687">pfischer1687</a>
+- Twitter: <a href="https://twitter.com/PaulFis43236408" target="_blank" rel="noreferrer">@PaulFis43236408</a>
+- GitHub: <a href="https://github.com/pfischer1687" target="_blank" rel="noreferrer">pfischer1687</a>
 
 ## Dependencies
 
@@ -126,7 +126,7 @@ Paul Fischer
 
 © 2022 All rights reserved
 
-Please see the <a href="#">Terms of Service</a> for more details
+Please see the <a href="https://meanvarianceanalyzermain.gatsbyjs.io/terms" target="_blank" rel="noreferrer">Terms of Service</a> for more details.
 
 ## Scripts
 
@@ -137,8 +137,8 @@ Please see the <a href="#">Terms of Service</a> for more details
 
 ## Repository
 
-git: <a href="https://github.com/pfischer1687/mean-variance-analyzer">https://github.com/pfischer1687/mean-variance-analyzer</a>
+git: <a href="https://github.com/pfischer1687/mean-variance-analyzer" target="_blank" rel="noreferrer">https://github.com/pfischer1687/mean-variance-analyzer</a>
 
 ## Bugs
 
-<a href="https://github.com/pfischer1687/mean-variance-analyzer">https://github.com/pfischer1687/mean-variance-analyzer</a>
+<a href="https://github.com/pfischer1687/mean-variance-analyzer/issues" target="_blank" rel="noreferrer">https://github.com/pfischer1687/mean-variance-analyzer/issues</a>
