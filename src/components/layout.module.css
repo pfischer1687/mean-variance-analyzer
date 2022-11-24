@@ -73,7 +73,7 @@
     margin-right: auto;
   }
   .spacer {
-    clip-path: polygon(0 0, 100% 0, 100% 7.5%, 0 80%);
+    clip-path: polygon(0 0, 100% 0, 100% 7.5%, 0 35rem);
   }
 
   /* Button arrows animation on hover */
@@ -132,7 +132,7 @@
     top: 2rem;
     right: 3rem;
     display: block;
-    width: 2rem;
+    width: 40px;
     cursor: pointer;
     appearance: none;
     background: none;
