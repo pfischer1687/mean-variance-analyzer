@@ -1,5 +1,5 @@
 import * as React from "react";
-import * as AssetData from "../../data/asset-data-test.json";
+import * as AssetData from "../../data/asset-data.json";
 import {
   Chart as ChartJS,
   LinearScale,
@@ -437,8 +437,10 @@ const Optimizer = ({ tickers, constraintPct, riskFreeRatePct, children }) => {
         />
       </div>
       <div className={styles.pieChartStyle}>
-        <div className={styles.pieChartElement}>
-          <Pie data={pieData} options={pieChartOptions} />
+        <div>
+          <div className={styles.pieChartElement}>
+            <Pie data={pieData} options={pieChartOptions} />
+          </div>
         </div>
         <div className={styles.pieChartInfo}>
           <h2>Max Sharpe Ratio Portfolio:</h2>

@@ -12,6 +12,9 @@ Learn about modern portfolio theory - interactively! <a href="#">View live site<
 ## Excerpt from the Tutorial Page
 
 <p>
+  Welcome to Mean-Variance Analyzer! MVA is an educational tool meant to
+  help people new to financial engineering start their journey learning
+  about the history of portfolio optimization. 
   To get started, click either the "Get started!" link on the home page
   (below) or the "Start" link in the navigation menu.
 </p>
@@ -49,7 +52,7 @@ Learn about modern portfolio theory - interactively! <a href="#">View live site<
   If there are no errors in the input fields, a scatter plot should
   appear (below) giving a visual representation of the approximated
   maximum Sharpe ratio, single asset returns, efficient frontier,
-  Markowitz bullet and tangency portfolio (as explained in the previous
+  Markowitz bullet and tangency portfolio (explained in the <a href="#">Background</a>
   section). You can hover over or click on points on the plot to see the
   portfolios that produce each point on the efficient frontier (as well
   as for the max Sharpe ratio and the information for the single
@@ -77,7 +80,8 @@ Learn about modern portfolio theory - interactively! <a href="#">View live site<
 Paul Fischer
 
 - Email: paulfischerdev@gmail.com
-- Twitter: @PaulFis43236408
+- Twitter: <a href="https://twitter.com/PaulFis43236408">@PaulFis43236408</a>
+- GitHub: <a href="https://github.com/pfischer1687">pfischer1687</a>
 
 ## Dependencies
 
@@ -106,6 +110,7 @@ Paul Fischer
 ## License
 
 © 2022 All rights reserved
+
 Please see the <a href="#">Terms of Service</a> for more details
 
 ## Scripts
@@ -114,3 +119,11 @@ Please see the <a href="#">Terms of Service</a> for more details
 - build: `gatsby build`
 - serve: `gatsby serve`
 - clean: `gatsby clean`
+
+## Repository
+
+git: <a href="https://github.com/pfischer1687/mean-variance-analyzer">https://github.com/pfischer1687/mean-variance-analyzer</a>
+
+## Bugs
+
+<a href="https://github.com/pfischer1687/mean-variance-analyzer">https://github.com/pfischer1687/mean-variance-analyzer</a>

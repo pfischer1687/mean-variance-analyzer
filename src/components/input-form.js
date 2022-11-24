@@ -1,5 +1,5 @@
 import * as React from "react";
-import * as AssetData from "../../data/asset-data-test.json";
+import * as AssetData from "../../data/asset-data.json";
 import Optimizer from "./optimizer.js";
 import { Formik, Field, Form, ErrorMessage, FieldArray } from "formik";
 import * as Yup from "yup";
@@ -7,7 +7,7 @@ import * as styles from "../components/input-form.module.css";
 import { Link } from "gatsby";
 
 export const minNumAssets = 2;
-export const maxNumAssets = 20;
+export const maxNumAssets = 15;
 
 const allTickersSet = new Set(Object.keys(AssetData));
 allTickersSet.delete("default");
