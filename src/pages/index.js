@@ -18,10 +18,13 @@ const IndexPage = () => {
   return (
     <Layout pageTitle="Home">
       <div className={styles.indexGridContainer}>
-        <StaticImage
-          src="../images/mva-logo-large.png"
-          alt="Mean-Variance Analyzer MVA logo"
-        />
+        <div>
+          <StaticImage
+            src="../images/mva-logo-small.png"
+            alt="Mean-Variance Analyzer MVA logo"
+            className={styles.mvaLogo}
+          />
+        </div>
         <div className={styles.headerContainer}>
           <h2 className={styles.heroTextTop}>Mean-Variance Analyzer</h2>
           <h2 className={styles.heroTextBottom} aria-hidden="true">

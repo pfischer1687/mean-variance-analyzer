@@ -45,6 +45,12 @@
     grid-template-columns: 1fr 1fr;
     column-gap: 20px;
   }
+  .mva-logo {
+    width: 51rem;
+    position: absolute;
+    right: 49%;
+    top: 12.3rem;
+  }
   .hero-text-top {
     font-size: 5rem;
     line-height: 5rem;
@@ -101,7 +107,7 @@
     margin-top: 1rem;
     margin-bottom: 3rem;
   }
-  .index-grid-container img {
+  .mva-logo {
     display: none;
   }
   .hero-text-top {
