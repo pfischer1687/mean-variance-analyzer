@@ -1,11 +1,11 @@
 .scatter-plot {
   background-color: white;
-  border-radius: 2rem;
+  border-radius: 1rem;
   margin-bottom: 2rem;
 }
 .pie-chart-element {
   background-color: white;
-  border-radius: 2rem;
+  border-radius: 1rem;
 }
 
 /* Responsive */
@@ -13,7 +13,7 @@
   .scatter-plot {
     width: 70%;
     margin-left: 15%;
-    height: 70vh;
+    height: 30rem;
   }
   .pie-chart-style {
     display: grid;

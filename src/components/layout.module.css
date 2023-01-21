@@ -77,6 +77,7 @@ a:hover {
     list-style: none;
     justify-content: right;
     padding-top: 2rem;
+    padding-bottom: 2rem;
   }
   .footer-link-item {
     padding-right: 7rem;

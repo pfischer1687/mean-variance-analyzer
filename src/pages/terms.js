@@ -514,9 +514,13 @@ const TermsPage = () => {
           agree to be bound by our Privacy Policy, which is incorporated into
           these Terms of Service. Please be advised the Site was developed in
           the United States and is hosted on{" "}
-          <Link to="https://www.gatsbyjs.com/products/cloud/">
+          <a
+            href="https://www.gatsbyjs.com/products/cloud/"
+            target="_blank"
+            rel="noreferrer"
+          >
             Gatsby Cloud
-          </Link>
+          </a>
           , which has a global edge network. By using the Site, you agree not to
           enter any personally identifiable information that is linkable to you.
         </p>

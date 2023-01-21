@@ -3,7 +3,7 @@
   width: 90%;
   position: relative;
   left: 5%;
-  border-radius: 3rem;
+  border-radius: 1rem;
 }
 h2 {
   margin-bottom: -0.5rem;
@@ -23,7 +23,7 @@ h2 {
 .add-asset-button {
   margin-bottom: 1rem;
   color: white;
-  background-color: #096002;
+  background-color: #449504;
   font-size: 1rem;
   border-radius: 0.5rem;
   border: none;
@@ -31,10 +31,13 @@ h2 {
   width: 8rem;
   cursor: pointer;
 }
+.add-asset-button:hover {
+  background-color: #60b000;
+}
 .submit-button {
   margin-bottom: 1rem;
   color: white;
-  background-color: #096002;
+  background-color: #449504;
   font-size: 1rem;
   border-radius: 0.5rem;
   border: none;
@@ -42,6 +45,9 @@ h2 {
   width: 7rem;
   cursor: pointer;
   height: 2.5rem;
+}
+.submit-button:hover {
+  background-color: #60b000;
 }
 .field-error {
   font-size: 1rem;
