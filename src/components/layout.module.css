@@ -149,7 +149,7 @@ a:hover {
   .hamburger-menu {
     position: absolute;
     top: 2rem;
-    right: 3rem;
+    right: 2rem;
     display: block;
     width: 40px;
     cursor: pointer;

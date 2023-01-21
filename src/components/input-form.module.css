@@ -94,4 +94,7 @@ h2 {
     margin-bottom: 1rem;
     text-align: center;
   }
+  .form-labels {
+    text-align: left;
+  }
 }

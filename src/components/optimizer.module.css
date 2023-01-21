@@ -43,11 +43,16 @@
   .pie-chart-style {
     display: grid;
     justify-content: center;
-    text-align: center;
     padding-bottom: 2rem;
   }
   .pie-chart-element {
     padding-bottom: 0.5rem;
     width: 99%;
+  }
+  .pie-chart-info {
+    text-align: left;
+  }
+  .pie-chart-info p {
+    padding-left: 1rem;
   }
 }
