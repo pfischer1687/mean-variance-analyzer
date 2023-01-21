@@ -16,8 +16,8 @@ const Layout = ({ pageTitle, children }) => {
   return (
     <div>
       {/* Desktop navigation menu */}
-      <nav>
-        <ul className={styles.navLinks}>
+      <nav className={styles.navMenu}>
+        <ul className={`${styles.navLinks} ${styles.container}`}>
           <li className={`${styles.navLinkHome} ${styles.buttonText}`}>
             {pageTitle === "Home" ? (
               <span>
@@ -90,7 +90,7 @@ const Layout = ({ pageTitle, children }) => {
       </main>
 
       <footer>
-        <ul className={styles.footerLinks}>
+        <ul className={`${styles.footerLinks} ${styles.container}`}>
           <li className={styles.footerCopyright}>© 2022 All rights reserved</li>
 
           <li className={styles.footerLinkItem}>

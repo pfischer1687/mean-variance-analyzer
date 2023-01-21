@@ -1,3 +1,12 @@
+a {
+  color: #449504;
+  text-decoration: none;
+}
+a:hover {
+  color: #60b000;
+  cursor: pointer;
+  text-decoration: underline;
+}
 .container {
   max-width: 1100px;
   margin: 0 auto;
@@ -34,15 +43,21 @@
   margin-right: auto;
   cursor: pointer;
 }
-.nav-link-text {
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-}
 
 /* Responsive
 ------------------------------*/
 @media screen and (min-width: 750px) {
+  .nav-menu {
+    background-color: #60b000;
+  }
+  .nav-link-text {
+    color: white;
+    font-weight: bold;
+  }
+  .nav-link-text:hover {
+    color: white;
+    text-decoration: none;
+  }
   .nav-link-item {
     padding-right: 5rem;
     transition: all 0.5s;
@@ -61,7 +76,7 @@
     display: flex;
     list-style: none;
     justify-content: right;
-    padding-top: 1rem;
+    padding-top: 2rem;
   }
   .footer-link-item {
     padding-right: 7rem;
@@ -69,11 +84,14 @@
   .footer-link-text {
     color: white;
   }
+  .footer-link-text:hover {
+    color: white;
+  }
   .footer-copyright {
     margin-right: auto;
   }
   .spacer {
-    clip-path: polygon(0 0, 100% 0, 100% 7.5%, 0 35rem);
+    clip-path: polygon(0 0, 100% 0, 100% 7.5%, 0 35.5rem);
   }
 
   /* Button arrows animation on hover */

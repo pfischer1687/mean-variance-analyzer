@@ -2,7 +2,7 @@
   display: grid;
 }
 .hero-text-top {
-  opacity: 0.75;
+  opacity: 0.85;
   margin-bottom: 3.5rem;
 }
 .hero-text-bottom {
@@ -11,7 +11,7 @@
 }
 .header-container div button {
   font-size: 2rem;
-  background-color: #096002;
+  background-color: #449504;
   border-radius: 0.5rem;
   border: none;
   box-shadow: 0 8px 16px 0 rgba(194, 194, 194, 0.2),
@@ -71,12 +71,12 @@
     margin-top: -2.5rem;
   }
   .header-container div button {
-    margin-left: 5rem;
+    margin-left: 2rem;
+    cursor: pointer;
   }
 
   /* Start button arrows animation on hover */
   .button-text span {
-    cursor: pointer;
     display: inline-block;
     position: relative;
     transition: 0.5s;
