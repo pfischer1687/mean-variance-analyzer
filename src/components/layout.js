@@ -50,6 +50,12 @@ const Layout = ({ pageTitle, children }) => {
           </li>
 
           <li className={`${styles.navLinkItem} ${styles.buttonText}`}>
+            <Link to="/background" className={styles.navLinkText}>
+              <span>Background </span>
+            </Link>
+          </li>
+
+          <li className={`${styles.navLinkItem} ${styles.buttonText}`}>
             <Link to="/tutorial" className={styles.navLinkText}>
               <span>Tutorial </span>
             </Link>
@@ -72,15 +78,22 @@ const Layout = ({ pageTitle, children }) => {
       <nav className={styles.mobileNavLinks}>
         {pageTitle === "Home" ? <a href="/">Home</a> : <Link to="/">Home</Link>}
 
+        {pageTitle === "Start" ? (
+          <a href="/start">Start</a>
+        ) : (
+          <Link to="/start">Start</Link>
+        )}
+
         {pageTitle === "Tutorial" ? (
           <a href="/tutorial">Tutorial</a>
         ) : (
           <Link to="/tutorial">Tutorial</Link>
         )}
-        {pageTitle === "Start" ? (
-          <a href="/start">Start</a>
+
+        {pageTitle === "Background" ? (
+          <a href="/background">Background</a>
         ) : (
-          <Link to="/start">Start</Link>
+          <Link to="/background">Background</Link>
         )}
       </nav>
 

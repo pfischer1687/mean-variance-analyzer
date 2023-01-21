@@ -37,11 +37,11 @@ const IndexPage = () => {
               <Link to="/tutorial">tutorial</Link>. Otherwise, click the link
               below to get started!
             </p>
-            <button className={`${styles.hidden} ${styles.buttonText}`}>
-              <Link to="/start">
+            <Link to="/start">
+              <button className={`${styles.hidden} ${styles.buttonText}`}>
                 <span>Get started!</span>
-              </Link>
-            </button>
+              </button>
+            </Link>
           </div>
         </div>
       </div>

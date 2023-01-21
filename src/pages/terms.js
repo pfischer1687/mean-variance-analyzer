@@ -4,6 +4,7 @@ import Seo from "../components/seo";
 import * as styles from "../components/about.module.css";
 import { Link } from "gatsby";
 
+const lastUpdated = "1/21/2023";
 const getDataGithub = "https://github.com/pfischer1687/get-json-data-for-mva";
 const privacyLink = "/privacy";
 const websiteUrl = "https://meanvarianceanalyzermain.gatsbyjs.io/";
@@ -14,7 +15,7 @@ const TermsPage = () => {
     <Layout pageTitle="Terms">
       <div className={styles.textContainer}>
         <h2>Terms of Service</h2>
-        <p>Last updated 11/17/2022</p>
+        <p>Last updated {lastUpdated}</p>
         <h3>INTRODUCTION</h3>
         <p>
           This site was developed by a student ONLY for educational purposes.

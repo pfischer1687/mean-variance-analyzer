@@ -4,6 +4,7 @@ import Seo from "../components/seo";
 import * as styles from "../components/about.module.css";
 import { Link } from "gatsby";
 
+const lastUpdated = "1/21/2023";
 const termsLink = "/terms";
 const sourceCodeLink = "https://github.com/pfischer1687/mean-variance-analyzer";
 const siteTitle = "Mean-Variance Analyzer";
@@ -15,7 +16,7 @@ const PrivacyPage = () => {
     <Layout pageTitle="Privacy">
       <div className={styles.textContainer}>
         <h2>Privacy Policy</h2>
-        <p>Last updated 11/17/2022</p>
+        <p>Last updated {lastUpdated}</p>
         <h3>INTRODUCTION</h3>
         <p>
           This web site was developed by a student ONLY for educational
@@ -26,9 +27,9 @@ const PrivacyPage = () => {
           <Link to={termsLink}>Terms of Service</Link>, otherwise you may not
           use this site. By using the site, you also agree not to enter any
           personally identifiable information that is linkable to you. This is a
-          static web site where all calculations are done on the client's
-          device, and the developer is not aware of any cookies or data that is
-          stored on the client's device or anywhere else beyond the immediate
+          static web site where calculations are done on the client's device,
+          and the developer is not aware of any cookies or data that are stored
+          either on the client's device or anywhere else beyond the immediate
           session of the site's use. You are encouraged to view the site's{" "}
           <a href={sourceCodeLink} target="_blank" rel="noreferrer">
             source code

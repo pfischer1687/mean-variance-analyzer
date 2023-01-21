@@ -19,7 +19,7 @@
   padding-bottom: 0.5rem;
   width: 13rem;
 }
-.header-container div button a {
+.button-text span {
   color: white;
   text-decoration: none;
   font-size: 1.5rem;
