@@ -102,7 +102,7 @@ const Layout = ({ pageTitle, children }) => {
         <div className={styles.spacer}></div>
       </main>
 
-      <footer>
+      <footer style={pageTitle === "About" ? { paddingTop: "1rem" } : null}>
         <ul className={`${styles.footerLinks} ${styles.container}`}>
           <li className={styles.footerCopyright}>© 2022 All rights reserved</li>
 

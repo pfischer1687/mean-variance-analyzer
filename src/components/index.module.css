@@ -67,12 +67,13 @@
   .header-container p {
     font-size: 1.25rem;
     padding-left: 2rem;
-    max-width: 30rem;
+    max-width: 27rem;
     margin-top: -2.5rem;
   }
   .header-container div button {
     margin-left: 2rem;
     cursor: pointer;
+    margin-bottom: 3rem;
   }
 
   /* Start button arrows animation on hover */
@@ -111,18 +112,22 @@
     display: none;
   }
   .hero-text-top {
-    font-size: 4rem;
+    font-size: 3.75rem;
     line-height: 4rem;
+    width: 70%;
+    margin-left: 15%;
   }
   .hero-text-bottom {
-    font-size: 4rem;
+    font-size: 3.75rem;
     line-height: 4rem;
+    width: 70%;
+    margin-left: 15%;
   }
   .header-container p {
     font-size: 1.1rem;
-    margin-left: 10%;
-    max-width: 80%;
-    margin-top: -1.5rem;
+    margin-left: 15%;
+    width: 70%;
+    margin-top: -2rem;
     margin-bottom: 1.5rem;
     text-align: left;
   }
