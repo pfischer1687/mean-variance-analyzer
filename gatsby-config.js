@@ -29,7 +29,11 @@ module.exports = {
         theme_color: `#096002`,
         display: `standalone`,
         icon: "src/favicon.png",
+        icon_options: {
+          purpose: `any maskable`,
+        },
       },
     },
+    "gatsby-plugin-offline",
   ],
 };
