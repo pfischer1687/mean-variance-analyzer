@@ -63,7 +63,7 @@ const Layout = ({ pageTitle, children }) => {
 
           <li className={`${styles.navLinkItem} ${styles.buttonText}`}>
             <Link to="/start" className={styles.navLinkText}>
-              <span>Start </span>
+              <span>Analyzer</span>
             </Link>
           </li>
         </ul>
@@ -79,9 +79,9 @@ const Layout = ({ pageTitle, children }) => {
         {pageTitle === "Home" ? <a href="/">Home</a> : <Link to="/">Home</Link>}
 
         {pageTitle === "Start" ? (
-          <a href="/start">Start</a>
+          <a href="/start">Analyzer</a>
         ) : (
-          <Link to="/start">Start</Link>
+          <Link to="/start">Analyzer</Link>
         )}
 
         {pageTitle === "Tutorial" ? (
