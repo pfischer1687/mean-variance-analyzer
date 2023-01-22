@@ -70,6 +70,10 @@ h2 {
   .container {
     padding: 1rem 5rem;
   }
+  .header-text {
+    margin-left: 26%;
+    padding-right: 26%;
+  }
   .form-labels {
     margin-left: 26%;
     padding-right: 26%;
@@ -94,7 +98,9 @@ h2 {
     margin-bottom: 1rem;
     text-align: center;
   }
-  .form-labels {
+  .header-text {
     text-align: left;
+    width: 85%;
+    margin-left: 7%;
   }
 }

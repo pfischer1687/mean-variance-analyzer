@@ -68,11 +68,11 @@ const InputSchema = Yup.object().shape({
 const genInputForm = (inputForm) => {
   return (
     <div className={styles.container}>
-      <h2 className={styles.formLabels}>
+      <h2 className={`${styles.headerText}`}>
         Please enter the sample portfolio's information below.
       </h2>
 
-      <p className={styles.formLabels}>
+      <p className={`${styles.headerText}`}>
         If you have any questions, please refer to the{" "}
         <Link to="/tutorial">Tutorial</Link>. Note that by using this site, you
         agree to the <Link to="/terms">Terms of Service</Link>.
