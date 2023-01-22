@@ -38,7 +38,10 @@ const IndexPage = () => {
               below to get started!
             </p>
             <Link to="/start">
-              <button className={`${styles.hidden} ${styles.buttonText}`}>
+              <button
+                id="getStartedButton"
+                className={`${styles.hidden} ${styles.buttonText}`}
+              >
                 <span>Get started!</span>
               </button>
             </Link>

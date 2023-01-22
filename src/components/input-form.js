@@ -131,6 +131,7 @@ const genInputForm = (inputForm) => {
 
                         {values.assets.length <= minNumAssets ? null : (
                           <button
+                            id="removeAssetButton"
                             type="button"
                             onClick={() => remove(index)}
                             className={styles.removeButton}
@@ -150,6 +151,7 @@ const genInputForm = (inputForm) => {
 
                   {values.assets.length >= maxNumAssets ? null : (
                     <button
+                      id="addAssetButton"
                       className={styles.addAssetButton}
                       type="button"
                       onClick={() => insert(values.assets.length, "")}
@@ -197,7 +199,11 @@ const genInputForm = (inputForm) => {
                   </div>
 
                   <div>
-                    <button type="submit" className={styles.submitButton}>
+                    <button
+                      id="submitAssetsButton"
+                      type="submit"
+                      className={styles.submitButton}
+                    >
                       Submit
                     </button>
                   </div>
