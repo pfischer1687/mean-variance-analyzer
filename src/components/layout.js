@@ -69,7 +69,11 @@ const Layout = ({ pageTitle, children }) => {
         </ul>
 
         {/* Mobile navigation hamburger button */}
-        <button id="hamburgerMenuButton" className={styles.hamburgerMenu}>
+        <button
+          id="hamburgerMenuButton"
+          aria-label="hamburgerMenuButton"
+          className={styles.hamburgerMenu}
+        >
           <div className={styles.hamburgerMenuBar}></div>
         </button>
       </nav>
