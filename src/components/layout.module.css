@@ -152,7 +152,6 @@ a:hover {
     right: 2rem;
     display: block;
     width: 40px;
-    cursor: pointer;
     appearance: none;
     background: none;
     outline: none;
@@ -195,6 +194,7 @@ a:hover {
   }
   .mobile-nav-links-is-active {
     left: 0;
+    position: absolute;
   }
   .mobile-nav-links a {
     display: block;
