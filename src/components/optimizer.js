@@ -318,7 +318,7 @@ const Optimizer = ({ tickers, constraintPct, riskFreeRatePct, children }) => {
             idx: maxSharpeRatio[1],
           },
         ],
-        pointRadius: 5,
+        hitRadius: 7,
         backgroundColor: "rgba(255, 255, 0, 1)",
       },
       {
@@ -329,7 +329,7 @@ const Optimizer = ({ tickers, constraintPct, riskFreeRatePct, children }) => {
           y: AssetData[ticker].annRetPct,
           ticker: ticker,
         })),
-        pointRadius: 5,
+        hitRadius: 7,
         backgroundColor: "rgba(255, 100, 100, 1)",
       },
       {
@@ -341,7 +341,7 @@ const Optimizer = ({ tickers, constraintPct, riskFreeRatePct, children }) => {
           y: retArr[idx],
           idx: idx,
         })),
-        pointRadius: 5,
+        hitRadius: 7,
         backgroundColor: "rgba(0, 0, 255, 1)",
       },
       {
