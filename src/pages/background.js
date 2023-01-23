@@ -49,9 +49,8 @@ const BackgroundPage = () => {
             <Link to="#references">[5]</Link>
           </sup>
         </p>
-        <div>
+        <div className={`${styles.latexImage} ${styles.latexImageD}`}>
           <StaticImage
-            className={`${styles.latexImage} ${styles.latexImageD}`}
             src="../images/differential-return.png"
             alt="Equation for differential return"
           />
@@ -60,9 +59,8 @@ const BackgroundPage = () => {
           We then define D-bar as the average value of D<sub>t</sub> over the
           time period from t=1 to T:
         </p>
-        <div>
+        <div className={`${styles.latexImage} ${styles.latexImageA}`}>
           <StaticImage
-            className={`${styles.latexImage} ${styles.latexImageA}`}
             src="../images/average-return.png"
             alt="Equation for average differential return"
           />
@@ -71,9 +69,8 @@ const BackgroundPage = () => {
           We can define the standard deviation during the period σ<sub>D</sub>{" "}
           as:
         </p>
-        <div>
+        <div className={`${styles.latexImage} ${styles.latexImageSt}`}>
           <StaticImage
-            className={`${styles.latexImage} ${styles.latexImageSt}`}
             src="../images/standard-deviation.png"
             alt="Equation for standard deviation"
           />
@@ -82,9 +79,8 @@ const BackgroundPage = () => {
           We can then define the ex post Sharpe Ratio as the ratio of the
           historic average differential return to its standard deviation:
         </p>
-        <div>
+        <div className={`${styles.latexImage} ${styles.latexImageS}`}>
           <StaticImage
-            className={`${styles.latexImage} ${styles.latexImageS}`}
             src="../images/sharpe-ratio.png"
             alt="Equation for ex post Sharpe ratio"
           />
@@ -134,9 +130,8 @@ const BackgroundPage = () => {
             <Link to="#references">[7]</Link>
           </sup>
         </p>
-        <div>
+        <div className={`${styles.latexImage} ${styles.latexImageSCalc}`}>
           <StaticImage
-            className={`${styles.latexImage} ${styles.latexImageSCalc}`}
             src="../images/maximize-sharpe.png"
             alt="Equation for ex post Sharpe ratio in terms of weights"
           />
@@ -250,6 +245,7 @@ const BackgroundPage = () => {
               href="https://fred.stlouisfed.org/series/TB3MS"
               target="_blank"
               rel="noreferrer"
+              className={styles.refLink}
             >
               https://fred.stlouisfed.org/series/TB3MS
             </a>
@@ -262,6 +258,7 @@ const BackgroundPage = () => {
               href="https://www.investopedia.com/terms/s/sharperatio.asp"
               target="_blank"
               rel="noreferrer"
+              className={styles.refLink}
             >
               https://www.investopedia.com/terms/s/sharperatio.asp
             </a>
@@ -272,6 +269,7 @@ const BackgroundPage = () => {
               href="https://people.stat.sc.edu/sshen/events/backtesting/reference/maximizing%20the%20sharpe%20ratio.pdf"
               target="_blank"
               rel="noreferrer"
+              className={styles.refLink}
             >
               https://people.stat.sc.edu/sshen/events/backtesting/reference/maximizing%20the%20sharpe%20ratio.pdf
             </a>
@@ -284,6 +282,7 @@ const BackgroundPage = () => {
               href="https://www.tandfonline.com/doi/abs/10.2469/faj.v58.n4.2453"
               target="_blank"
               rel="noreferrer"
+              className={styles.refLink}
             >
               doi:10.2469/faj.v58.n4.2453
             </a>
@@ -296,6 +295,7 @@ const BackgroundPage = () => {
               href="https://people.duke.edu/~charvey/Teaching/BA453_2006/Idzorek_onBL.pdf"
               target="_blank"
               rel="noreferrer"
+              className={styles.refLink}
             >
               https://people.duke.edu/~charvey/Teaching/BA453_2006/Idzorek_onBL.pdf
             </a>

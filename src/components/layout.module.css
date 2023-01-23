@@ -137,6 +137,7 @@ a {
     list-style: none;
     margin-left: 15%;
     margin-top: -1rem;
+    padding-bottom: 1rem;
   }
   .footer-link-item {
     text-align: left;

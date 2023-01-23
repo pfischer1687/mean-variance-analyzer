@@ -64,6 +64,9 @@
   li {
     margin: 1rem 0;
   }
+  .ref-link {
+    word-break: break-all;
+  }
   ul {
     padding: 0;
   }
