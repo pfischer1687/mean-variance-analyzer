@@ -215,13 +215,15 @@ const BackgroundPage = () => {
           <li>
             Press release. NobelPrize.org. Nobel Prize Outreach AB 2022. Fri. 18
             Nov 2022.{" "}
-            <a
-              href="https://www.nobelprize.org/prizes/economic-sciences/1990/press-release/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              https://www.nobelprize.org/prizes/economic-sciences/1990/press-release/
-            </a>
+            <span className={styles.refLink}>
+              <a
+                href="https://www.nobelprize.org/prizes/economic-sciences/1990/press-release/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                https://www.nobelprize.org/prizes/economic-sciences/1990/press-release/
+              </a>
+            </span>
             .
           </li>
           <li>
@@ -240,39 +242,44 @@ const BackgroundPage = () => {
           <li>
             Board of Governors of the Federal Reserve System (US), 3-Month
             Treasury Bill Secondary Market Rate, Discount Basis [TB3MS],
-            retrieved from FRED, Federal Reserve Bank of St. Louis;{" "}
-            <a
-              href="https://fred.stlouisfed.org/series/TB3MS"
-              target="_blank"
-              rel="noreferrer"
-              className={styles.refLink}
-            >
-              https://fred.stlouisfed.org/series/TB3MS
-            </a>
-            , November 17, 2022.
+            retrieved from FRED, Federal Reserve Bank of St. Louis. November 17,
+            2022.{" "}
+            <span className={styles.refLink}>
+              <a
+                href="https://fred.stlouisfed.org/series/TB3MS"
+                target="_blank"
+                rel="noreferrer"
+              >
+                https://fred.stlouisfed.org/series/TB3MS
+              </a>
+            </span>
+            .
           </li>
           <li>
             Fernando, Jason. "Sharpe Ratio Formula and Definition with
             Examples." Investopedia. June 06, 2022.{" "}
-            <a
-              href="https://www.investopedia.com/terms/s/sharperatio.asp"
-              target="_blank"
-              rel="noreferrer"
-              className={styles.refLink}
-            >
-              https://www.investopedia.com/terms/s/sharperatio.asp
-            </a>
+            <span className={styles.refLink}>
+              <a
+                href="https://www.investopedia.com/terms/s/sharperatio.asp"
+                target="_blank"
+                rel="noreferrer"
+              >
+                https://www.investopedia.com/terms/s/sharperatio.asp
+              </a>
+            </span>
+            .
           </li>
           <li>
             "Maximizing the Sharpe ratio." IEOR 4500.{" "}
-            <a
-              href="https://people.stat.sc.edu/sshen/events/backtesting/reference/maximizing%20the%20sharpe%20ratio.pdf"
-              target="_blank"
-              rel="noreferrer"
-              className={styles.refLink}
-            >
-              https://people.stat.sc.edu/sshen/events/backtesting/reference/maximizing%20the%20sharpe%20ratio.pdf
-            </a>
+            <span className={styles.refLink}>
+              <a
+                href="https://people.stat.sc.edu/sshen/events/backtesting/reference/maximizing%20the%20sharpe%20ratio.pdf"
+                target="_blank"
+                rel="noreferrer"
+              >
+                https://people.stat.sc.edu/sshen/events/backtesting/reference/maximizing%20the%20sharpe%20ratio.pdf
+              </a>
+            </span>
             .
           </li>
           <li>
@@ -282,7 +289,6 @@ const BackgroundPage = () => {
               href="https://www.tandfonline.com/doi/abs/10.2469/faj.v58.n4.2453"
               target="_blank"
               rel="noreferrer"
-              className={styles.refLink}
             >
               doi:10.2469/faj.v58.n4.2453
             </a>
@@ -291,14 +297,16 @@ const BackgroundPage = () => {
           <li>
             Idzorek, Thomas M. "A step-by-step guide to the Black-Litterman
             model." July 20, 2004.{" "}
-            <a
-              href="https://people.duke.edu/~charvey/Teaching/BA453_2006/Idzorek_onBL.pdf"
-              target="_blank"
-              rel="noreferrer"
-              className={styles.refLink}
-            >
-              https://people.duke.edu/~charvey/Teaching/BA453_2006/Idzorek_onBL.pdf
-            </a>
+            <span className={styles.refLink}>
+              <a
+                href="https://people.duke.edu/~charvey/Teaching/BA453_2006/Idzorek_onBL.pdf"
+                target="_blank"
+                rel="noreferrer"
+              >
+                https://people.duke.edu/~charvey/Teaching/BA453_2006/Idzorek_onBL.pdf
+              </a>
+            </span>
+            .
           </li>
         </ol>
       </div>
