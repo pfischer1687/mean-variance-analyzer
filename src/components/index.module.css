@@ -44,6 +44,7 @@
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     column-gap: 20px;
+    padding-bottom: 3.5rem;
   }
   .mva-logo {
     width: 51rem;

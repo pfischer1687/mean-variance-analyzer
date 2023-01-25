@@ -2,7 +2,7 @@ import * as React from "react";
 import * as AssetData from "../../data/asset-data.json";
 import { Chart as ChartJS, registerables } from "chart.js";
 import { Chart, Pie } from "react-chartjs-2";
-import { minNumAssets, maxNumAssets } from "./input-form.js";
+import { MIN_NUM_ASSETS, MAX_NUM_ASSETS } from "./input-form.js";
 import * as styles from "./optimizer.module.css";
 
 const numTrials = 500000;
@@ -24,12 +24,12 @@ const arrDotProd = (arr1, arr2) => {
     );
   }
 
-  let prodSum = 0;
+  let sum = 0;
   for (let i = 0; i < arr1.length; i++) {
-    prodSum += arr1[i] * arr2[i];
+    sum += arr1[i] * arr2[i];
   }
 
-  return prodSum;
+  return sum;
 };
 
 /**
@@ -58,53 +58,79 @@ const arrMatProduct = (arr, mat) => {
 };
 
 /**
- * @param {number} arrLength
+ * @param {number} numWeights
+ * @return {Object} weights
+ * @return {number[]} weights.weights
+ * @return {number} weights.sum
+ */
+const randomWeights = (numWeights) => {
+  // Returns array of random weights (helper function for genNormRandWeights())
+  let weights = [];
+  let sum = 0;
+  const feigenbaumConst = 4.669201609102991;
+  for (let i = 0; i < numWeights; i++) {
+    weights[i] = Math.random() ** feigenbaumConst; // Exponent helps spread out Markowitz bullet
+    sum += weights[i];
+  }
+
+  return {
+    weights: weights,
+    sum: sum,
+  };
+};
+
+/**
+ * @param {Object} weights
+ * @param {number[]} weights.weights
+ * @param {number} weights.sum
  * @param {number} constraint
  * @return {number[]}
  */
-const genNormRandWeightArr = (arrLength, constraint) => {
-  // Returns a normalized (sum = 1) array of positive weights, each less than a constraint
-  if (arrLength < minNumAssets || arrLength > maxNumAssets) {
-    throw new Error("Expected 2 <= arrLength <= 20");
-  } else if (constraint < 1 / arrLength || constraint > 1) {
-    throw new Error("Expected constraint in [1/arrLength, 1]");
-  }
-
-  // Generate array of random weights
-  let res = [];
-  let runSum = 0;
-  for (let i = 0; i < arrLength; i++) {
-    res[i] = Math.random() ** 4.669201609102991; // Exponent helps spread out Markowitz bullet
-    runSum += res[i];
-  }
-
-  // Normalize array keeping track of any values above the constraint
+const normalizeWeights = (weights, constraint) => {
+  // Returns a normalized array of weights by first subjecting an array to a constraint, then redistributing any excess, and then randomly shuffling it to avoid first index bias (helper function for genNormRandWeights())
   let excessVal = 0;
-  for (let i = 0; i < arrLength; i++) {
-    res[i] /= runSum;
-    if (res[i] > constraint) {
-      excessVal += res[i] - constraint;
-      res[i] = constraint;
+  let size = weights.weights.length;
+  for (let i = 0; i < size; i++) {
+    weights.weights[i] /= weights.sum;
+    if (weights.weights[i] > constraint) {
+      excessVal += weights.weights[i] - constraint;
+      weights.weights[i] = constraint;
     }
   }
 
-  // Redistribute excess if constraint is not met for each element
   if (excessVal > 0) {
     let diff = 0;
-    for (let i = 0; i < arrLength; i++) {
-      diff = constraint - res[i];
+    for (let i = 0; i < size; i++) {
+      diff = constraint - weights.weights[i];
       if (diff >= excessVal) {
-        res[i] += excessVal;
+        weights.weights[i] += excessVal;
         break;
       }
+      weights.weights[i] = constraint;
       excessVal -= diff;
-      res[i] = constraint;
     }
   }
 
-  // Randomly shuffle final result to avoid first index bias
-  res.sort(() => Math.random() - 0.5);
-  return res;
+  weights.weights.sort(() => Math.random() - 0.5);
+  return weights.weights;
+};
+
+/**
+ * @param {number} size
+ * @param {number} constraint
+ * @return {number[]}
+ */
+const genNormRandWeights = (size, constraint) => {
+  // Returns a normalized (sum = 1) array of positive weights, each less than or equal to a given constraint
+  if (size < MIN_NUM_ASSETS || size > MAX_NUM_ASSETS) {
+    throw new Error(`Expected ${MIN_NUM_ASSETS} <= size <= ${MAX_NUM_ASSETS}`);
+  } else if (constraint < 1 / size || constraint > 1) {
+    throw new Error("Expected constraint in [1/size, 1]");
+  }
+
+  const weights = randomWeights(size);
+  let normWeights = normalizeWeights(weights, constraint);
+  return normWeights;
 };
 
 /**
@@ -113,8 +139,7 @@ const genNormRandWeightArr = (arrLength, constraint) => {
  * @return {JSX}
  */
 const Optimizer = ({ tickers, constraintPct, riskFreeRatePct, children }) => {
-  // Returns Optimizer React component which runs Monte Carlo simulation of portfolios with random allocations,
-  // plots them, and displays the mean-variance optimal portfolio
+  // Returns Optimizer React component which runs Monte Carlo simulation of portfolios with random allocations, plots them on an interactive scatter plot, and displays the mean-variance optimal portfolio on an interactive pie chart
   const constraint = constraintPct / 100;
 
   let meanRetArr = [];
@@ -148,7 +173,7 @@ const Optimizer = ({ tickers, constraintPct, riskFreeRatePct, children }) => {
   let minRisk = []; // [val, index]
   let maxRisk = 0;
   for (let i = 0; i < numTrials; i++) {
-    weightsMat[i] = genNormRandWeightArr(tickers.length, constraint);
+    weightsMat[i] = genNormRandWeights(tickers.length, constraint);
     retArr[i] = arrDotProd(meanRetArr, weightsMat[i]);
     riskArr[i] = Math.sqrt(arrMatProduct(weightsMat[i], covMatrix));
     sharpeRatio = (retArr[i] - riskFreeRatePct) / riskArr[i];

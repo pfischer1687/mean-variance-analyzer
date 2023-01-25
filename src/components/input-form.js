@@ -6,17 +6,32 @@ import * as Yup from "yup";
 import * as styles from "../components/input-form.module.css";
 import { Link } from "gatsby";
 
-export const minNumAssets = 2;
-export const maxNumAssets = 15;
+export const MIN_NUM_ASSETS = 2;
+export const MAX_NUM_ASSETS = 15;
 
-const allTickersSet = new Set(Object.keys(AssetData));
-allTickersSet.delete("default");
+class AssetCache {
+  static #assetDataKeys = new Set(Object.keys(AssetData));
+  static #keysFlag = false;
+  static #assetDatalist = Object.keys(AssetData).map((ticker, tickerIndex) => (
+    <option key={tickerIndex} value={ticker}>
+      {`${ticker} (${AssetData[ticker].title})`}
+    </option>
+  ));
+  static getAssetDatalist = () => AssetCache.#assetDatalist;
+  static getAssetDataKeys = () => {
+    if (!AssetCache.#keysFlag) {
+      AssetCache.#assetDataKeys.delete("default");
+      AssetCache.#keysFlag = true;
+    }
+    return AssetCache.#assetDataKeys;
+  };
+}
 
 /**
  * @param {string[]} arr
  * @return {string[]}
  */
-const filterStrArr = (arr) => {
+const toSortedUpper = (arr) => {
   // Return a copy of an array that contains only uppercase non-null strings in alphabetical order
   return arr
     .filter(Boolean)
@@ -24,16 +39,31 @@ const filterStrArr = (arr) => {
     .sort();
 };
 
+/**
+ * @param {string[]} arr
+ * @return {boolean}
+ */
+const isUnique = (arr) => {
+  // Return boolean value representing whether a string array's values are unique by filtering the null values from the array, turning it into a hash set, and then comparing the size of the set to the length of the filtered array (helper function for InputSchema)
+  let filtered = toSortedUpper(arr);
+  let unique = new Set(filtered);
+  return unique.size === filtered.length;
+};
+
 const InputSchema = Yup.object().shape({
   assets: Yup.array(Yup.string())
-    .compact((v) => {
-      return v === undefined || !allTickersSet.has(v.toUpperCase());
+    .compact((v) => v === undefined)
+    .min(2, "Must have at least 2 asset tickers")
+    .test("IsInDatalist", "Asset tickers must be in datalist", (tickers) => {
+      for (let ticker of tickers) {
+        if (!AssetCache.getAssetDataKeys().has(ticker.toUpperCase()))
+          return false;
+      }
+      return true;
     })
-    .min(2, "Must have at least 2 valid asset tickers")
-    .test("Unique", "Asset tickers must be unique", (values) => {
-      let fValues = filterStrArr(values);
-      return new Set(fValues).size === fValues.length;
-    })
+    .test("Unique", "Asset tickers must be unique", (tickers) =>
+      isUnique(tickers)
+    )
     .required("Required"),
   constraintPct: Yup.number()
     .typeError("Must be a number")
@@ -88,7 +118,7 @@ const genInputForm = (inputForm) => {
         onSubmit={(values) => {
           inputForm.setState({
             showPlot: true,
-            tickers: filterStrArr(values.assets),
+            tickers: toSortedUpper(values.assets),
             ticker: values.assets,
             constraintPct: values.constraintPct,
             riskFreeRatePct: values.riskFreeRatePct,
@@ -120,16 +150,10 @@ const genInputForm = (inputForm) => {
                         />
 
                         <datalist id="assets-list">
-                          {Array.from(allTickersSet).map(
-                            (ticker, tickerIndex) => (
-                              <option key={tickerIndex} value={ticker}>
-                                {`${ticker} (${AssetData[ticker].title})`}
-                              </option>
-                            )
-                          )}
+                          {AssetCache.getAssetDatalist()}
                         </datalist>
 
-                        {values.assets.length <= minNumAssets ? null : (
+                        {values.assets.length <= MIN_NUM_ASSETS ? null : (
                           <button
                             id="removeAssetButton"
                             type="button"
@@ -149,7 +173,7 @@ const genInputForm = (inputForm) => {
                     />
                   </div>
 
-                  {values.assets.length >= maxNumAssets ? null : (
+                  {values.assets.length >= MAX_NUM_ASSETS ? null : (
                     <button
                       id="addAssetButton"
                       className={styles.addAssetButton}
