@@ -17,7 +17,7 @@ about the history of portfolio optimization. To get started, click
 either the "Get started!" link on the home page (below) or the "Start"
 link in the navigation menu.
 
-<img src="../images/tutorial-home.png" alt="MVA home screen">
+[MVA home screen](./src/images/tutorial-home.png)
 
 This should take you to the start page input form (below). Enter all
 the assets of interest into the corrsponding input fields. You can
@@ -39,7 +39,7 @@ this site's development (November 2022: 3.72%) but you can enter any
 value between -50% and 50% to use a custom rate, asset, or portfolio
 as your benchmark.
 
-<img src="../images/tutorial-input-form.png" alt="Start page input form">
+[Start page input form](./src/images/tutorial-input-form.png)
 
 If there are no errors in the input fields, a scatter plot should
 appear (below) giving a visual representation of the approximated
@@ -52,7 +52,7 @@ information for each single asset. Below that will be a pie chart
 visualizing the allocations that produced the maximum sharpe ratio
 with its corresponding information.
 
-<img src="../images/tutorial-optimizer.png" alt="Sample Markowitz bullet scatter plot with optimal Sharpe ratio pie chart">
+[Sample Markowitz bullet scatter plot with optimal Sharpe ratio pie chart](./src/images/tutorial-optimizer.png)
 
 Now you're ready to have some fun experimenting. Thank you for
 visiting this site and reading the tutorial. I hope you enjoy it and
