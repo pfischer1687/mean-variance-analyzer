@@ -4,11 +4,11 @@ import Seo from "../components/seo";
 import * as styles from "../components/about.module.css";
 import { Link } from "gatsby";
 
-const lastUpdated = "1/21/2023";
+const lastUpdated = "1/25/2023";
 const termsLink = "/terms";
 const sourceCodeLink = "https://github.com/pfischer1687/mean-variance-analyzer";
 const siteTitle = "Mean-Variance Analyzer";
-const websiteUrl = "https://meanvarianceanalyzermain.gatsbyjs.io/";
+const websiteUrl = "https://mvanalyzer.dev/";
 const devsWebsite = "https://paulfischer.dev/";
 
 const PrivacyPage = () => {
