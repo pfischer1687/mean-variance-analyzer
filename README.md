@@ -17,7 +17,7 @@ about the history of portfolio optimization. To get started, click
 either the "Get started!" link on the home page (below) or the "Start"
 link in the navigation menu.
 
-[MVA home screen](./src/images/tutorial-home.png)
+![MVA home screen](./src/images/tutorial-home.png "MVA home screen")
 
 This should take you to the start page input form (below). Enter all
 the assets of interest into the corrsponding input fields. You can
@@ -32,14 +32,14 @@ two unique tickers from the dataset and you can press the "+ Add
 Asset" button to add up to 15 assets. Once you have chosen all your
 assets, you have the option to set the maximum allocation that can be
 given to any individual asset in the portfolio (the default is 100%).
-This number must be larger than $100\% / (#assets - 1)$ and less than or
+This number must be larger than 100% / (#assets - 1) and less than or
 equal to 100%. Then you have the option to enter a custom benchmark -
 the default value is the the 3 month Treasury bill rate at the time of
 this site's development (November 2022: 3.72%) but you can enter any
 value between -50% and 50% to use a custom rate, asset, or portfolio
 as your benchmark.
 
-[Start page input form](./src/images/tutorial-input-form.png)
+![Start page input form](./src/images/tutorial-input-form.png "Start page input form")
 
 If there are no errors in the input fields, a scatter plot should
 appear (below) giving a visual representation of the approximated
@@ -52,7 +52,7 @@ information for each single asset. Below that will be a pie chart
 visualizing the allocations that produced the maximum sharpe ratio
 with its corresponding information.
 
-[Sample Markowitz bullet scatter plot with optimal Sharpe ratio pie chart](./src/images/tutorial-optimizer.png)
+![Sample Markowitz bullet scatter plot with optimal Sharpe ratio pie chart](./src/images/tutorial-optimizer.png "Sample Markowitz bullet scatter plot with optimal Sharpe ratio pie chart")
 
 Now you're ready to have some fun experimenting. Thank you for
 visiting this site and reading the tutorial. I hope you enjoy it and
