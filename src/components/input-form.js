@@ -10,20 +10,29 @@ export const MIN_NUM_ASSETS = 2;
 export const MAX_NUM_ASSETS = 15;
 
 class AssetCache {
-  static #assetDataKeys = new Set(Object.keys(AssetData));
-  static #keysFlag = false;
-  static #assetDatalist = Object.keys(AssetData).map((ticker, tickerIndex) => (
-    <option key={tickerIndex} value={ticker}>
-      {`${ticker} (${AssetData[ticker].title})`}
-    </option>
-  ));
-  static getAssetDatalist = () => AssetCache.#assetDatalist;
-  static getAssetDataKeys = () => {
-    if (!AssetCache.#keysFlag) {
-      AssetCache.#assetDataKeys.delete("default");
-      AssetCache.#keysFlag = true;
+  static #cacheFlag = false;
+  static #assetCache = { tickers: new Set(), datalist: [] };
+
+  static #setAssetCache = () => {
+    if (!AssetCache.#cacheFlag) {
+      let tickerIndex = 0;
+      for (let ticker in AssetData) {
+        AssetCache.#assetCache.tickers.add(ticker);
+        AssetCache.#assetCache.datalist.push(
+          <option key={tickerIndex} value={ticker}>
+            {`${ticker} (${AssetData[ticker].title})`}
+          </option>
+        );
+        ++tickerIndex;
+      }
+      AssetCache.#assetCache.tickers.delete("default");
+      AssetCache.#assetCache.datalist.pop();
+      AssetCache.#cacheFlag = true;
     }
-    return AssetCache.#assetDataKeys;
+  };
+  static getAssetCache = () => {
+    AssetCache.#setAssetCache();
+    return AssetCache.#assetCache;
   };
 }
 
@@ -54,9 +63,9 @@ const InputSchema = Yup.object().shape({
   assets: Yup.array(Yup.string())
     .compact((v) => v === undefined)
     .min(2, "Must have at least 2 asset tickers")
-    .test("IsInDatalist", "Asset tickers must be in datalist", (tickers) => {
-      for (let ticker of tickers) {
-        if (!AssetCache.getAssetDataKeys().has(ticker.toUpperCase()))
+    .test("IsInDatalist", "Asset tickers must be in datalist", (assets) => {
+      for (let ticker of assets) {
+        if (!AssetCache.getAssetCache().tickers.has(ticker.toUpperCase()))
           return false;
       }
       return true;
@@ -67,16 +76,20 @@ const InputSchema = Yup.object().shape({
     .required("Required"),
   constraintPct: Yup.number()
     .typeError("Must be a number")
-    .test("MinAssets", "Must have at least 2 asset tickers", (v, context) => {
-      let numAssets = parseFloat(context.parent.assets.length);
-      return numAssets >= 2;
-    })
+    .test(
+      "MinAssets",
+      "Must have at least 2 asset tickers",
+      (constrPct, context) => {
+        let numAssets = parseFloat(context.parent.assets.length);
+        return numAssets >= 2;
+      }
+    )
     .test(
       "Min",
       "Max allocation must be such that: 100% / (#assets - 1) <= allocation <= 100%",
-      (v, context) => {
+      (constrPct, context) => {
         let numAssets = parseFloat(context.parent.assets.length);
-        return v >= 100 / (numAssets - 1);
+        return constrPct >= 100 / (numAssets - 1);
       }
     )
     .max(
@@ -150,7 +163,7 @@ const genInputForm = (inputForm) => {
                         />
 
                         <datalist id="assets-list">
-                          {AssetCache.getAssetDatalist()}
+                          {AssetCache.getAssetCache().datalist}
                         </datalist>
 
                         {values.assets.length <= MIN_NUM_ASSETS ? null : (
