@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://mvanalyzer.dev/">
-    <img alt="MVA logo" src="./src/favicon.png" width="60" />
+    <img alt="MVA logo" src="./src/images/mva-logo-small.png" style="max-width: 295px;" />
   </a>
 </p>
 <h1 align="center">
@@ -14,17 +14,17 @@ Learn about modern portfolio theory - interactively! [View live site](https://mv
 Welcome to Mean-Variance Analyzer! MVA is an educational tool meant to
 help people new to financial engineering start their journey learning
 about the history of portfolio optimization. To get started, click
-either the "Get started!" link on the home page (below) or the "Start"
+either the "Get started!" link on the home page (below) or the "Analyzer"
 link in the navigation menu.
 
-![MVA home screen](./src/images/tutorial-home.png "MVA home screen")
+<img src="./src/images/tutorial-home.png" alt="MVA home screen" style="border-radius: 1rem;max-width: 600px;">
 
-This should take you to the start page input form (below). Enter all
+This should take you to the input form (below). Enter all
 the assets of interest into the corrsponding input fields. You can
 start typing a ticker or company name and if it is in the preloaded
 dataset of over 100 popular assets it should appear in the dropdown
-datalist and be clickable (you can read more about how the data was
-collected [here](https://github.com/pfischer1687/get-json-data-for-mva) -
+datalist and be clickable (you are encouraged to read more about
+[how the data was collected](https://github.com/pfischer1687/get-json-data-for-mva) -
 note that the developer is not liable for the accuracy or freshness
 of any data or information given on the site as per the
 [Terms of Service](https://mvanalyzer.dev/terms/)). You must enter at least
@@ -39,10 +39,10 @@ this site's development (November 2022: 3.72%) but you can enter any
 value between -50% and 50% to use a custom rate, asset, or portfolio
 as your benchmark.
 
-![Start page input form](./src/images/tutorial-input-form.png "Start page input form")
+<img src="./src/images/tutorial-input-form.png" alt="Start page input form" style="border-radius: 1rem;max-width: 600px;">
 
-If there are no errors in the input fields, a scatter plot should
-appear (below) giving a visual representation of the approximated
+If there are no errors in the input fields, a scatter plot will
+appear (example below) giving a visual representation of the approximated
 maximum Sharpe ratio, single asset returns, efficient frontier,
 Markowitz bullet and tangency portfolio (explained on the
 [Background](https://mvanalyzer.dev/background/) page). You can hover over or
@@ -52,7 +52,7 @@ information for each single asset. Below that will be a pie chart
 visualizing the allocations that produced the maximum sharpe ratio
 with its corresponding information.
 
-![Sample Markowitz bullet scatter plot with optimal Sharpe ratio pie chart](./src/images/tutorial-optimizer.png "Sample Markowitz bullet scatter plot with optimal Sharpe ratio pie chart")
+<img src="./src/images/tutorial-optimizer.png" alt="Sample Markowitz bullet scatter plot with optimal Sharpe ratio pie chart" style="border-radius: 1rem;max-width: 600px;">
 
 Now you're ready to have some fun experimenting. Thank you for
 visiting this site and reading the tutorial. I hope you enjoy it and

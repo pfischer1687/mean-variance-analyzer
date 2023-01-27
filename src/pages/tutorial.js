@@ -5,6 +5,8 @@ import * as styles from "../components/about.module.css";
 import { Link } from "gatsby";
 import { StaticImage } from "gatsby-plugin-image";
 
+const threeMoTrBillRate = "November 2022: 3.72%";
+
 const TutorialPage = () => {
   return (
     <Layout pageTitle="Tutorial">
@@ -14,8 +16,8 @@ const TutorialPage = () => {
           Welcome to Mean-Variance Analyzer! MVA is an educational tool meant to
           help people new to financial engineering start their journey learning
           about the history of portfolio optimization. To get started, click
-          either the "Get started!" link on the home page (below) or the "Start"
-          link in the navigation menu.
+          either the "Get started!" link on the home page (below) or the
+          "Analyzer" link in the navigation menu.
         </p>
         <StaticImage
           src="../images/tutorial-home.png"
@@ -23,18 +25,17 @@ const TutorialPage = () => {
           className={styles.tutorialImg}
         />
         <p>
-          This should take you to the start page input form (below). Enter all
-          the assets of interest into the corrsponding input fields. You can
-          start typing a ticker or company name and if it is in the preloaded
-          dataset of over 100 popular assets it should appear in the dropdown
-          datalist and be clickable (you can read more about how the data was
-          collected{" "}
+          This should take you to the input form (below). Enter all the assets
+          of interest into the corrsponding input fields. You can start typing a
+          ticker or company name and if it is in the preloaded dataset of over
+          100 popular assets it should appear in the dropdown datalist and be
+          clickable (you are encouraged to read more about{" "}
           <a
             href="https://github.com/pfischer1687/get-json-data-for-mva"
             target="_blank"
             rel="noreferrer"
           >
-            here
+            how the data was collected
           </a>{" "}
           - note that the developer is not liable for the accuracy or freshness
           of any data or information given on the site as per the{" "}
@@ -46,7 +47,7 @@ const TutorialPage = () => {
           This number must be larger than 100% / (#assets - 1) and less than or
           equal to 100%. Then you have the option to enter a custom benchmark -
           the default value is the the 3 month Treasury bill rate at the time of
-          this site's development (November 2022: 3.72%) but you can enter any
+          this site's development ({threeMoTrBillRate}) but you can enter any
           value between -50% and 50% to use a custom rate, asset, or portfolio
           as your benchmark.
         </p>
@@ -56,8 +57,8 @@ const TutorialPage = () => {
           className={styles.tutorialImg}
         />
         <p>
-          If there are no errors in the input fields, a scatter plot should
-          appear (below) giving a visual representation of the approximated
+          If there are no errors in the input fields, a scatter plot will appear
+          (example below) giving a visual representation of the approximated
           maximum Sharpe ratio, single asset returns, efficient frontier,
           Markowitz bullet and tangency portfolio (explained on the{" "}
           <Link to="/background">Background</Link> page). You can hover over or
