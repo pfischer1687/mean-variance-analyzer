@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://mvanalyzer.dev/">
-    <img alt="MVA logo" src="./src/images/mva-logo-small.png" width=295 />
+    <img alt="MVA logo" src="./src/images/mva-logo-small.png" width=300 />
   </a>
 </p>
 <h1 align="center">
@@ -74,15 +74,16 @@ Paul Fischer
 
 - `chart.js@3.9.1`
 - `formik@2.2.9`
-- `gatsby@4.24.4`
-- `gatsby-plugin-image@2.24.0`
-- `gatsby-plugin-manifest@4.24.0`
-- `gatsby-plugin-sharp@4.24.0`
-- `gatsby-source-filesystem@4.24.0`
-- `gatsby-transformer-sharp@4.24.0`
-- `react@18.1.0`
+- `gatsby@5.4.2`
+- `gatsby-plugin-image@3.4.0`
+- `gatsby-plugin-manifest@5.4.0`
+- `gatsby-plugin-offline@6.4.0`
+- `gatsby-plugin-sharp@5.4.0`
+- `gatsby-source-filesystem@5.4.0`
+- `gatsby-transformer-sharp@5.4.0`
+- `react@18.2.0`
 - `react-chartjs-2@4.3.1`
-- `react-dom@18.1.0`
+- `react-dom@18.2.0`
 - `yup@0.32.11`
 
 ## Keywords
@@ -93,6 +94,7 @@ Paul Fischer
 - Tangency Portfolio
 - Markowitz Bullet
 - Financial Engineering
+- Quantitative Finance
 - Monte Carlo Simulation
 
 ## License

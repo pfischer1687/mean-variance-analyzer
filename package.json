@@ -7,16 +7,13 @@
   "keywords": [
     "mean-variance analysis",
     "modern portfolio theory",
-    "Sharpe",
-    "Sharpe ratio",
     "mpt",
-    "mva",
+    "Sharpe ratio",
     "tangency portfolio",
-    "Markowitz",
     "Markowitz bullet",
     "financial engineering",
-    "finance",
-    "Monte Carlo"
+    "quantitative finance",
+    "Monte Carlo simulation"
   ],
   "scripts": {
     "develop": "gatsby develop",
