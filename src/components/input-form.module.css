@@ -8,6 +8,8 @@
 h2 {
   margin-bottom: -0.5rem;
 }
+
+/* InputFields */
 .form-inputs {
   width: 50%;
   height: 2rem;
@@ -68,6 +70,8 @@ h2 {
     margin-left: 26%;
     padding-right: 26%;
   }
+
+  /* InputForm */
   .form-labels {
     margin-left: 26%;
     padding-right: 26%;

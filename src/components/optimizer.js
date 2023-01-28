@@ -2,7 +2,7 @@ import * as React from "react";
 import * as AssetData from "../../data/asset-data.json";
 import { Chart as ChartJS, registerables } from "chart.js";
 import { Chart, Pie } from "react-chartjs-2";
-import { MIN_NUM_ASSETS, MAX_NUM_ASSETS } from "./input-form.js";
+import { MIN_NUM_ASSETS, MAX_NUM_ASSETS } from "./input-fields.js";
 import * as styles from "./optimizer.module.css";
 
 /**
