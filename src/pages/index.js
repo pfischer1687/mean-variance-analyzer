@@ -29,11 +29,11 @@ const IndexPage = () => {
               <Link to="/tutorial">tutorial</Link>. Otherwise, click the link
               below to get started!
             </p>
-            {/* <Link to="/start">
+            <Link to="/start">
               <button className={styles.flyingButton}>
                 <span>Get started!</span>
               </button>
-            </Link> */}
+            </Link>
           </div>
         </div>
       </div>

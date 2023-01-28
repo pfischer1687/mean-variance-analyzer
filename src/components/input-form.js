@@ -152,7 +152,7 @@ const InputFields = ({ onSubmit }) => {
                         {AssetCache.getAssetCache().datalist}
                       </datalist>
 
-                      {values.assets.length <= MIN_NUM_ASSETS ? null : (
+                      {values.assets.length > MIN_NUM_ASSETS && (
                         <button
                           id="removeAssetButton"
                           type="button"
@@ -172,7 +172,7 @@ const InputFields = ({ onSubmit }) => {
                   />
                 </div>
 
-                {values.assets.length >= MAX_NUM_ASSETS ? null : (
+                {values.assets.length < MAX_NUM_ASSETS && (
                   <button
                     id="addAssetButton"
                     className={styles.addAssetButton}
@@ -270,13 +270,13 @@ class InputForm extends React.Component {
           you agree to the <Link to="/terms">Terms of Service</Link>.
         </p>
         <InputFields onSubmit={this.handleOnSubmit} />
-        {this.state.showPlot ? (
+        {this.state.showPlot && (
           <Optimizer
             tickers={this.state.tickers}
             constraintPct={this.state.constraintPct}
             riskFreeRatePct={this.state.riskFreeRatePct}
           />
-        ) : null}
+        )}
       </div>
     );
   }

@@ -18,28 +18,23 @@
     grid-template-columns: 1fr 1fr;
     margin-bottom: 3rem;
   }
+  .pie-chart-element {
+    width: 25rem;
+    float: right;
+    padding-bottom: 0.5rem;
+  }
   .pie-chart-info {
     margin-left: 5%;
   }
   .pie-chart-info p {
     padding-left: 1rem;
   }
-  .pie-chart-element {
-    width: 25rem;
-    float: right;
-    padding-bottom: 0.5rem;
-  }
 }
 
 @media screen and (max-width: 749px) {
   .scatter-plot {
-    /* width: 85%; */
-    /* margin-left: 7.5%; */
     height: 80vh;
     min-height: 20rem;
-  }
-  .pie-chart-element {
-    width: 18.5rem;
   }
   .pie-chart-style {
     display: grid;
@@ -48,6 +43,7 @@
   }
   .pie-chart-element {
     padding-bottom: 0.5rem;
+    width: 18.5rem;
   }
   .pie-chart-info {
     text-align: left;
