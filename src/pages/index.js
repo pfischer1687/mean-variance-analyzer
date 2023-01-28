@@ -6,15 +6,6 @@ import * as styles from "../components/index.module.css";
 import { Link } from "gatsby";
 
 const IndexPage = () => {
-  // For text flying in from left animation
-  React.useEffect(() => {
-    const hiddenElements = document.querySelectorAll(`.${styles.hidden}`);
-    hiddenElements.forEach((e, index) => {
-      e.classList.add(`${styles.show}`);
-      e.style.transitionDelay = `${(index + 1) * 500}ms`;
-    });
-  });
-
   return (
     <Layout pageTitle="Home">
       <div className={styles.indexGridContainer}>
@@ -32,20 +23,17 @@ const IndexPage = () => {
             Mean-Variance Analyzer
           </h2>
           <div>
-            <p className={styles.hidden}>
+            <p className={styles.flyingHeroSubtext}>
               Learn about modern portfolio theory - interactively! If you're new
               here, please start by following the{" "}
               <Link to="/tutorial">tutorial</Link>. Otherwise, click the link
               below to get started!
             </p>
-            <Link to="/start">
-              <button
-                id="getStartedButton"
-                className={`${styles.hidden} ${styles.buttonText}`}
-              >
+            <button className={styles.flyingButton}>
+              <Link to="/start">
                 <span>Get started!</span>
-              </button>
-            </Link>
+              </Link>
+            </button>
           </div>
         </div>
       </div>

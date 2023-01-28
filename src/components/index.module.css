@@ -9,7 +9,10 @@
   position: absolute;
   z-index: -2;
 }
-.header-container div button {
+.flying-hero-subtext {
+  animation: flying-text 1s ease-in-out;
+}
+.flying-button {
   font-size: 2rem;
   background-color: #449504;
   border-radius: 0.5rem;
@@ -17,25 +20,42 @@
   box-shadow: 0 8px 16px 0 rgba(194, 194, 194, 0.2),
     0 6px 20px 0 rgba(0, 0, 0, 0.19);
   padding-bottom: 0.5rem;
-  width: 13rem;
+  animation: flying-button 1.5s ease-in-out;
 }
-.button-text span {
+.flying-button span {
   color: white;
   text-decoration: none;
   font-size: 1.5rem;
 }
 
-/* Start button and hero subheader animation from left on load */
-.hidden {
-  opacity: 0;
-  filter: blur(5px);
-  transform: translateX(-100%);
-  transition: all 1s;
+/* Hero subtext and button flying animations */
+@keyframes flying-text {
+  0% {
+    opacity: 0;
+    filter: blur(5px);
+    transform: translateX(-100%);
+  }
+  50% {
+    filter: blur(5px);
+  }
+  100% {
+    transform: translateX(0%);
+  }
 }
-.show {
-  opacity: 1;
-  filter: blur(0);
-  transform: translateX(0);
+@keyframes flying-button {
+  0% {
+    opacity: 0;
+    filter: blur(5px);
+    transform: translateX(-100%);
+  }
+  50% {
+    opacity: 0;
+    filter: blur(5px);
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
 }
 
 /* Responsive */
@@ -65,25 +85,26 @@
     padding-top: 2rem;
     max-width: 500px;
   }
-  .header-container p {
+  .flying-hero-subtext {
     font-size: 1.25rem;
     padding-left: 2rem;
     max-width: 27rem;
     margin-top: -2.5rem;
   }
-  .header-container div button {
+  .flying-button {
     margin-left: 2rem;
     cursor: pointer;
     margin-bottom: 3rem;
+    width: 13.25rem;
   }
 
-  /* Start button arrows animation on hover */
-  .button-text span {
+  /* Get started button arrows animation on hover */
+  .flying-button span {
     display: inline-block;
     position: relative;
     transition: 0.5s;
   }
-  .button-text span:after {
+  .flying-button span:after {
     content: "\00bb";
     position: absolute;
     opacity: 0;
@@ -91,11 +112,11 @@
     right: -20px;
     transition: 0.5s;
   }
-  .button-text:hover span {
+  .flying-button:hover span {
     padding-right: 25px;
     margin-left: -25px;
   }
-  .button-text:hover span:after {
+  .flying-button:hover span:after {
     opacity: 1;
     right: 0;
   }
@@ -123,7 +144,7 @@
     width: 70%;
     margin-left: 15%;
   }
-  .header-container p {
+  .flying-hero-subtext {
     font-size: 1.1rem;
     margin-left: 15%;
     width: 70%;
@@ -131,7 +152,7 @@
     margin-bottom: 1.5rem;
     text-align: left;
   }
-  .header-container div button {
+  .flying-button {
     width: 70%;
     margin-left: 15%;
   }
