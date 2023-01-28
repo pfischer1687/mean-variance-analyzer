@@ -3,7 +3,8 @@ import Layout from "../components/layout";
 import Seo from "../components/seo";
 import * as styles from "../components/about.module.css";
 import { Link } from "gatsby";
-import { StaticImage } from "gatsby-plugin-image";
+import "katex/dist/katex.min.css";
+import { BlockMath } from "react-katex";
 
 const BackgroundPage = () => {
   return (
@@ -49,42 +50,22 @@ const BackgroundPage = () => {
             <Link to="#references">[5]</Link>
           </sup>
         </p>
-        <div className={`${styles.latexImage} ${styles.latexImageD}`}>
-          <StaticImage
-            src="../images/differential-return.png"
-            alt="Equation for differential return"
-          />
-        </div>
+        <BlockMath>{String.raw`D_t\equiv R_{Ft}-R_{Bt}`}</BlockMath>
         <p>
           We then define D-bar as the average value of D<sub>t</sub> over the
           time period from t=1 to T:
         </p>
-        <div className={`${styles.latexImage} ${styles.latexImageA}`}>
-          <StaticImage
-            src="../images/average-return.png"
-            alt="Equation for average differential return"
-          />
-        </div>
+        <BlockMath>{String.raw`\overline{D}\equiv\frac{1}{T}\sum_{t=1}^TD_t`}</BlockMath>
         <p>
           We can define the standard deviation during the period σ<sub>D</sub>{" "}
           as:
         </p>
-        <div className={`${styles.latexImage} ${styles.latexImageSt}`}>
-          <StaticImage
-            src="../images/standard-deviation.png"
-            alt="Equation for standard deviation"
-          />
-        </div>
+        <BlockMath>{String.raw`\sigma_D\equiv\sqrt{\frac{\sum_{t=1}^T(D_t-\overline{D})^2}{T-1}}`}</BlockMath>
         <p>
           We can then define the ex post Sharpe Ratio as the ratio of the
           historic average differential return to its standard deviation:
         </p>
-        <div className={`${styles.latexImage} ${styles.latexImageS}`}>
-          <StaticImage
-            src="../images/sharpe-ratio.png"
-            alt="Equation for ex post Sharpe ratio"
-          />
-        </div>
+        <BlockMath>{String.raw`S_h\equiv\frac{\overline{D}}{\sigma_D}`}</BlockMath>
         <p>
           This site contains a preloaded set of data from over 100 popular
           assets including stocks, ETFs, cryptocurrencies, and more. This data
@@ -130,12 +111,7 @@ const BackgroundPage = () => {
             <Link to="#references">[7]</Link>
           </sup>
         </p>
-        <div className={`${styles.latexImage} ${styles.latexImageSCalc}`}>
-          <StaticImage
-            src="../images/maximize-sharpe.png"
-            alt="Equation for ex post Sharpe ratio in terms of weights"
-          />
-        </div>
+        <BlockMath>{String.raw`S_h=\frac{\mu^Tx-R_{Bt}}{\sqrt{x^TQx}}`}</BlockMath>
         <p>
           In our case, the portfolio that produces the largest Sharpe ratio out
           of the 500,000 is plotted on a graph of historic mean return vs. risk,

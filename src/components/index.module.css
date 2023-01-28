@@ -10,7 +10,7 @@
   z-index: -2;
 }
 .flying-hero-subtext {
-  animation: flying-text 1s ease-in-out;
+  animation: flying-text 1.25s ease-in-out;
 }
 .flying-button {
   font-size: 2rem;
@@ -20,7 +20,7 @@
   box-shadow: 0 8px 16px 0 rgba(194, 194, 194, 0.2),
     0 6px 20px 0 rgba(0, 0, 0, 0.19);
   padding-bottom: 0.5rem;
-  animation: flying-button 1.5s ease-in-out;
+  animation: flying-button 1.75s ease-in-out;
 }
 .flying-button span {
   color: white;
@@ -35,8 +35,10 @@
     filter: blur(5px);
     transform: translateX(-100%);
   }
-  50% {
+  20% {
+    opacity: 0;
     filter: blur(5px);
+    transform: translateX(-100%);
   }
   100% {
     transform: translateX(0%);

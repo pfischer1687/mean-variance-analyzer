@@ -6,10 +6,7 @@
   left: 5%;
 }
 
-/* Tutorial */
-.tutorial-img {
-  border-radius: 1rem;
-}
+/* Background */
 .latex-image {
   filter: invert(100%);
   display: block;
@@ -30,6 +27,11 @@
 }
 .latex-image-s-calc {
   width: 8.5rem;
+}
+
+/* Tutorial */
+.tutorial-img {
+  border-radius: 1rem;
 }
 
 /* Responsive */

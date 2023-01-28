@@ -5,9 +5,9 @@ import * as styles from "../components/about.module.css";
 import { Link } from "gatsby";
 import { StaticImage } from "gatsby-plugin-image";
 
-const threeMoTrBillRate = "November 2022: 3.72%";
-
 const TutorialPage = () => {
+  const threeMoTrBillRate = "November 2022: 3.72%";
+
   return (
     <Layout pageTitle="Tutorial">
       <div className={styles.textContainer}>

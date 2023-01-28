@@ -5,12 +5,6 @@ import { Chart, Pie } from "react-chartjs-2";
 import { MIN_NUM_ASSETS, MAX_NUM_ASSETS } from "./input-form.js";
 import * as styles from "./optimizer.module.css";
 
-const numTrials = 500000;
-const numPlotPoints = 1000;
-const maxNumEfficientFrontierRiskBins = 15;
-
-ChartJS.register(...registerables);
-
 /**
  * @param {number[]} arr1
  * @param {number[]} arr2
@@ -140,6 +134,9 @@ const genNormRandWeights = (size, constraint) => {
  */
 const Optimizer = ({ tickers, constraintPct, riskFreeRatePct, children }) => {
   // Returns Optimizer React component which runs Monte Carlo simulation of portfolios with random allocations, plots them on an interactive scatter plot, and displays the mean-variance optimal portfolio on an interactive pie chart
+  const numTrials = 500000;
+  const numPlotPoints = 1000;
+  const maxNumEfficientFrontierRiskBins = 15;
   const constraint = constraintPct / 100;
 
   let meanRetArr = [];
@@ -251,6 +248,7 @@ const Optimizer = ({ tickers, constraintPct, riskFreeRatePct, children }) => {
   }
 
   // Monte Carlo plot
+  ChartJS.register(...registerables);
   const monteCarloPlotOptions = {
     maintainAspectRatio: false,
     events: ["click", "mousemove"],
