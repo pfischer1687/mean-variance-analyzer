@@ -2,7 +2,7 @@ import * as React from "react";
 import * as AssetData from "../../data/asset-data.json";
 import Optimizer from "./optimizer.js";
 import { Formik, Field, Form, ErrorMessage, FieldArray } from "formik";
-import * as Yup from "yup";
+import * as yup from "yup";
 import * as styles from "../components/input-form.module.css";
 import { Link } from "gatsby";
 
@@ -59,198 +59,180 @@ const isUnique = (arr) => {
   return unique.size === filtered.length;
 };
 
-const InputSchema = Yup.object().shape({
-  assets: Yup.array(Yup.string())
-    .compact((v) => v === undefined)
-    .min(2, "Must have at least 2 asset tickers")
-    .test("IsInDatalist", "Asset tickers must be in datalist", (assets) => {
-      for (let ticker of assets) {
-        if (!AssetCache.getAssetCache().tickers.has(ticker.toUpperCase()))
-          return false;
-      }
-      return true;
-    })
-    .test("Unique", "Asset tickers must be unique", (tickers) =>
-      isUnique(tickers)
-    )
-    .required("Required"),
-  constraintPct: Yup.number()
-    .typeError("Must be a number")
-    .test(
-      "MinAssets",
-      "Must have at least 2 asset tickers",
-      (constrPct, context) => {
-        let numAssets = parseFloat(context.parent.assets.length);
-        return numAssets >= 2;
-      }
-    )
-    .test(
-      "Min",
-      "Max allocation must be such that: 100% / (#assets - 1) <= allocation <= 100%",
-      (constrPct, context) => {
-        let numAssets = parseFloat(context.parent.assets.length);
-        return constrPct >= 100 / (numAssets - 1);
-      }
-    )
-    .max(
-      100,
-      "Max allocation must be such that: 100% / (#assets - 1) <= allocation <= 100%"
-    )
-    .required("Required"),
-  riskFreeRatePct: Yup.number()
-    .typeError("Must be a number")
-    .min(-50, "Benchmark must be such that: -50% <= benchmark <= 50%")
-    .max(50, "Benchmark must be such that: -50% <= benchmark <= 50%")
-    .required("Required"),
-});
-
 /**
  * @param {class} inputForm
  * @return {JSX}
  */
-const genInputForm = (inputForm) => {
+const InputFields = ({ onSubmit }) => {
+  const threeMoTrBillRate = 3.72; // November 2022
+
+  let validationSchema = yup.object().shape({
+    assets: yup
+      .array(yup.string())
+      .compact((v) => v === undefined)
+      .min(2, "Must have at least 2 asset tickers")
+      .test("IsInDatalist", "Asset tickers must be in datalist", (assets) => {
+        for (let ticker of assets) {
+          if (!AssetCache.getAssetCache().tickers.has(ticker.toUpperCase()))
+            return false;
+        }
+        return true;
+      })
+      .test("Unique", "Asset tickers must be unique", (tickers) =>
+        isUnique(tickers)
+      )
+      .required("Required"),
+    constraintPct: yup
+      .number()
+      .typeError("Must be a number")
+      .test(
+        "MinAssets",
+        "Must have at least 2 asset tickers",
+        (constrPct, context) => {
+          let numAssets = parseFloat(context.parent.assets.length);
+          return numAssets >= 2;
+        }
+      )
+      .test(
+        "Min",
+        "Max allocation must be such that: 100% / (#assets - 1) <= allocation <= 100%",
+        (constrPct, context) => {
+          let numAssets = parseFloat(context.parent.assets.length);
+          return constrPct >= 100 / (numAssets - 1);
+        }
+      )
+      .max(
+        100,
+        "Max allocation must be such that: 100% / (#assets - 1) <= allocation <= 100%"
+      )
+      .required("Required"),
+    riskFreeRatePct: yup
+      .number()
+      .typeError("Must be a number")
+      .min(-50, "Benchmark must be such that: -50% <= benchmark <= 50%")
+      .max(50, "Benchmark must be such that: -50% <= benchmark <= 50%")
+      .required("Required"),
+  });
+
   return (
-    <div className={styles.container}>
-      <h2 className={`${styles.headerText}`}>
-        Please enter the sample portfolio's information below.
-      </h2>
+    <Formik
+      initialValues={{
+        assets: ["", ""],
+        constraintPct: 100,
+        riskFreeRatePct: threeMoTrBillRate,
+      }}
+      validationSchema={validationSchema}
+      onSubmit={onSubmit}
+    >
+      {({ values }) => (
+        <Form>
+          <FieldArray name="assets">
+            {({ insert, remove }) => (
+              <>
+                <div>
+                  {values.assets.map((value, index) => (
+                    <div key={index}>
+                      <label
+                        htmlFor={`assets.${index}`}
+                        className={styles.formLabels}
+                      >
+                        Asset {index + 1}:{" "}
+                      </label>
+                      <br />
 
-      <p className={`${styles.headerText}`}>
-        If you have any questions, please refer to the{" "}
-        <Link to="/tutorial">Tutorial</Link>. Note that by using this site, you
-        agree to the <Link to="/terms">Terms of Service</Link>.
-      </p>
+                      <Field
+                        id={`assets.${index}`}
+                        name={`assets.${index}`}
+                        list="assets-list"
+                        className={styles.formInputs}
+                        placeholder="Enter ticker"
+                      />
 
-      <Formik
-        initialValues={{
-          assets: ["", ""],
-          constraintPct: 100,
-          riskFreeRatePct: 3.72,
-        }}
-        validationSchema={InputSchema}
-        onSubmit={(values) => {
-          inputForm.setState({
-            showPlot: true,
-            tickers: toSortedUpper(values.assets),
-            ticker: values.assets,
-            constraintPct: values.constraintPct,
-            riskFreeRatePct: values.riskFreeRatePct,
-          });
-        }}
-      >
-        {({ values }) => (
-          <Form>
-            <FieldArray name="assets">
-              {({ insert, remove }) => (
-                <>
-                  <div>
-                    {values.assets.map((value, index) => (
-                      <div key={index}>
-                        <label
-                          htmlFor={`assets.${index}`}
-                          className={styles.formLabels}
+                      <datalist id="assets-list">
+                        {AssetCache.getAssetCache().datalist}
+                      </datalist>
+
+                      {values.assets.length <= MIN_NUM_ASSETS ? null : (
+                        <button
+                          id="removeAssetButton"
+                          type="button"
+                          onClick={() => remove(index)}
+                          className={styles.removeButton}
                         >
-                          Asset {index + 1}:{" "}
-                        </label>
-                        <br />
+                          X
+                        </button>
+                      )}
+                      <br />
+                    </div>
+                  ))}
+                  <ErrorMessage
+                    name="assets"
+                    className={styles.fieldError}
+                    component="div"
+                  />
+                </div>
 
-                        <Field
-                          id={`assets.${index}`}
-                          name={`assets.${index}`}
-                          list="assets-list"
-                          className={styles.formInputs}
-                          placeholder="Enter ticker"
-                        />
-
-                        <datalist id="assets-list">
-                          {AssetCache.getAssetCache().datalist}
-                        </datalist>
-
-                        {values.assets.length <= MIN_NUM_ASSETS ? null : (
-                          <button
-                            id="removeAssetButton"
-                            type="button"
-                            onClick={() => remove(index)}
-                            className={styles.removeButton}
-                          >
-                            X
-                          </button>
-                        )}
-                        <br />
-                      </div>
-                    ))}
-                    <ErrorMessage
-                      name="assets"
-                      className={styles.fieldError}
-                      component="div"
-                    />
-                  </div>
-
-                  {values.assets.length >= MAX_NUM_ASSETS ? null : (
-                    <button
-                      id="addAssetButton"
-                      className={styles.addAssetButton}
-                      type="button"
-                      onClick={() => insert(values.assets.length, "")}
-                    >
-                      + Add Asset
-                    </button>
-                  )}
-                  <br />
-
-                  <label className={styles.formLabels} htmlFor="constraintPct">
-                    Max Allocation (%):
-                  </label>
-
-                  <div>
-                    <Field
-                      className={styles.formInputs}
-                      id="constraintPct"
-                      name="constraintPct"
-                    />
-                    <ErrorMessage
-                      name="constraintPct"
-                      className={styles.fieldError}
-                      component="div"
-                    />
-                  </div>
-
-                  <label
-                    className={styles.formLabels}
-                    htmlFor="riskFreeRatePct"
+                {values.assets.length >= MAX_NUM_ASSETS ? null : (
+                  <button
+                    id="addAssetButton"
+                    className={styles.addAssetButton}
+                    type="button"
+                    onClick={() => insert(values.assets.length, "")}
                   >
-                    Benchmark (%):{" "}
-                  </label>
+                    + Add Asset
+                  </button>
+                )}
+                <br />
 
-                  <div>
-                    <Field
-                      className={styles.formInputs}
-                      id="riskFreeRatePct"
-                      name="riskFreeRatePct"
-                    />
-                    <ErrorMessage
-                      name="riskFreeRatePct"
-                      className={styles.fieldError}
-                      component="div"
-                    />
-                  </div>
+                <label className={styles.formLabels} htmlFor="constraintPct">
+                  Max Allocation (%):
+                </label>
 
-                  <div>
-                    <button
-                      id="submitAssetsButton"
-                      type="submit"
-                      className={styles.submitButton}
-                    >
-                      Submit
-                    </button>
-                  </div>
-                </>
-              )}
-            </FieldArray>
-          </Form>
-        )}
-      </Formik>
-    </div>
+                <div>
+                  <Field
+                    className={styles.formInputs}
+                    id="constraintPct"
+                    name="constraintPct"
+                  />
+                  <ErrorMessage
+                    name="constraintPct"
+                    className={styles.fieldError}
+                    component="div"
+                  />
+                </div>
+
+                <label className={styles.formLabels} htmlFor="riskFreeRatePct">
+                  Benchmark (%):{" "}
+                </label>
+
+                <div>
+                  <Field
+                    className={styles.formInputs}
+                    id="riskFreeRatePct"
+                    name="riskFreeRatePct"
+                  />
+                  <ErrorMessage
+                    name="riskFreeRatePct"
+                    className={styles.fieldError}
+                    component="div"
+                  />
+                </div>
+
+                <div>
+                  <button
+                    id="submitAssetsButton"
+                    type="submit"
+                    className={styles.submitButton}
+                  >
+                    Submit
+                  </button>
+                </div>
+              </>
+            )}
+          </FieldArray>
+        </Form>
+      )}
+    </Formik>
   );
 };
 
@@ -264,10 +246,30 @@ class InputForm extends React.Component {
       riskFreeRatePct: 3.72,
     };
   }
+
+  handleOnSubmit = (values /* FormikValues */) => {
+    this.setState({
+      showPlot: true,
+      tickers: toSortedUpper(values.assets),
+      ticker: values.assets,
+      constraintPct: values.constraintPct,
+      riskFreeRatePct: values.riskFreeRatePct,
+    });
+  };
+
   render() {
     return (
-      <>
-        {genInputForm(this)}
+      <div className={styles.container}>
+        <h2 className={`${styles.headerText}`}>
+          Please enter the sample portfolio's information below.
+        </h2>
+
+        <p className={`${styles.headerText}`}>
+          If you have any questions, please refer to the{" "}
+          <Link to="/tutorial">Tutorial</Link>. Note that by using this site,
+          you agree to the <Link to="/terms">Terms of Service</Link>.
+        </p>
+        <InputFields onSubmit={this.handleOnSubmit} />
         {this.state.showPlot ? (
           <Optimizer
             tickers={this.state.tickers}
@@ -275,7 +277,7 @@ class InputForm extends React.Component {
             riskFreeRatePct={this.state.riskFreeRatePct}
           />
         ) : null}
-      </>
+      </div>
     );
   }
 }
