@@ -36,18 +36,19 @@
     height: 80vh;
     min-height: 20rem;
   }
-  .pie-chart-style {
+  .pie-chart-mobile-style {
     display: grid;
     justify-content: center;
-    padding-bottom: 2rem;
   }
   .pie-chart-element {
     padding-bottom: 0.5rem;
-    width: 18.5rem;
+    max-width: 18.5rem;
+    display: grid;
+    justify-content: center;
   }
   .pie-chart-info {
     text-align: left;
-    width: 86%;
-    margin-left: 7%;
+    margin-left: 9%;
+    padding-bottom: 2rem;
   }
 }

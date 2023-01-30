@@ -448,7 +448,7 @@ const Optimizer = ({ tickers, constraintPct, riskFreeRatePct, children }) => {
         />
       </div>
       <div className={styles.pieChartStyle}>
-        <div>
+        <div className={styles.pieChartMobileStyle}>
           <div className={styles.pieChartElement}>
             <Pie data={pieData} options={pieChartOptions} />
           </div>
