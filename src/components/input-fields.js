@@ -7,6 +7,7 @@ import * as styles from "../components/input-form.module.css";
 export const MIN_NUM_ASSETS = 2;
 export const MAX_NUM_ASSETS = 15;
 export const THREE_MO_TR_BILL_RATE = 3.72; // November 2022
+export const F_TR_BILL_RATE = `November 2022: ${THREE_MO_TR_BILL_RATE}%`;
 
 /**
  * @param {string[]} arr
@@ -70,7 +71,7 @@ const isUnique = (arr) => {
  * @param {onSubmitCallback} onSubmit
  * @return {JSX}
  */
-const InputFields = ({ onSubmit }) => {
+export const InputFields = ({ onSubmit }) => {
   let validationSchema = yup.object().shape({
     assets: yup
       .array(yup.string())
@@ -240,5 +241,3 @@ const InputFields = ({ onSubmit }) => {
     </Formik>
   );
 };
-
-export default InputFields;

@@ -2,8 +2,11 @@ import * as React from "react";
 import Optimizer from "./optimizer.js";
 import * as styles from "../components/input-form.module.css";
 import { Link } from "gatsby";
-import InputFields from "./input-fields.js";
-import { THREE_MO_TR_BILL_RATE, toSortedUpper } from "./input-fields.js";
+import {
+  THREE_MO_TR_BILL_RATE,
+  toSortedUpper,
+  InputFields,
+} from "./input-fields.js";
 
 class InputForm extends React.Component {
   constructor(props) {
