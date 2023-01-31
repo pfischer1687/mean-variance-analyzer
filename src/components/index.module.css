@@ -20,6 +20,10 @@
   box-shadow: 0 8px 16px 0 rgba(194, 194, 194, 0.2),
     0 6px 20px 0 rgba(0, 0, 0, 0.19);
   padding-bottom: 0.5rem;
+  -webkit-animation: flying-button 1.75s ease-in-out;
+  -moz-animation: flying-button 1.75s ease-in-out;
+  -ms-animation: flying-button 1.75s ease-in-out;
+  -o-animation: flying-button 1.75s ease-in-out;
   animation: flying-button 1.75s ease-in-out;
 }
 .flying-button span {

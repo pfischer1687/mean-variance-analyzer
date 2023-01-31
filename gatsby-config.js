@@ -26,7 +26,7 @@ module.exports = {
         short_name: `MVA`,
         start_url: `/`,
         background_color: `#001220`,
-        theme_color: `#096002`,
+        theme_color: `#60b000`,
         display: `standalone`,
         icon: "src/images/favicon.png",
         icon_options: {

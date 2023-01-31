@@ -22,7 +22,11 @@ h2 {
   outline: none;
 }
 .form-inputs:focus {
-  box-shadow: 0 0 3px 2px #449504;
+  -webkit-box-shadow: 0 0 3px 3px #449504;
+  -moz-box-shadow: 0 0 3px 3px #449504;
+  -ms-box-shadow: 0 0 3px 3px #449504;
+  -o-box-shadow: 0 0 3px 3px #449504;
+  box-shadow: 0 0 3px 3px #449504;
 }
 .add-asset-button {
   margin-bottom: 1rem;
