@@ -6,7 +6,7 @@ import InputForm from "../components/input-form";
 const StartPage = () => {
   return (
     <Layout pageTitle="Start">
-      <InputForm /> {/* Includes optimizer component */}
+      <InputForm />
     </Layout>
   );
 };

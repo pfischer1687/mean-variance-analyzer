@@ -8,50 +8,46 @@ import {
   InputFields,
 } from "./input-fields.js";
 
-class InputForm extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      showPlot: false,
-      tickers: [],
-      constraintPct: 100,
-      riskFreeRatePct: THREE_MO_TR_BILL_RATE,
-    };
-  }
+const InputForm = () => {
+  const [inputFormState, setInputFormState] = React.useState({
+    showPlot: false,
+    tickers: [],
+    constraintPct: 100,
+    riskFreeRatePct: THREE_MO_TR_BILL_RATE,
+  });
 
-  handleOnSubmit = (values /* FormikValues */) => {
-    this.setState({
+  const handleOnSubmit = (formValues) => {
+    setInputFormState({
+      ...inputFormState,
       showPlot: true,
-      tickers: toSortedUpper(values.assets),
-      ticker: values.assets,
-      constraintPct: values.constraintPct,
-      riskFreeRatePct: values.riskFreeRatePct,
+      tickers: toSortedUpper(formValues.assets),
+      ticker: formValues.assets,
+      constraintPct: formValues.constraintPct,
+      riskFreeRatePct: formValues.riskFreeRatePct,
     });
   };
 
-  render() {
-    return (
-      <div className={styles.container}>
-        <h2 className={`${styles.headerText}`}>
-          Please enter the sample portfolio's information below.
-        </h2>
+  return (
+    <div className={styles.container}>
+      <h2 className={`${styles.headerText}`}>
+        Please enter the sample portfolio's information below.
+      </h2>
 
-        <p className={`${styles.headerText}`}>
-          If you have any questions, please refer to the{" "}
-          <Link to="/tutorial">Tutorial</Link>. Note that by using this site,
-          you agree to the <Link to="/terms">Terms of Service</Link>.
-        </p>
-        <InputFields onSubmit={this.handleOnSubmit} />
-        {this.state.showPlot && (
-          <Optimizer
-            tickers={this.state.tickers}
-            constraintPct={this.state.constraintPct}
-            riskFreeRatePct={this.state.riskFreeRatePct}
-          />
-        )}
-      </div>
-    );
-  }
-}
+      <p className={`${styles.headerText}`}>
+        If you have any questions, please refer to the{" "}
+        <Link to="/tutorial">Tutorial</Link>. Note that by using this site, you
+        agree to the <Link to="/terms">Terms of Service</Link>.
+      </p>
+      <InputFields onSubmit={handleOnSubmit} />
+      {inputFormState.showPlot && (
+        <Optimizer
+          tickers={inputFormState.tickers}
+          constraintPct={inputFormState.constraintPct}
+          riskFreeRatePct={inputFormState.riskFreeRatePct}
+        />
+      )}
+    </div>
+  );
+};
 
 export default InputForm;
