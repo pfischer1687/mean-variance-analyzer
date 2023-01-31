@@ -16,7 +16,7 @@ const Layout = ({ pageTitle, children }) => {
               <Link to="/" className={styles.navLinkText}>
                 <StaticImage
                   alt="Small MVA logo"
-                  src="../images/mva-logo-small.png"
+                  src="../images/mva-logo.png"
                   width={60}
                 />{" "}
                 <div className={styles.homeButtonText}>
@@ -39,7 +39,7 @@ const Layout = ({ pageTitle, children }) => {
           </li>
 
           <li className={`${styles.navLinkItem} ${styles.buttonText}`}>
-            <Link to="/start" className={styles.navLinkText}>
+            <Link to="/analyzer" className={styles.navLinkText}>
               <span>Analyzer</span>
             </Link>
           </li>
@@ -65,7 +65,7 @@ const Layout = ({ pageTitle, children }) => {
         }`}
       >
         <Link to="/">Home</Link>
-        <Link to="/start">Analyzer</Link>
+        <Link to="/analyzer">Analyzer</Link>
         <Link to="/tutorial">Tutorial</Link>
         <Link to="/background">Background</Link>
       </nav>

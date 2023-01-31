@@ -2,7 +2,7 @@ import * as React from "react";
 import * as AssetData from "../../data/asset-data.json";
 import { Formik, Field, Form, ErrorMessage, FieldArray } from "formik";
 import * as yup from "yup";
-import * as styles from "../components/input-form.module.css";
+import * as styles from "./analyzer.module.css";
 
 export const MIN_NUM_ASSETS = 2;
 export const MAX_NUM_ASSETS = 15;

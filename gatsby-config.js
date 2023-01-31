@@ -6,7 +6,7 @@ module.exports = {
     title: "Mean-Variance Analyzer",
     description: "Learn about modern portfolio theory - interactively!",
     author: "@PaulFis43236408",
-    siteUrl: "https://meanvarianceanalyzermain.gatsbyjs.io/",
+    siteUrl: "https://mvanalyzer.dev/",
   },
   plugins: [
     "gatsby-plugin-image",
@@ -28,7 +28,7 @@ module.exports = {
         background_color: `#001220`,
         theme_color: `#096002`,
         display: `standalone`,
-        icon: "src/favicon.png",
+        icon: "src/images/favicon.png",
         icon_options: {
           purpose: `any maskable`,
         },

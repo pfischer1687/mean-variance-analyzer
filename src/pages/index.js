@@ -12,7 +12,7 @@ const IndexPage = () => {
         <div>
           <span className={styles.mvaLogo}>
             <StaticImage
-              src="../images/mva-logo-small.png"
+              src="../images/mva-logo.png"
               alt="Mean-Variance Analyzer MVA logo"
             />
           </span>
@@ -29,7 +29,7 @@ const IndexPage = () => {
               <Link to="/tutorial">tutorial</Link>. Otherwise, click the link
               below to get started!
             </p>
-            <Link to="/start">
+            <Link to="/analyzer">
               <button className={styles.flyingButton}>
                 <span>Get started!</span>
               </button>

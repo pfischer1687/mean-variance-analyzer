@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://mvanalyzer.dev/">
-    <img alt="MVA logo" src="./src/images/mva-logo-small.png" width=300 />
+    <img alt="MVA logo" src="./src/images/mva-logo.png" width=300 />
   </a>
 </p>
 <h1 align="center">
@@ -39,7 +39,7 @@ this site's development (November 2022: 3.72%) but you can enter any
 value between -50% and 50% to use a custom rate, asset, or portfolio
 as your benchmark.
 
-<img src="./src/images/tutorial-input-form.png" alt="Start page input form" width=600>
+<img src="./src/images/tutorial-input-form.png" alt="Analyzer page input form" width=600>
 
 If there are no errors in the input fields, a scatter plot will
 appear (example below) giving a visual representation of the approximated

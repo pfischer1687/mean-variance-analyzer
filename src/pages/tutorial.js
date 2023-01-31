@@ -52,7 +52,7 @@ const TutorialPage = () => {
         </p>
         <StaticImage
           src="../images/tutorial-input-form.png"
-          alt="Start page input form"
+          alt="Analyzer page input form"
           className={styles.tutorialImg}
         />
         <p>
