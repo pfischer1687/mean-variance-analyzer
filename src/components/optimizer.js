@@ -2,138 +2,22 @@ import * as React from "react";
 import * as AssetData from "../../data/asset-data.json";
 import { Chart as ChartJS, registerables } from "chart.js";
 import { Chart, Pie } from "react-chartjs-2";
-import { MIN_NUM_ASSETS, MAX_NUM_ASSETS } from "./input-fields.js";
+import {
+  arrDotProd,
+  arrMatProduct,
+  genNormRandWeights,
+} from "../utils/utils.js";
 import * as styles from "./optimizer.module.css";
 
 /**
- * @param {number[]} arr1
- * @param {number[]} arr2
- * @return {number}
- */
-const arrDotProd = (arr1, arr2) => {
-  // Return the dot product of two 1-dimensional arrays
-  if (arr1.length === 0 || arr1.length !== arr2.length) {
-    throw new Error(
-      "Expected two 1-dimensional arrays of numbers of equal length > 0"
-    );
-  }
-
-  let sum = 0;
-  for (let i = 0; i < arr1.length; i++) {
-    sum += arr1[i] * arr2[i];
-  }
-
-  return sum;
-};
-
-/**
- * @param {number[]} arr
- * @param {number[][]} mat
- * @return {number}
- */
-const arrMatProduct = (arr, mat) => {
-  // Return the product arr^T.mat.arr
-  if (
-    arr.length === 0 ||
-    arr.length !== mat.length ||
-    arr.length !== mat[0].length
-  ) {
-    throw new Error(
-      "Expected one 1-dimensional array and one 2-dimensional array of dimension arr.length x arr.length"
-    );
-  }
-
-  let firstProduct = [];
-  for (let i = 0; i < arr.length; i++) {
-    firstProduct[i] = arrDotProd(mat[i], arr);
-  }
-
-  return arrDotProd(arr, firstProduct);
-};
-
-/**
- * @param {number} numWeights
- * @return {Object} weights
- * @return {number[]} weights.weights
- * @return {number} weights.sum
- */
-const randomWeights = (numWeights) => {
-  // Returns array of random weights (helper function for genNormRandWeights())
-  let weights = [];
-  let sum = 0;
-  const feigenbaumConst = 4.669201609102991;
-  for (let i = 0; i < numWeights; i++) {
-    weights[i] = Math.random() ** feigenbaumConst; // Exponent helps spread out Markowitz bullet
-    sum += weights[i];
-  }
-
-  return {
-    weights: weights,
-    sum: sum,
-  };
-};
-
-/**
- * @param {Object} weights
- * @param {number[]} weights.weights
- * @param {number} weights.sum
- * @param {number} constraint
- * @return {number[]}
- */
-const normalizeWeights = (weights, constraint) => {
-  // Returns a normalized array of weights by first subjecting an array to a constraint, then redistributing any excess, and then randomly shuffling it to avoid first index bias (helper function for genNormRandWeights())
-  let excessVal = 0;
-  let size = weights.weights.length;
-  for (let i = 0; i < size; i++) {
-    weights.weights[i] /= weights.sum;
-    if (weights.weights[i] > constraint) {
-      excessVal += weights.weights[i] - constraint;
-      weights.weights[i] = constraint;
-    }
-  }
-
-  if (excessVal > 0) {
-    let diff = 0;
-    for (let i = 0; i < size; i++) {
-      diff = constraint - weights.weights[i];
-      if (diff >= excessVal) {
-        weights.weights[i] += excessVal;
-        break;
-      }
-      weights.weights[i] = constraint;
-      excessVal -= diff;
-    }
-  }
-
-  weights.weights.sort(() => Math.random() - 0.5);
-  return weights.weights;
-};
-
-/**
- * @param {number} size
- * @param {number} constraint
- * @return {number[]}
- */
-const genNormRandWeights = (size, constraint) => {
-  // Returns a normalized (sum = 1) array of positive weights, each less than or equal to a given constraint
-  if (size < MIN_NUM_ASSETS || size > MAX_NUM_ASSETS) {
-    throw new Error(`Expected ${MIN_NUM_ASSETS} <= size <= ${MAX_NUM_ASSETS}`);
-  } else if (constraint < 1 / size || constraint > 1) {
-    throw new Error("Expected constraint in [1/size, 1]");
-  }
-
-  const weights = randomWeights(size);
-  let normWeights = normalizeWeights(weights, constraint);
-  return normWeights;
-};
-
-/**
+ * Returns Optimizer React component which runs Monte Carlo simulation of portfolios with random allocations, plots them on an interactive scatter plot, and displays the mean-variance optimal portfolio on an interactive pie chart
  * @param {string[]} tickers
+ * @param {number} constraintPct
+ * @param {number} riskFreeRatePct
  * @param {JSX} children
  * @return {JSX}
  */
 const Optimizer = ({ tickers, constraintPct, riskFreeRatePct, children }) => {
-  // Returns Optimizer React component which runs Monte Carlo simulation of portfolios with random allocations, plots them on an interactive scatter plot, and displays the mean-variance optimal portfolio on an interactive pie chart
   const numTrials = 500000;
   const numPlotPoints = 1000;
   const maxNumEfficientFrontierRiskBins = 15;
@@ -438,7 +322,7 @@ const Optimizer = ({ tickers, constraintPct, riskFreeRatePct, children }) => {
   ];
 
   return (
-    <div>
+    <>
       <div className={styles.scatterPlot}>
         <Chart
           type="scatter"
@@ -461,7 +345,7 @@ const Optimizer = ({ tickers, constraintPct, riskFreeRatePct, children }) => {
         </div>
       </div>
       {children}
-    </div>
+    </>
   );
 };
 

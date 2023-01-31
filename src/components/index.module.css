@@ -10,6 +10,10 @@
   z-index: -2;
 }
 .flying-hero-subtext {
+  -webkit-animation: flying-text 1.25s ease-in-out;
+  -moz-animation: flying-text 1.25s ease-in-out;
+  -ms-animation: flying-text 1.25s ease-in-out;
+  -o-animation: flying-text 1.25s ease-in-out;
   animation: flying-text 1.25s ease-in-out;
 }
 .flying-button {

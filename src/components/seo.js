@@ -1,6 +1,13 @@
 import * as React from "react";
 import { graphql, useStaticQuery } from "gatsby";
 
+/**
+ * Returns Seo React component which adds metadata to pages
+ * @param {string} description
+ * @param {string} title
+ * @param {JSX} children
+ * @return {JSX}
+ */
 const Seo = ({ description, title, children }) => {
   const { site } = useStaticQuery(
     graphql`

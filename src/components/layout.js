@@ -3,6 +3,11 @@ import { Link } from "gatsby";
 import * as styles from "./layout.module.css";
 import { StaticImage } from "gatsby-plugin-image";
 
+/** Returns the Layout component wrapper
+ * @param {string} pageTitle
+ * @param {JSX} children
+ * @return {JSX}
+ */
 const Layout = ({ pageTitle, children }) => {
   const [hamburgerMenuActive, setHamburgerMenuActive] = React.useState(false);
 
@@ -15,7 +20,7 @@ const Layout = ({ pageTitle, children }) => {
             <span>
               <Link to="/" className={styles.navLinkText}>
                 <StaticImage
-                  alt="Small MVA logo"
+                  alt="MVA logo"
                   src="../images/mva-logo.png"
                   width={60}
                 />{" "}

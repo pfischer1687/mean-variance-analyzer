@@ -4,11 +4,8 @@ import Seo from "../components/seo";
 import Optimizer from "../components/optimizer.js";
 import * as styles from "../components/analyzer.module.css";
 import { Link } from "gatsby";
-import {
-  THREE_MO_TR_BILL_RATE,
-  toSortedUpper,
-  InputFields,
-} from "../components/input-fields.js";
+import { THREE_MO_TR_BILL_RATE, toSortedUpper } from "../utils/utils.js";
+import InputFields from "../components/input-fields.js";
 
 const AnalyzerPage = () => {
   const [inputFormState, setInputFormState] = React.useState({

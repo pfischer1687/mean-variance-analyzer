@@ -1,77 +1,28 @@
 import * as React from "react";
-import * as AssetData from "../../data/asset-data.json";
 import { Formik, Field, Form, ErrorMessage, FieldArray } from "formik";
 import * as yup from "yup";
 import * as styles from "./analyzer.module.css";
-
-export const MIN_NUM_ASSETS = 2;
-export const MAX_NUM_ASSETS = 15;
-export const THREE_MO_TR_BILL_RATE = 3.72;
-export const F_TR_BILL_RATE = `November 2022: ${THREE_MO_TR_BILL_RATE}%`;
-
-/**
- * @param {string[]} arr
- * @return {string[]}
- */
-export const toSortedUpper = (arr) => {
-  // Return a copy of an array that contains only uppercase non-null strings in alphabetical order
-  return arr
-    .filter(Boolean)
-    .map((v) => v.toUpperCase())
-    .sort();
-};
-
-class AssetCache {
-  static #cacheFlag = false;
-  static #assetCache = { tickers: new Set(), datalist: [] };
-
-  static #setAssetCache = () => {
-    if (!AssetCache.#cacheFlag) {
-      let tickerIndex = 0;
-      for (let ticker in AssetData) {
-        AssetCache.#assetCache.tickers.add(ticker);
-        AssetCache.#assetCache.datalist.push(
-          <option key={tickerIndex} value={ticker}>
-            {`${ticker} (${AssetData[ticker].title})`}
-          </option>
-        );
-        ++tickerIndex;
-      }
-      AssetCache.#assetCache.tickers.delete("default");
-      AssetCache.#assetCache.datalist.pop();
-      AssetCache.#cacheFlag = true;
-    }
-  };
-  static getAssetCache = () => {
-    AssetCache.#setAssetCache();
-    return AssetCache.#assetCache;
-  };
-}
-
-/**
- * @param {string[]} arr
- * @return {boolean}
- */
-const isUnique = (arr) => {
-  // Return boolean value representing whether a string array's values are unique by filtering the null values from the array, turning it into a hash set, and then comparing the size of the set to the length of the filtered array (helper function for validationSchema)
-  let filtered = toSortedUpper(arr);
-  let unique = new Set(filtered);
-  return unique.size === filtered.length;
-};
+import {
+  MIN_NUM_ASSETS,
+  MAX_NUM_ASSETS,
+  THREE_MO_TR_BILL_RATE,
+  isUnique,
+  AssetCache,
+} from "../utils/utils.js";
 
 /**
  * @callback onSubmitCallback
- * @param {Object} values
- * @param {string[]} values.assets
- * @param {number} values.constraintPct
- * @param {number} values.riskFreeRatePct
+ * @param {Object} formValues
+ * @param {string[]} formValues.assets
+ * @param {number} formValues.constraintPct
+ * @param {number} formValues.riskFreeRatePct
  */
 
 /**
  * @param {onSubmitCallback} onSubmit
  * @return {JSX}
  */
-export const InputFields = ({ onSubmit }) => {
+const InputFields = ({ onSubmit }) => {
   let validationSchema = yup.object().shape({
     assets: yup
       .array(yup.string())
@@ -241,3 +192,5 @@ export const InputFields = ({ onSubmit }) => {
     </Formik>
   );
 };
+
+export default InputFields;
