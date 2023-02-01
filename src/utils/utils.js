@@ -1,5 +1,6 @@
 import * as React from "react";
 import * as AssetData from "../../data/asset-data.json";
+import * as Yup from "yup";
 
 export const MIN_NUM_ASSETS = 2;
 export const MAX_NUM_ASSETS = 15;
@@ -29,7 +30,7 @@ export const isUnique = (arr) => {
   return unique.size === filtered.length;
 };
 
-/** Helper class representing a cache of static asset data (used in InputFields component) */
+/** Class representing a cache of static asset data (helper class InputFields component) */
 export class AssetCache {
   static #cacheFlag = false;
   static #assetCache = { tickers: new Set(), datalist: [] };
@@ -55,6 +56,73 @@ export class AssetCache {
   static getAssetCache = () => {
     AssetCache.#setAssetCache();
     return AssetCache.#assetCache;
+  };
+}
+
+/** Class representing a validation schema (helper class InputFields component) */
+export class ValidationSchema {
+  static #schemaFlag = false;
+  static #schema;
+
+  static #setSchema = () => {
+    if (!ValidationSchema.#schemaFlag) {
+      ValidationSchema.#schema = Yup.object().shape({
+        assets: Yup.array(Yup.string())
+          .compact((v) => v === undefined)
+          .min(2, "Must have at least 2 asset tickers")
+          .test(
+            "IsInDatalist",
+            "Asset tickers must be in datalist",
+            (assets) => {
+              for (let ticker of assets) {
+                if (
+                  !AssetCache.getAssetCache().tickers.has(ticker.toUpperCase())
+                )
+                  return false;
+              }
+              return true;
+            }
+          )
+          .test("Unique", "Asset tickers must be unique", (tickers) =>
+            isUnique(tickers)
+          )
+          .required("Required"),
+        constraintPct: Yup.number()
+          .typeError("Must be a number")
+          .test(
+            "MinAssets",
+            "Must have at least 2 asset tickers",
+            (constrPct, context) => {
+              let numAssets = parseFloat(context.parent.assets.length);
+              return numAssets >= 2;
+            }
+          )
+          .test(
+            "Min",
+            "Max allocation must be such that: 100% / (#assets - 1) <= allocation <= 100%",
+            (constrPct, context) => {
+              let numAssets = parseFloat(context.parent.assets.length);
+              return constrPct >= 100 / (numAssets - 1);
+            }
+          )
+          .max(
+            100,
+            "Max allocation must be such that: 100% / (#assets - 1) <= allocation <= 100%"
+          )
+          .required("Required"),
+        riskFreeRatePct: Yup.number()
+          .typeError("Must be a number")
+          .min(-50, "Benchmark must be such that: -50% <= benchmark <= 50%")
+          .max(50, "Benchmark must be such that: -50% <= benchmark <= 50%")
+          .required("Required"),
+      });
+      ValidationSchema.#schemaFlag = true;
+    }
+  };
+
+  static getValidationSchema = () => {
+    ValidationSchema.#setSchema();
+    return ValidationSchema.#schema;
   };
 }
 

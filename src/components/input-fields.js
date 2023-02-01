@@ -1,13 +1,12 @@
 import * as React from "react";
 import { Formik, Field, Form, ErrorMessage, FieldArray } from "formik";
-import * as yup from "yup";
 import * as styles from "./analyzer.module.css";
 import {
   MIN_NUM_ASSETS,
   MAX_NUM_ASSETS,
   THREE_MO_TR_BILL_RATE,
-  isUnique,
   AssetCache,
+  ValidationSchema,
 } from "../utils/utils.js";
 
 /**
@@ -23,54 +22,6 @@ import {
  * @return {JSX}
  */
 const InputFields = ({ onSubmit }) => {
-  let validationSchema = yup.object().shape({
-    assets: yup
-      .array(yup.string())
-      .compact((v) => v === undefined)
-      .min(2, "Must have at least 2 asset tickers")
-      .test("IsInDatalist", "Asset tickers must be in datalist", (assets) => {
-        for (let ticker of assets) {
-          if (!AssetCache.getAssetCache().tickers.has(ticker.toUpperCase()))
-            return false;
-        }
-        return true;
-      })
-      .test("Unique", "Asset tickers must be unique", (tickers) =>
-        isUnique(tickers)
-      )
-      .required("Required"),
-    constraintPct: yup
-      .number()
-      .typeError("Must be a number")
-      .test(
-        "MinAssets",
-        "Must have at least 2 asset tickers",
-        (constrPct, context) => {
-          let numAssets = parseFloat(context.parent.assets.length);
-          return numAssets >= 2;
-        }
-      )
-      .test(
-        "Min",
-        "Max allocation must be such that: 100% / (#assets - 1) <= allocation <= 100%",
-        (constrPct, context) => {
-          let numAssets = parseFloat(context.parent.assets.length);
-          return constrPct >= 100 / (numAssets - 1);
-        }
-      )
-      .max(
-        100,
-        "Max allocation must be such that: 100% / (#assets - 1) <= allocation <= 100%"
-      )
-      .required("Required"),
-    riskFreeRatePct: yup
-      .number()
-      .typeError("Must be a number")
-      .min(-50, "Benchmark must be such that: -50% <= benchmark <= 50%")
-      .max(50, "Benchmark must be such that: -50% <= benchmark <= 50%")
-      .required("Required"),
-  });
-
   return (
     <Formik
       initialValues={{
@@ -78,7 +29,7 @@ const InputFields = ({ onSubmit }) => {
         constraintPct: 100,
         riskFreeRatePct: THREE_MO_TR_BILL_RATE,
       }}
-      validationSchema={validationSchema}
+      validationSchema={ValidationSchema.getValidationSchema()}
       onSubmit={onSubmit}
     >
       {({ values }) => (
