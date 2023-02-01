@@ -58,14 +58,14 @@ const TutorialPage = () => {
         <p>
           If there are no errors in the input fields, a scatter plot will appear
           (example below) giving a visual representation of the approximated
-          maximum Sharpe ratio, single asset returns, efficient frontier,
-          Markowitz bullet and tangency portfolio (explained on the{" "}
+          maximum Sharpe ratio, individual assets, efficient frontier, Markowitz
+          bullet and capital market line (explained in the{" "}
           <Link to="/background">Background</Link> page). You can hover over or
           click on points on the plot to see the portfolios that produced each
-          point on the efficient frontier, the max Sharpe ratio and the
-          information for each single asset. Below that will be a pie chart
-          visualizing the allocations that produced the maximum sharpe ratio
-          with its corresponding information.
+          point on the efficient frontier, the maximum Sharpe ratio, and the
+          information for each individual asset. Below that will be a pie chart
+          visualizing the allocations that produced the portfolio with the
+          maximum sharpe ratio and its corresponding information.
         </p>
         <StaticImage
           src="../images/tutorial-optimizer.png"

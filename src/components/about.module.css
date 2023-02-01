@@ -6,6 +6,11 @@
   left: 5%;
 }
 
+/* Background */
+.overline {
+  text-decoration: overline;
+}
+
 /* Tutorial */
 .tutorial-img {
   border-radius: 1rem;
@@ -17,10 +22,7 @@
     padding: 2rem 10rem;
   }
   .tutorial-img {
-    margin: 1rem;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 1rem auto;
     width: 70%;
   }
 }

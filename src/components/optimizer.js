@@ -176,13 +176,13 @@ const Optimizer = ({ tickers, constraintPct, riskFreeRatePct, children }) => {
                     `  ${tickers[index]}: ${Number(weight * 100).toFixed(2)}%`
                 ),
               ];
-            } else if (label === "Single Assets") {
+            } else if (label === "Individual Assets") {
               return [
                 context.raw.ticker,
                 `Annualized Return: ${Number(context.raw.y).toFixed(2)}%`,
                 `Standard Deviation: ${Number(context.raw.x).toFixed(2)}%`,
               ];
-            } else if (label === "Tangency Portfolio" && context.raw.x === 0) {
+            } else if (label === "Capital Market Line" && context.raw.x === 0) {
               return [`Benchmark: ${Number(context.raw.y).toFixed(2)}%`];
             }
             return;
@@ -230,7 +230,7 @@ const Optimizer = ({ tickers, constraintPct, riskFreeRatePct, children }) => {
       },
       {
         type: "scatter",
-        label: "Single Assets",
+        label: "Individual Assets",
         data: tickers.map((ticker) => ({
           x: Math.sqrt(AssetData[ticker].annVar),
           y: AssetData[ticker].annRetPct,
@@ -262,7 +262,7 @@ const Optimizer = ({ tickers, constraintPct, riskFreeRatePct, children }) => {
       },
       {
         type: "line",
-        label: "Tangency Portfolio",
+        label: "Capital Market Line",
         data: [
           {
             x: 0,

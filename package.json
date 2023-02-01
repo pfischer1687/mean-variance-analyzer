@@ -5,15 +5,23 @@
   "description": "Learn about modern portfolio theory - interactively!",
   "author": "Paul Fischer <paulfischerdev@gmail.com>",
   "keywords": [
-    "mean-variance analysis",
+    "mean variance analysis",
+    "mva",
     "modern portfolio theory",
     "mpt",
-    "Sharpe ratio",
-    "tangency portfolio",
+    "efficient frontier",
+    "ex post Sharpe ratio",
+    "capital asset pricing model",
+    "capm",
+    "Monte Carlo simulation",
     "Markowitz bullet",
+    "capital market line",
+    "cml",
+    "capital allocation line",
+    "cal",
+    "tangency portfolio",
     "financial engineering",
-    "quantitative finance",
-    "Monte Carlo simulation"
+    "quantitative finance"
   ],
   "scripts": {
     "develop": "gatsby develop",

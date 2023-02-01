@@ -84,18 +84,23 @@ Paul Fischer
 - `react@18.2.0`
 - `react-chartjs-2@4.3.1`
 - `react-dom@18.2.0`
+- `react-katex@3.0.1`
 - `yup@0.32.11`
 
 ## Keywords
 
 - Mean-Variance Analysis
 - Modern Portfolio Theory (MPT)
-- Sharpe Ratio
-- Tangency Portfolio
+- Efficient Frontier
+- Ex Post Sharpe Ratio
+- Capital Asset Pricing Model (CAPM)
+- Monte Carlo Simulation
 - Markowitz Bullet
+- Capital Market Line (CML)
+- Capital Allocation Line (CAL)
+- Tangency Portfolio
 - Financial Engineering
 - Quantitative Finance
-- Monte Carlo Simulation
 
 ## License
 
