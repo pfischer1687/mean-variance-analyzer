@@ -21,13 +21,6 @@ h2 {
   box-shadow: 0 0 0 1px grey;
   outline: none;
 }
-.form-inputs:focus {
-  -webkit-box-shadow: 0 0 3px 3px #449504;
-  -moz-box-shadow: 0 0 3px 3px #449504;
-  -ms-box-shadow: 0 0 3px 3px #449504;
-  -o-box-shadow: 0 0 3px 3px #449504;
-  box-shadow: 0 0 3px 3px #449504;
-}
 .add-asset-button {
   margin-bottom: 1rem;
   color: white;
@@ -85,6 +78,13 @@ h2 {
   .form-inputs {
     margin-left: 25%;
   }
+  .form-inputs:focus {
+    -webkit-box-shadow: 0 0 0.125rem 0.125rem #449504;
+    -moz-box-shadow: 0 0 0.125rem 0.125rem #449504;
+    -ms-box-shadow: 0 0 0.125rem 0.125rem #449504;
+    -o-box-shadow: 0 0 0.125rem 0.125rem #449504;
+    box-shadow: 0 0 0.125rem 0.125rem #449504;
+  }
   .submit-button {
     margin-left: 43%;
   }
@@ -115,5 +115,12 @@ h2 {
     text-align: left;
     width: 85%;
     margin-left: 7%;
+  }
+  .form-inputs:focus {
+    -webkit-box-shadow: 0 0 0.5rem 0.5rem #449504;
+    -moz-box-shadow: 0 0 0.5rem 0.5rem #449504;
+    -ms-box-shadow: 0 0 0.5rem 0.5rem #449504;
+    -o-box-shadow: 0 0 0.5rem 0.5rem #449504;
+    box-shadow: 0 0 0.5rem 0.5rem #449504;
   }
 }
