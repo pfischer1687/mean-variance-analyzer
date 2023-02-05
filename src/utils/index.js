@@ -8,7 +8,7 @@ export const THREE_MO_TR_BILL_RATE = 3.72;
 export const F_TR_BILL_RATE = `November 2022: ${THREE_MO_TR_BILL_RATE}%`;
 export const NUM_TRIALS = 500000;
 export const NUM_PLOT_POINTS = 1000;
-export const MAX_NUM_EFF_FRONT_RISK_BINS = 15;
+export const MAX_NUM_EFF_FRONT_RISK_BINS = 20;
 
 /**
  * Returns a copy of a string array that contains only uppercase non-null strings sorted in alphabetical order
