@@ -79,11 +79,11 @@ h2 {
     margin-left: 25%;
   }
   .form-inputs:focus {
-    -webkit-box-shadow: 0 0 0.125rem 0.125rem #449504;
-    -moz-box-shadow: 0 0 0.125rem 0.125rem #449504;
-    -ms-box-shadow: 0 0 0.125rem 0.125rem #449504;
-    -o-box-shadow: 0 0 0.125rem 0.125rem #449504;
-    box-shadow: 0 0 0.125rem 0.125rem #449504;
+    -webkit-box-shadow: 0 0 0.25rem 0.25rem #449504;
+    -moz-box-shadow: 0 0 0.25rem 0.25rem #449504;
+    -ms-box-shadow: 0 0 0.25rem 0.25rem #449504;
+    -o-box-shadow: 0 0 0.25rem 0.25rem #449504;
+    box-shadow: 0 0 0.25rem 0.25rem #449504;
   }
   .submit-button {
     margin-left: 43%;

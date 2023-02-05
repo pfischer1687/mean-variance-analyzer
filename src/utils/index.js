@@ -535,6 +535,9 @@ const getMonteCarloPlotOptions = (
             } else if (label === "Individual Assets") {
               return [
                 context.raw.ticker,
+                `Sharpe Ratio: ${Number(
+                  (context.raw.y - benchmarkRatePct) / context.raw.x
+                ).toFixed(2)}`,
                 `Annualized Return: ${Number(context.raw.y).toFixed(2)}%`,
                 `Standard Deviation: ${Number(context.raw.x).toFixed(2)}%`,
               ];

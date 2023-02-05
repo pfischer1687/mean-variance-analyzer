@@ -46,9 +46,8 @@ const TutorialPage = () => {
           This number must be larger than 100% / (#assets - 1) and less than or
           equal to 100%. Then you have the option to enter a custom benchmark -
           the default value is the the 3 month Treasury bill rate at the time of
-          this site's development ({F_TR_BILL_RATE}) but you can enter any value
-          between -50% and 50% to use a custom rate, asset, or portfolio as your
-          benchmark.
+          this site's development ({F_TR_BILL_RATE}) but you can enter any
+          custom risk-free rate between -50% and 50% as your benchmark.
         </p>
         <StaticImage
           src="../images/tutorial-input-form.png"
