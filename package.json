@@ -28,7 +28,8 @@
     "start": "gatsby develop",
     "build": "gatsby build",
     "serve": "gatsby serve",
-    "clean": "gatsby clean"
+    "clean": "gatsby clean",
+    "test": "jest"
   },
   "dependencies": {
     "chart.js": "^3.9.1",
@@ -52,5 +53,11 @@
   },
   "bugs": {
     "url": "https://github.com/pfischer1687/mean-variance-analyzer/issues"
+  },
+  "devDependencies": {
+    "babel-jest": "^29.4.1",
+    "babel-preset-gatsby": "^3.5.0",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^29.4.1"
   }
 }

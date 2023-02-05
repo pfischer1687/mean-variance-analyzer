@@ -4,8 +4,9 @@ import * as styles from "./layout.module.css";
 import { StaticImage } from "gatsby-plugin-image";
 
 /** Returns the Layout component wrapper
- * @param {string} pageTitle
- * @param {JSX} children
+ * @param {Object} props
+ * @param {string} props.pageTitle
+ * @param {JSX} props.children
  * @return {JSX}
  */
 const Layout = ({ pageTitle, children }) => {

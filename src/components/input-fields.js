@@ -7,18 +7,19 @@ import {
   THREE_MO_TR_BILL_RATE,
   AssetCache,
   ValidationSchema,
-} from "../utils/utils.js";
+} from "../utils";
 
 /**
  * @callback onSubmitCallback
  * @param {Object} formValues
  * @param {string[]} formValues.assets
  * @param {number} formValues.constraintPct
- * @param {number} formValues.riskFreeRatePct
+ * @param {number} formValues.benchmarkRatePct
  */
 
 /**
- * @param {onSubmitCallback} onSubmit
+ * @param {Object} props
+ * @param {onSubmitCallback} props.onSubmit
  * @return {JSX}
  */
 const InputFields = ({ onSubmit }) => {
@@ -27,7 +28,7 @@ const InputFields = ({ onSubmit }) => {
       initialValues={{
         assets: ["", ""],
         constraintPct: 100,
-        riskFreeRatePct: THREE_MO_TR_BILL_RATE,
+        benchmarkRatePct: THREE_MO_TR_BILL_RATE,
       }}
       validationSchema={ValidationSchema.getValidationSchema()}
       onSubmit={onSubmit}
@@ -109,18 +110,18 @@ const InputFields = ({ onSubmit }) => {
                   />
                 </div>
 
-                <label className={styles.formLabels} htmlFor="riskFreeRatePct">
+                <label className={styles.formLabels} htmlFor="benchmarkRatePct">
                   Benchmark (%):{" "}
                 </label>
 
                 <div>
                   <Field
                     className={styles.formInputs}
-                    id="riskFreeRatePct"
-                    name="riskFreeRatePct"
+                    id="benchmarkRatePct"
+                    name="benchmarkRatePct"
                   />
                   <ErrorMessage
-                    name="riskFreeRatePct"
+                    name="benchmarkRatePct"
                     className={styles.fieldError}
                     component="div"
                   />

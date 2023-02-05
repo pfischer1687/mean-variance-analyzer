@@ -5,6 +5,11 @@ import * as styles from "../components/about.module.css";
 import { Link } from "gatsby";
 import "katex/dist/katex.min.css";
 import { BlockMath } from "react-katex";
+import {
+  NUM_TRIALS,
+  NUM_PLOT_POINTS,
+  MAX_NUM_EFF_FRONT_RISK_BINS,
+} from "../utils";
 
 const BackgroundPage = () => {
   return (
@@ -46,7 +51,7 @@ const BackgroundPage = () => {
           <sub>t</sub> in period t as the difference between the historical
           return R<sub>Ft</sub> on fund F and the return R<sub>Bt</sub> on a
           benchmark portfolio or security (often the annualized 3 month Treasury
-          bill rate):
+          bill rate, also called the risk-free rate):
           <sup>
             <Link to="#references">[5]</Link>
           </sup>
@@ -97,7 +102,8 @@ const BackgroundPage = () => {
         </p>
         <p>
           This site uses Monte Carlo simulation to approximate the efficient
-          frontier from 500,000 random allocations (please see the site's{" "}
+          frontier from {NUM_TRIALS.toLocaleString()} random allocations (please
+          see the site's{" "}
           <a
             href="https://github.com/pfischer1687/mean-variance-analyzer"
             target="_blank"
@@ -116,31 +122,33 @@ const BackgroundPage = () => {
         <BlockMath>{String.raw`S_h=\frac{\mu^Tx-R_{Bt}}{\sqrt{x^TQx}}.`}</BlockMath>
         <p>
           In our case, the portfolio that produces the highest Sharpe ratio out
-          of the 500,000 is plotted on a graph of historic average differential
-          return vs. standard deviation. The efficient frontier is calculated by
-          splitting the risk into at most 15 equally spaced bins and choosing
-          the largest return from within each bin. Note that the efficient
-          frontier here is approxmiated via Monte Carlo simulation and a more
-          accurate calculation can be done via quadratic programming; however,
-          this is beyond the scope of this educational web app and the reader is
-          encouraged to learn more about this after experimenting with the site.
+          of the {NUM_TRIALS.toLocaleString()} is plotted on a graph of historic
+          average return vs. standard deviation. The efficient frontier is
+          calculated by splitting the risk into at most{" "}
+          {MAX_NUM_EFF_FRONT_RISK_BINS.toLocaleString()} equally spaced bins and
+          choosing the largest return from within each bin. Note that the
+          efficient frontier here is approxmiated via Monte Carlo simulation and
+          a more accurate calculation can be done via quadratic programming;
+          however, this is beyond the scope of this educational web app and the
+          reader is encouraged to learn more about this after experimenting with
+          the site.
           <sup>
             <Link to="#references">[7]</Link>
           </sup>{" "}
-          1,000 of the 500,000 randomly generated portfolios are chosen at
-          random and plotted to outline the hyperbolic shape known as the
+          {NUM_PLOT_POINTS.toLocaleString()} of the{" "}
+          {NUM_TRIALS.toLocaleString()} randomly generated portfolios are chosen
+          at random and plotted to outline the hyperbolic shape known as the
           Markowitz bullet which shows the general distribution of returns and
           risks as a function of the possible portfolio allocations.
         </p>
         <p>
           The capital market line (CML) is a straight line drawn from the
-          risk-free (or benchmark) rate to the portfolio on the efficient
-          frontier with the highest Sharpe ratio, also known as the tangency
-          portfolio. The CML represents the capital allocation line with the
-          highest slope (equal to the highest Sharpe ratio). Points on the CML
-          to the left of the tangency portfolio represent incorporating lending
-          at the risk-free rate into the portfolio. Points to the right
-          incorporate borrowing,
+          benchmark rate to the portfolio on the efficient frontier with the
+          highest Sharpe ratio, also known as the tangency portfolio. The CML
+          represents the capital allocation line with the highest slope (equal
+          to the highest Sharpe ratio). Points on the CML to the left of the
+          tangency portfolio represent incorporating lending at the benchmark
+          rate into the portfolio. Points to the right incorporate borrowing,
           <sup>
             <Link to="#references">[8]</Link>
           </sup>{" "}

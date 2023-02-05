@@ -4,7 +4,7 @@ import Seo from "../components/seo";
 import * as styles from "../components/about.module.css";
 import { Link } from "gatsby";
 import { StaticImage } from "gatsby-plugin-image";
-import { F_TR_BILL_RATE } from "../utils/utils.js";
+import { F_TR_BILL_RATE } from "../utils";
 
 const TutorialPage = () => {
   return (

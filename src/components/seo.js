@@ -3,9 +3,10 @@ import { graphql, useStaticQuery } from "gatsby";
 
 /**
  * Returns Seo React component which adds metadata to pages
- * @param {string} description
- * @param {string} title
- * @param {JSX} children
+ * @param {Object} props
+ * @param {string} props.description
+ * @param {string} props.title
+ * @param {JSX} props.children
  * @return {JSX}
  */
 const Seo = ({ description, title, children }) => {
