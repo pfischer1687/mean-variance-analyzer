@@ -20,7 +20,7 @@ link in the navigation menu.
 <img src="./src/images/tutorial-home.png" alt="MVA home screen" width=600>
 
 This should take you to the input form (below). Enter all
-the assets of interest into the corrsponding input fields. You can
+the assets of interest into the corresponding input fields. You can
 start typing a ticker or company name and if it is in the preloaded
 dataset of over 100 popular assets it should appear in the dropdown
 datalist and be clickable (you are encouraged to read more about
