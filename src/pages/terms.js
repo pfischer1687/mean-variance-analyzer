@@ -3,13 +3,11 @@ import Layout from "../components/layout";
 import Seo from "../components/seo";
 import * as styles from "../components/about.module.css";
 import { Link } from "gatsby";
+import { GET_ASSET_DATA_GH_REPO_URL, SITE_URL, DEV_SITE_URL } from "../utils";
 
 const TermsPage = () => {
-  const lastUpdated = "1/25/2023";
-  const getDataGithub = "https://github.com/pfischer1687/get-json-data-for-mva";
+  const lastUpdated = "2/7/2023";
   const privacyLink = "/privacy";
-  const websiteUrl = "https://mvanalyzer.dev/";
-  const devsWebsite = "https://paulfischer.dev/";
 
   return (
     <Layout pageTitle="Terms">
@@ -23,7 +21,7 @@ const TermsPage = () => {
           considered as financial advice or a recommendation for any type of
           investment. The site may provide financial information or market data,
           and you are encouraged to view the{" "}
-          <a href={getDataGithub} target="_blank" rel="noreferrer">
+          <a href={GET_ASSET_DATA_GH_REPO_URL} target="_blank" rel="noreferrer">
             source code
           </a>{" "}
           for how this data was gathered, including the choices made by the
@@ -47,7 +45,7 @@ const TermsPage = () => {
           These Terms of Service constitute a legally binding agreement made
           between you, whether personally or on behalf of an entity (“you”) and
           the Site's devloper (“we,” “us” or “our”), concerning your access to
-          and use of the {websiteUrl} website as well as any other media form,
+          and use of the {SITE_URL} website as well as any other media form,
           media channel, mobile website or mobile application related, linked,
           or otherwise connected thereto (collectively, the “Site”).
         </p>
@@ -828,7 +826,7 @@ const TermsPage = () => {
           In order to resolve a complaint regarding the Site or to receive
           further information regarding use of the Site, please contact us via
           the information on the developer's{" "}
-          <a href={devsWebsite} target="_blank" rel="noreferrer">
+          <a href={DEV_SITE_URL} target="_blank" rel="noreferrer">
             website
           </a>
           .

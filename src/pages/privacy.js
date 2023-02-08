@@ -3,15 +3,12 @@ import Layout from "../components/layout";
 import Seo from "../components/seo";
 import * as styles from "../components/about.module.css";
 import { Link } from "gatsby";
+import { SRC_CODE_URL, SITE_URL, DEV_SITE_URL } from "../utils";
 
 const PrivacyPage = () => {
-  const lastUpdated = "1/25/2023";
+  const lastUpdated = "2/7/2023";
   const termsLink = "/terms";
-  const sourceCodeLink =
-    "https://github.com/pfischer1687/mean-variance-analyzer";
   const siteTitle = "Mean-Variance Analyzer";
-  const websiteUrl = "https://mvanalyzer.dev/";
-  const devsWebsite = "https://paulfischer.dev/";
 
   return (
     <Layout pageTitle="Privacy">
@@ -32,7 +29,7 @@ const PrivacyPage = () => {
           and the developer is not aware of any cookies or data that are stored
           either on the client's device or anywhere else beyond the immediate
           session of the site's use. You are encouraged to view the site's{" "}
-          <a href={sourceCodeLink} target="_blank" rel="noreferrer">
+          <a href={SRC_CODE_URL} target="_blank" rel="noreferrer">
             source code
           </a>{" "}
           to see for yourself how any data may be handled. That said, please
@@ -64,7 +61,7 @@ const PrivacyPage = () => {
         </p>
         <ul>
           <li>
-            Visit our website at {websiteUrl}, or any website of ours that links
+            Visit our website at {SITE_URL}, or any website of ours that links
             to this privacy notice
           </li>
           <li>
@@ -77,7 +74,7 @@ const PrivacyPage = () => {
           you understand your privacy rights and choices. If you do not agree
           with our policies and practices, please do not use our Services. If
           you still have any questions or concerns, please contact us via the
-          information on the developer's <a href={devsWebsite}>website</a>.
+          information on the developer's <a href={DEV_SITE_URL}>website</a>.
         </p>
         <p>
           This privacy policy was created by Termly’s{" "}
@@ -934,7 +931,7 @@ const PrivacyPage = () => {
         <p>
           If you have questions or comments about this notice, you may contact
           the developer via the information provided on his{" "}
-          <a href={devsWebsite} target="_blank" rel="noreferrer">
+          <a href={DEV_SITE_URL} target="_blank" rel="noreferrer">
             website
           </a>
           .

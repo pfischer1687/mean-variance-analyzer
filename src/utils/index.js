@@ -4,11 +4,17 @@ import * as Yup from "yup";
 
 export const MIN_NUM_ASSETS = 2;
 export const MAX_NUM_ASSETS = 15;
-export const THREE_MO_TR_BILL_RATE = 3.72;
-export const F_TR_BILL_RATE = `November 2022: ${THREE_MO_TR_BILL_RATE}%`;
+export const THREE_MO_TR_BILL_RATE = 4.54;
+export const F_TR_BILL_RATE = `Jan 2023: ${THREE_MO_TR_BILL_RATE}%`;
 export const NUM_TRIALS = 500000;
 export const NUM_PLOT_POINTS = 1000;
 export const MAX_NUM_EFF_FRONT_RISK_BINS = 20;
+export const GET_ASSET_DATA_GH_REPO_URL =
+  "https://github.com/pfischer1687/get-asset-data-for-mva";
+export const SITE_URL = "https://mvanalyzer.dev/";
+export const DEV_SITE_URL = "https://paulfischer.dev/";
+export const SRC_CODE_URL =
+  "https://github.com/pfischer1687/mean-variance-analyzer";
 
 /**
  * Returns a copy of a string array that contains only uppercase non-null strings sorted in alphabetical order
@@ -743,7 +749,8 @@ const getMaxSharpeRatioInfo = (
     )}%`,
     "Portfolio weights:",
     ...sortedMaxSharpeRatioPflWeights.map(
-      (arr) => `${arr[0]}: ${Number(arr[1]).toFixed(2)}%`
+      (arr) =>
+        `${arr[0]} (${AssetData[arr[0]].title}): ${Number(arr[1]).toFixed(2)}%`
     ),
   ];
 

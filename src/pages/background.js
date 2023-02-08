@@ -6,7 +6,9 @@ import { Link } from "gatsby";
 import "katex/dist/katex.min.css";
 import { BlockMath } from "react-katex";
 import {
+  GET_ASSET_DATA_GH_REPO_URL,
   NUM_TRIALS,
+  SRC_CODE_URL,
   NUM_PLOT_POINTS,
   MAX_NUM_EFF_FRONT_RISK_BINS,
 } from "../utils";
@@ -75,11 +77,11 @@ const BackgroundPage = () => {
         <p>
           This site contains a preloaded set of data from over 100 popular
           assets including stocks, ETFs, cryptocurrencies, and more. The data
-          contains the annualized monthly returns of the historic close prices
-          for each asset over their maximum periods, the variances of these
-          values, and the covariances of these values with respect to each
-          others' values. When calculating the Sharpe ratio, it is common to use
-          the assets' monthly close prices.
+          contains the annualized monthly percent return from the historic
+          adjusted close prices of each asset over their maximum periods, the
+          variances of these values, and the covariances of these values with
+          respect to each others' values. When calculating the Sharpe ratio, it
+          is common to use the assets' monthly close prices.
           <sup>
             <Link to="#references">[6]</Link>
           </sup>{" "}
@@ -91,11 +93,7 @@ const BackgroundPage = () => {
           purely educational app we are not liable for the accuracy of this data
           nor its resulting information as per the{" "}
           <Link to="/terms">Terms of Service</Link>. Please refer to the{" "}
-          <a
-            href="https://github.com/pfischer1687/get-json-data-for-mva"
-            target="_blank"
-            rel="noreferrer"
-          >
+          <a href={GET_ASSET_DATA_GH_REPO_URL} target="_blank" rel="noreferrer">
             source code
           </a>{" "}
           for how this data was gathered for more details.{" "}
@@ -104,11 +102,7 @@ const BackgroundPage = () => {
           This site uses Monte Carlo simulation to approximate the efficient
           frontier from {NUM_TRIALS.toLocaleString()} random allocations (please
           see the site's{" "}
-          <a
-            href="https://github.com/pfischer1687/mean-variance-analyzer"
-            target="_blank"
-            rel="noreferrer"
-          >
+          <a href={SRC_CODE_URL} target="_blank" rel="noreferrer">
             source code
           </a>{" "}
           for more details). The ex post Sharpe ratio is calculated via the
@@ -160,13 +154,8 @@ const BackgroundPage = () => {
           encouraged to learn more about them after experimenting with the site.
         </p>
         <p>
-          On this site we only cover one of the earliest and most basic theories
-          of portfolio optimization. The field has grown a lot since then and
-          the site is meant for educational purposes to get the reader started
-          on their journey towards learning how portfolio optimization is done
-          in practice today (i.e. the site's information cannot be considered
-          financial advice or recommendations for any investments as per the{" "}
-          <Link to="/terms">Terms of Service</Link>). Standard calculations of
+          On this site, we only introduce the most basic aspects of modern
+          portfolio theory for educational purposes. Standard calculations of
           the annualized ex post Sharpe ratio have a wide range of criticisms,
           such as how historical returns cannot guarantee an asset's future
           performance, how it assumes a normal distribution of returns which in
@@ -205,8 +194,12 @@ const BackgroundPage = () => {
           <li>
             Sharpe, W. F. (1966). "Mutual Fund Performance".{" "}
             <i>Journal of Business</i>. <b>39</b> (S1): 119–138.{" "}
-            <a href="doi:10.1086/294846" target="_blank" rel="noreferrer">
-              doi:10.1086/294846
+            <a
+              href="https://www.jstor.org/stable/2351741"
+              target="_blank"
+              rel="noreferrer"
+            >
+              https://www.jstor.org/stable/2351741
             </a>
             .
           </li>

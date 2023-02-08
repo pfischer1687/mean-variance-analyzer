@@ -4,7 +4,7 @@ import Seo from "../components/seo";
 import * as styles from "../components/about.module.css";
 import { Link } from "gatsby";
 import { StaticImage } from "gatsby-plugin-image";
-import { F_TR_BILL_RATE } from "../utils";
+import { GET_ASSET_DATA_GH_REPO_URL, F_TR_BILL_RATE } from "../utils";
 
 const TutorialPage = () => {
   return (
@@ -29,11 +29,7 @@ const TutorialPage = () => {
           ticker or company name and if it is in the preloaded dataset of over
           100 popular assets it should appear in the dropdown datalist and be
           clickable (you are encouraged to read more about{" "}
-          <a
-            href="https://github.com/pfischer1687/get-json-data-for-mva"
-            target="_blank"
-            rel="noreferrer"
-          >
+          <a href={GET_ASSET_DATA_GH_REPO_URL} target="_blank" rel="noreferrer">
             how the data was collected
           </a>{" "}
           - note that the developer is not liable for the accuracy or freshness
@@ -57,18 +53,24 @@ const TutorialPage = () => {
         <p>
           If there are no errors in the input fields, a scatter plot will appear
           (example below) giving a visual representation of the approximated
-          maximum Sharpe ratio, individual assets, efficient frontier, Markowitz
-          bullet and capital market line (explained in the{" "}
-          <Link to="/background">Background</Link> page). You can hover over or
-          click on points on the plot to see the portfolios that produced each
-          point on the efficient frontier, the maximum Sharpe ratio, and the
-          information for each individual asset. Below that will be a pie chart
-          visualizing the allocations that produced the portfolio with the
-          maximum sharpe ratio and its corresponding information.
+          maximum Sharpe ratio (or tangency) portfolio, individual assets,
+          efficient frontier, Markowitz bullet and capital market line
+          (explained on the <Link to="/background">Background</Link> page). You
+          can hover over or click on points on the plot to see the portfolios
+          that produced each point on the efficient frontier, the allocations
+          that produced the tangency portfolio, and the information for each
+          individual asset. Below that will be a pie chart visualizing the
+          allocations that produced the tangency portfolio along with its
+          corresponding information.
         </p>
         <StaticImage
-          src="../images/tutorial-optimizer.png"
-          alt="Sample Markowitz bullet scatter plot with optimal Sharpe ratio pie chart"
+          src="../images/tutorial-scatter.png"
+          alt="Sample Markowitz bullet scatter plot"
+          className={styles.tutorialImg}
+        />
+        <StaticImage
+          src="../images/tutorial-pie.png"
+          alt="Sample tangency portfolio pie chart"
           className={styles.tutorialImg}
         />
         <p>

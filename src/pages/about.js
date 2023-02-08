@@ -3,6 +3,7 @@ import Layout from "../components/layout";
 import Seo from "../components/seo";
 import * as styles from "../components/about.module.css";
 import { Link } from "gatsby";
+import { SRC_CODE_URL, DEV_SITE_URL } from "../utils";
 
 const AboutPage = () => {
   return (
@@ -13,14 +14,10 @@ const AboutPage = () => {
           Welcome to Mean-Variance Analyzer! MVA is an educational tool meant to
           help people new to financial engineering start their journey learning
           about the history of portfolio optimization. Please read the{" "}
-          <Link to="/tutorial">tutorial</Link> to learn more! If you are also a
-          fan of React, JavaScript, CSS and HTML, I encourage you to take a look
-          at the{" "}
-          <a
-            href="https://github.com/pfischer1687/mean-variance-analyzer"
-            target="_blank"
-            rel="noreferrer"
-          >
+          <Link to="/tutorial">tutorial</Link> to learn more! If you are curious
+          about how the site works, or share my love of Javascript, you are
+          encouraged to take a look at the{" "}
+          <a href={SRC_CODE_URL} target="_blank" rel="noreferrer">
             source code
           </a>
           .
@@ -31,7 +28,7 @@ const AboutPage = () => {
           interested in learning more about web development and financial
           engineering. Thank you for using my app, I hope you learn something
           from it! You can learn more about me at my{" "}
-          <a href="https://paulfischer.dev/" target="_blank" rel="noreferrer">
+          <a href={DEV_SITE_URL} target="_blank" rel="noreferrer">
             website
           </a>
           .

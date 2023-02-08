@@ -4,6 +4,28 @@
   "private": true,
   "description": "Learn about modern portfolio theory - interactively!",
   "author": "Paul Fischer <paulfischerdev@gmail.com>",
+  "dependencies": {
+    "chart.js": "^3.9.1",
+    "formik": "^2.2.9",
+    "gatsby": "^5.4.2",
+    "gatsby-plugin-image": "^3.4.0",
+    "gatsby-plugin-manifest": "^5.4.0",
+    "gatsby-plugin-offline": "^6.4.0",
+    "gatsby-plugin-sharp": "^5.4.0",
+    "gatsby-source-filesystem": "^5.4.0",
+    "gatsby-transformer-sharp": "^5.4.0",
+    "react": "^18.2.0",
+    "react-chartjs-2": "^4.3.1",
+    "react-dom": "^18.2.0",
+    "react-katex": "^3.0.1",
+    "yup": "^0.32.11"
+  },
+  "devDependencies": {
+    "babel-jest": "^29.4.1",
+    "babel-preset-gatsby": "^3.5.0",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^29.4.1"
+  },
   "keywords": [
     "mean variance analysis",
     "mva",
@@ -23,6 +45,7 @@
     "financial engineering",
     "quantitative finance"
   ],
+  "license": "UNLICENSED",
   "scripts": {
     "develop": "gatsby develop",
     "start": "gatsby develop",
@@ -31,33 +54,11 @@
     "clean": "gatsby clean",
     "test": "jest"
   },
-  "dependencies": {
-    "chart.js": "^3.9.1",
-    "formik": "^2.2.9",
-    "gatsby": "^5.4.2",
-    "gatsby-plugin-image": "^3.4.0",
-    "gatsby-plugin-manifest": "^5.4.0",
-    "gatsby-plugin-offline": "^6.4.0",
-    "gatsby-plugin-sharp": "^5.4.0",
-    "gatsby-source-filesystem": "^5.4.0",
-    "gatsby-transformer-sharp": "^5.4.0",
-    "react": "^18.2.0",
-    "react-chartjs-2": "^4.3.1",
-    "react-dom": "^18.2.0",
-    "react-katex": "^3.0.1",
-    "yup": "^0.32.11"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/pfischer1687/mean-variance-analyzer"
   },
   "bugs": {
     "url": "https://github.com/pfischer1687/mean-variance-analyzer/issues"
-  },
-  "devDependencies": {
-    "babel-jest": "^29.4.1",
-    "babel-preset-gatsby": "^3.5.0",
-    "identity-obj-proxy": "^3.0.0",
-    "jest": "^29.4.1"
   }
 }
