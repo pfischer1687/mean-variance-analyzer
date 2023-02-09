@@ -20,128 +20,135 @@ import {
 /**
  * @param {Object} props
  * @param {onSubmitCallback} props.onSubmit
+ * @param {JSX} props.children
  * @return {JSX}
  */
-const InputFields = ({ onSubmit }) => {
+const InputFields = ({ onSubmit, children }) => {
   return (
-    <Formik
-      initialValues={{
-        assets: ["", ""],
-        constraintPct: 100,
-        benchmarkRatePct: THREE_MO_TR_BILL_RATE,
-      }}
-      validationSchema={ValidationSchema.getValidationSchema()}
-      onSubmit={onSubmit}
-    >
-      {({ values }) => (
-        <Form>
-          <FieldArray name="assets">
-            {({ insert, remove }) => (
-              <>
-                <div>
-                  {values.assets.map((value, index) => (
-                    <div key={index}>
-                      <label
-                        htmlFor={`assets.${index}`}
-                        className={styles.formLabels}
-                      >
-                        Asset {index + 1}:{" "}
-                      </label>
-                      <br />
-
-                      <Field
-                        id={`assets.${index}`}
-                        name={`assets.${index}`}
-                        list="assets-list"
-                        className={styles.formInputs}
-                        placeholder="Enter ticker"
-                      />
-
-                      <datalist id="assets-list">
-                        {AssetCache.getAssetCache().datalist}
-                      </datalist>
-
-                      {values.assets.length > MIN_NUM_ASSETS && (
-                        <button
-                          id="removeAssetButton"
-                          type="button"
-                          onClick={() => remove(index)}
-                          className={styles.removeButton}
+    <>
+      <Formik
+        initialValues={{
+          assets: ["", ""],
+          constraintPct: 100,
+          benchmarkRatePct: THREE_MO_TR_BILL_RATE,
+        }}
+        validationSchema={ValidationSchema.getValidationSchema()}
+        onSubmit={onSubmit}
+      >
+        {({ values }) => (
+          <Form>
+            <FieldArray name="assets">
+              {({ insert, remove }) => (
+                <>
+                  <div>
+                    {values.assets.map((value, index) => (
+                      <div key={index}>
+                        <label
+                          htmlFor={`assets.${index}`}
+                          className={styles.formLabels}
                         >
-                          X
-                        </button>
-                      )}
-                      <br />
-                    </div>
-                  ))}
-                  <ErrorMessage
-                    name="assets"
-                    className={styles.fieldError}
-                    component="div"
-                  />
-                </div>
+                          Asset {index + 1}:{" "}
+                        </label>
+                        <br />
 
-                {values.assets.length < MAX_NUM_ASSETS && (
-                  <button
-                    id="addAssetButton"
-                    className={styles.addAssetButton}
-                    type="button"
-                    onClick={() => insert(values.assets.length, "")}
+                        <Field
+                          id={`assets.${index}`}
+                          name={`assets.${index}`}
+                          list="assets-list"
+                          className={styles.formInputs}
+                          placeholder="Enter ticker"
+                        />
+
+                        <datalist id="assets-list">
+                          {AssetCache.getAssetCache().datalist}
+                        </datalist>
+
+                        {values.assets.length > MIN_NUM_ASSETS && (
+                          <button
+                            id="removeAssetButton"
+                            type="button"
+                            onClick={() => remove(index)}
+                            className={styles.removeButton}
+                          >
+                            X
+                          </button>
+                        )}
+                        <br />
+                      </div>
+                    ))}
+                    <ErrorMessage
+                      name="assets"
+                      className={styles.fieldError}
+                      component="div"
+                    />
+                  </div>
+
+                  {values.assets.length < MAX_NUM_ASSETS && (
+                    <button
+                      id="addAssetButton"
+                      className={styles.addAssetButton}
+                      type="button"
+                      onClick={() => insert(values.assets.length, "")}
+                    >
+                      + Add Asset
+                    </button>
+                  )}
+                  <br />
+
+                  <label className={styles.formLabels} htmlFor="constraintPct">
+                    Max Allocation (%):
+                  </label>
+
+                  <div>
+                    <Field
+                      className={styles.formInputs}
+                      id="constraintPct"
+                      name="constraintPct"
+                    />
+                    <ErrorMessage
+                      name="constraintPct"
+                      className={styles.fieldError}
+                      component="div"
+                    />
+                  </div>
+
+                  <label
+                    className={styles.formLabels}
+                    htmlFor="benchmarkRatePct"
                   >
-                    + Add Asset
-                  </button>
-                )}
-                <br />
+                    Benchmark (%):{" "}
+                  </label>
 
-                <label className={styles.formLabels} htmlFor="constraintPct">
-                  Max Allocation (%):
-                </label>
+                  <div>
+                    <Field
+                      className={styles.formInputs}
+                      id="benchmarkRatePct"
+                      name="benchmarkRatePct"
+                    />
+                    <ErrorMessage
+                      name="benchmarkRatePct"
+                      className={styles.fieldError}
+                      component="div"
+                    />
+                  </div>
 
-                <div>
-                  <Field
-                    className={styles.formInputs}
-                    id="constraintPct"
-                    name="constraintPct"
-                  />
-                  <ErrorMessage
-                    name="constraintPct"
-                    className={styles.fieldError}
-                    component="div"
-                  />
-                </div>
-
-                <label className={styles.formLabels} htmlFor="benchmarkRatePct">
-                  Benchmark (%):{" "}
-                </label>
-
-                <div>
-                  <Field
-                    className={styles.formInputs}
-                    id="benchmarkRatePct"
-                    name="benchmarkRatePct"
-                  />
-                  <ErrorMessage
-                    name="benchmarkRatePct"
-                    className={styles.fieldError}
-                    component="div"
-                  />
-                </div>
-
-                <div>
-                  <button
-                    id="submitAssetsButton"
-                    type="submit"
-                    className={styles.submitButton}
-                  >
-                    Submit
-                  </button>
-                </div>
-              </>
-            )}
-          </FieldArray>
-        </Form>
-      )}
-    </Formik>
+                  <div>
+                    <button
+                      id="submitAssetsButton"
+                      type="submit"
+                      className={styles.submitButton}
+                    >
+                      Submit
+                    </button>
+                  </div>
+                </>
+              )}
+            </FieldArray>
+          </Form>
+        )}
+      </Formik>
+      {children}
+    </>
   );
 };
 

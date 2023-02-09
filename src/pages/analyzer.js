@@ -4,26 +4,46 @@ import Seo from "../components/seo";
 import Optimizer from "../components/optimizer.js";
 import * as styles from "../components/analyzer.module.css";
 import { Link } from "gatsby";
-import { THREE_MO_TR_BILL_RATE, toSortedUpper } from "../utils";
+import { toSortedUpper, getOptimizerData } from "../utils";
 import InputFields from "../components/input-fields.js";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const AnalyzerPage = () => {
-  const [inputFormState, setInputFormState] = React.useState({
+  const [loadingState, setLoadingState] = React.useState({
+    showLoading: false,
     showPlot: false,
-    tickers: [],
-    constraintPct: 100,
-    benchmarkRatePct: THREE_MO_TR_BILL_RATE,
+  });
+
+  const [optimizerData, setOptimizerData] = React.useState({
+    monteCarloPlotOptions: {},
+    monteCarloPlotData: {},
+    pieChartData: {},
+    pieChartOptions: {},
+    maxSharpeRatioInfo: [],
   });
 
   const handleOnSubmit = (formValues) => {
-    setInputFormState({
-      ...inputFormState,
-      showPlot: true,
-      tickers: toSortedUpper(formValues.assets),
-      ticker: formValues.assets,
-      constraintPct: formValues.constraintPct,
-      benchmarkRatePct: formValues.benchmarkRatePct,
-    });
+    setLoadingState({ showLoading: true, showPlot: false });
+
+    setTimeout(() => {
+      const tickers = toSortedUpper(formValues.assets);
+      const constraint = formValues.constraintPct / 100;
+      const benchmarkRatePct = formValues.benchmarkRatePct;
+      const optimizerData = getOptimizerData(
+        tickers,
+        constraint,
+        benchmarkRatePct
+      );
+      setOptimizerData({
+        monteCarloPlotOptions: optimizerData.monteCarloPlotOptions,
+        monteCarloPlotData: optimizerData.monteCarloPlotData,
+        pieChartData: optimizerData.pieChartData,
+        pieChartOptions: optimizerData.pieChartOptions,
+        maxSharpeRatioInfo: optimizerData.maxSharpeRatioInfo,
+      });
+
+      setLoadingState({ showLoading: false, showPlot: true });
+    }, 300);
   };
 
   return (
@@ -38,12 +58,26 @@ const AnalyzerPage = () => {
           <Link to="/tutorial">Tutorial</Link>. Note that by using this site,
           you agree to the <Link to="/terms">Terms of Service</Link>.
         </p>
+
         <InputFields onSubmit={handleOnSubmit} />
-        {inputFormState.showPlot && (
+
+        <div className={styles.loadingSpinner}>
+          <ClipLoader
+            color={"#60b000"}
+            loading={loadingState.showLoading}
+            size={50}
+            aria-label="Loading Spinner"
+            data-testid="loader"
+          />
+        </div>
+
+        {loadingState.showPlot && (
           <Optimizer
-            tickers={inputFormState.tickers}
-            constraint={inputFormState.constraintPct / 100}
-            benchmarkRatePct={inputFormState.benchmarkRatePct}
+            monteCarloPlotOptions={optimizerData.monteCarloPlotOptions}
+            monteCarloPlotData={optimizerData.monteCarloPlotData}
+            pieChartData={optimizerData.pieChartData}
+            pieChartOptions={optimizerData.pieChartOptions}
+            maxSharpeRatioInfo={optimizerData.maxSharpeRatioInfo}
           />
         )}
       </div>

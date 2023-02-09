@@ -9,6 +9,10 @@ h2 {
   margin-bottom: -0.5rem;
 }
 
+.loading-spinner {
+  text-align: center;
+}
+
 /* InputFields */
 .form-inputs {
   width: 50%;

@@ -89,6 +89,7 @@ Paul Fischer
 - `react-chartjs-2@4.3.1`
 - `react-dom@18.2.0`
 - `react-katex@3.0.1`
+- `react-spinners@0.13.8`
 - `yup@0.32.11`
 
 ## Dev Dependencies

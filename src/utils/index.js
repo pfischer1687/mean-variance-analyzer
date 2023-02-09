@@ -6,7 +6,7 @@ export const MIN_NUM_ASSETS = 2;
 export const MAX_NUM_ASSETS = 15;
 export const THREE_MO_TR_BILL_RATE = 4.54;
 export const F_TR_BILL_RATE = `Jan 2023: ${THREE_MO_TR_BILL_RATE}%`;
-export const NUM_TRIALS = 500000;
+export const NUM_TRIALS = 1000000;
 export const NUM_PLOT_POINTS = 1000;
 export const MAX_NUM_EFF_FRONT_RISK_BINS = 20;
 export const GET_ASSET_DATA_GH_REPO_URL =
@@ -518,7 +518,7 @@ const getMonteCarloPlotOptions = (
                 `Sharpe Ratio: ${Number(maxSharpeRatio[0]).toFixed(2)}`,
                 `Annualized Return: ${Number(context.raw.y).toFixed(2)}%`,
                 `Standard Deviation: ${Number(context.raw.x).toFixed(2)}%`,
-                "Portfolio weights:",
+                "Portfolio Allocations:",
                 ...trialPflWeightsMatrix[context.raw.idx].map(
                   (weight, index) =>
                     `  ${tickers[index]}: ${Number(weight * 100).toFixed(2)}%`
@@ -532,7 +532,7 @@ const getMonteCarloPlotOptions = (
                 ).toFixed(2)}`,
                 `Annualized Return: ${Number(context.raw.y).toFixed(2)}%`,
                 `Standard Deviation: ${Number(context.raw.x).toFixed(2)}%`,
-                "Portfolio weights:",
+                "Portfolio Allocations:",
                 ...trialPflWeightsMatrix[context.raw.idx].map(
                   (weight, index) =>
                     `  ${tickers[index]}: ${Number(weight * 100).toFixed(2)}%`
@@ -716,7 +716,7 @@ const getPieChartData = (tickers, sortedMaxSharpeRatioPflWeights) => {
     labels: sortedMaxSharpeRatioPflWeights.map((arr) => arr[0]),
     datasets: [
       {
-        label: "Portfolio Weight Allocations for Max Sharpe Ratio",
+        label: "Portfolio Allocations for Maximum Sharpe Ratio",
         data: sortedMaxSharpeRatioPflWeights.map((arr) => arr[1]),
         backgroundColor: pieChartColors.map((color) => color + ", 0.2)"),
         borderColor: pieChartColors.map((color) => color + ", 1)"),
@@ -747,7 +747,7 @@ const getMaxSharpeRatioInfo = (
     `Standard Deviation: ${Number(trialPflRisks[maxSharpeRatio[1]]).toFixed(
       2
     )}%`,
-    "Portfolio weights:",
+    "Portfolio Allocations:",
     ...sortedMaxSharpeRatioPflWeights.map(
       (arr) =>
         `${arr[0]} (${AssetData[arr[0]].title}): ${Number(arr[1]).toFixed(2)}%`
