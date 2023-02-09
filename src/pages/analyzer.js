@@ -29,17 +29,17 @@ const AnalyzerPage = () => {
       const tickers = toSortedUpper(formValues.assets);
       const constraint = formValues.constraintPct / 100;
       const benchmarkRatePct = formValues.benchmarkRatePct;
-      const optimizerData = getOptimizerData(
+      const monteCarloSimData = getOptimizerData(
         tickers,
         constraint,
         benchmarkRatePct
       );
       setOptimizerData({
-        monteCarloPlotOptions: optimizerData.monteCarloPlotOptions,
-        monteCarloPlotData: optimizerData.monteCarloPlotData,
-        pieChartData: optimizerData.pieChartData,
-        pieChartOptions: optimizerData.pieChartOptions,
-        maxSharpeRatioInfo: optimizerData.maxSharpeRatioInfo,
+        monteCarloPlotOptions: monteCarloSimData.monteCarloPlotOptions,
+        monteCarloPlotData: monteCarloSimData.monteCarloPlotData,
+        pieChartData: monteCarloSimData.pieChartData,
+        pieChartOptions: monteCarloSimData.pieChartOptions,
+        maxSharpeRatioInfo: monteCarloSimData.maxSharpeRatioInfo,
       });
 
       setLoadingState({ showLoading: false, showPlot: true });
