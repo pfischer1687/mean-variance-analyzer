@@ -23,6 +23,7 @@ const Optimizer = ({
   children,
 }) => {
   ChartJS.register(...registerables);
+  // ChartJS.defaults.color = "#fff";
   return (
     <>
       <div className={styles.scatterPlot}>

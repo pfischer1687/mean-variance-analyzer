@@ -49,12 +49,11 @@ const AnalyzerPage = () => {
   return (
     <Layout pageTitle="Analyzer">
       <div className={styles.container}>
-        <h2 className={`${styles.headerText}`}>
-          Please enter the sample portfolio's information below.
-        </h2>
+        <h2 className={`${styles.headerText}`}>Mean-Variance Analyzer</h2>
 
         <p className={`${styles.headerText}`}>
-          If you have any questions, please refer to the{" "}
+          To get started, please enter the asset information for your desired
+          portfolio below. For any questions, refer to the{" "}
           <Link to="/tutorial">Tutorial</Link>. Note that by using this site,
           you agree to the <Link to="/terms">Terms of Service</Link>.
         </p>

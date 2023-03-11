@@ -676,6 +676,11 @@ const getPieChartOptions = () => {
           },
         },
       },
+      legend: {
+        labels: {
+          color: "white",
+        },
+      },
     },
   };
 };
@@ -707,9 +712,9 @@ const getSortedMaxSharpeRatioPflWeights = (
 const getPieChartData = (tickers, sortedMaxSharpeRatioPflWeights) => {
   const pieChartColors = tickers.map(
     (ticker) =>
-      `rgba(${Math.floor(255 * Math.random())}, ${Math.floor(
-        255 * Math.random()
-      )}, ${Math.floor(255 * Math.random())}`
+      `rgba(${Math.floor(255 * (0.5 + Math.random() / 2))}, ${Math.floor(
+        255 * (0.5 + Math.random() / 2)
+      )}, ${Math.floor(255 * (0.5 + Math.random() / 2))}`
   );
 
   return {
@@ -718,7 +723,7 @@ const getPieChartData = (tickers, sortedMaxSharpeRatioPflWeights) => {
       {
         label: "Portfolio Allocations for Maximum Sharpe Ratio",
         data: sortedMaxSharpeRatioPflWeights.map((arr) => arr[1]),
-        backgroundColor: pieChartColors.map((color) => color + ", 0.2)"),
+        backgroundColor: pieChartColors.map((color) => color + ", 0.7)"),
         borderColor: pieChartColors.map((color) => color + ", 1)"),
         borderWidth: 1,
       },

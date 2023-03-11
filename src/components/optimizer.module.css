@@ -2,9 +2,9 @@
   background-color: white;
   border-radius: 1rem;
   margin-bottom: 2rem;
+  margin-top: 1rem;
 }
 .pie-chart-element {
-  background-color: white;
   border-radius: 1rem;
 }
 
@@ -26,6 +26,9 @@
   .pie-chart-info {
     margin-left: 5%;
   }
+  .pie-chart-info h2 {
+    margin-top: 0;
+  }
 }
 
 @media screen and (max-width: 749px) {
@@ -45,5 +48,8 @@
     text-align: left;
     margin-left: 7%;
     padding-bottom: 2rem;
+  }
+  .pie-chart-info h2 {
+    margin-top: 1rem;
   }
 }
