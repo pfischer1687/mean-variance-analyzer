@@ -116,7 +116,7 @@ Paul Fischer
 
 ## License
 
-© 2023 All rights reserved
+Unlicensed - © 2023 All rights reserved
 
 Please see the [Terms of Service](https://mvanalyzer.dev/terms/) for more details.
 
