@@ -21,8 +21,8 @@ link in the navigation menu.
 
 This should take you to the input form (below). Enter all
 the assets of interest into the corresponding input fields. You can
-start typing a ticker or company name and if it is in the preloaded
-dataset of over 100 popular assets it should appear in the dropdown
+start typing a ticker or company name and, if it is in the preloaded
+dataset of over 100 popular assets, it should appear in the dropdown
 datalist and be clickable (you are encouraged to read more about
 [how the data was collected](https://github.com/pfischer1687/get-asset-data-for-mva) -
 note that the developer is not liable for the accuracy or freshness
@@ -35,7 +35,7 @@ given to any individual asset in the portfolio (the default is 100%).
 This number must be larger than 100% / (#assets - 1) and less than or
 equal to 100%. Then you have the option to enter a custom benchmark -
 the default value is the the 3 month Treasury bill rate at the time of
-this site's development (Jan 2023: 4.54%) but you can enter any custom risk-free rate
+this site's development, but you can enter any custom risk-free rate
 between -50% and 50% as your benchmark.
 
 <img src="./src/images/tutorial-input-form.png" alt="Analyzer page input form" width=600>
@@ -116,7 +116,7 @@ Paul Fischer
 
 ## License
 
-© 2022 All rights reserved
+© 2023 All rights reserved
 
 Please see the [Terms of Service](https://mvanalyzer.dev/terms/) for more details.
 

@@ -4,8 +4,8 @@ import * as Yup from "yup";
 
 export const MIN_NUM_ASSETS = 2;
 export const MAX_NUM_ASSETS = 15;
-export const THREE_MO_TR_BILL_RATE = 4.54;
-export const F_TR_BILL_RATE = `Jan 2023: ${THREE_MO_TR_BILL_RATE}%`;
+export const THREE_MO_TR_BILL_RATE = 4.17;
+export const F_TR_BILL_RATE = `Apr. 2023: ${THREE_MO_TR_BILL_RATE}%`;
 export const NUM_TRIALS = 1000000;
 export const NUM_PLOT_POINTS = 1000;
 export const MAX_NUM_EFF_FRONT_RISK_BINS = 20;

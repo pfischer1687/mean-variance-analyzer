@@ -52,8 +52,8 @@ const BackgroundPage = () => {
           To calculate this value, we first define the differential return D
           <sub>t</sub> in period t as the difference between the historical
           return R<sub>Ft</sub> on fund F and the return R<sub>Bt</sub> on a
-          benchmark (often the annualized 3 month Treasury bill rate, also
-          called the risk-free rate):
+          benchmark (often the arithmetic average of the historic annualized
+          3-month Treasury bill rate, also called the risk-free rate):
           <sup>
             <Link to="#references">[5]</Link>
           </sup>
